@@ -7,11 +7,11 @@ private:
 
 public:
 	Lis();
-	Lis(Swiat* swiat, COORDINATES pos, int wiek, int inicjatywa, int sila);
+	Lis(Swiat* swiat, COORDINATES pos, int wiek);
 
 	const char GetZnak() override;
 	void Akcja() override;
-
+	void Kolizja(Organizm* o) override;
 
 	~Lis();
 };

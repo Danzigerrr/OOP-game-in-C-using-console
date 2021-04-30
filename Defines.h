@@ -14,7 +14,7 @@ using namespace std;
 
 #define GROUND '_'
 #define INDEX 184698
-#define HUMAN 'H'
+#define CZLOWIEK 'H'
 #define ILOSC_GATUNKOW 11 
 
 //ANIMALS

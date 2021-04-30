@@ -1,8 +1,13 @@
 #include "Z_Zolw.h"
 
 Zolw::Zolw() {}
-Zolw::Zolw(Swiat* swiat, const COORDINATES pos, int wiek, int inicjatywa, int sila)
-	: Zwierze(swiat, pos, wiek, inicjatywa, sila) {}
+Zolw::Zolw(Swiat* swiat, const COORDINATES pos, int wiek) {
+	this->wiek = wiek;
+	this->sila = 2;
+	this->inicjatywa = 1;
+	this->swiat = swiat;
+	this->pozycja = pos;
+}
 
 Zolw::~Zolw() {}
 

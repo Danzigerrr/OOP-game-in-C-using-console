@@ -2,14 +2,16 @@
 #include "Roslina.h"
 
 class Trawa : public Roslina {
+private:
+	void Split() override;
 
 public:
 	Trawa();
-	Trawa(Swiat* swiat, const COORDINATES pos);
-	Trawa(Swiat* swiat, const COORDINATES pos, int wiek, int sila);
+	Trawa(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	const void Rysuj() override;
+	virtual void Akcja() override;
 	const char GetZnak() override;
+	void Kolizja(Organizm* o) override;
 
 	~Trawa();
 };

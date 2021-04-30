@@ -6,12 +6,11 @@ private:
 
 public:
 	Mlecz();
-	Mlecz(Swiat* swiat, const COORDINATES pos);
-	Mlecz(Swiat* swiat, const COORDINATES pos, int wiek, int sila);
+	Mlecz(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	const void Rysuj() override;
+	virtual void Akcja() override;
 	const char GetZnak() override;
-	void Akcja() override;
+	void Kolizja(Organizm* o) override;
 
 	~Mlecz();
 };

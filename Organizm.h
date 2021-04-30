@@ -20,6 +20,7 @@ public:
 	int GetWiek();
 	int GetInicjatywa();
 	int GetSila();
+	Swiat* GetSwiat();
 	COORDINATES GetPozycja();
 
 

@@ -3,16 +3,17 @@
 
 class Roslina : public Organizm {
 protected:
-	virtual void Split();
+	virtual void Split() = 0;
 	Organizm* nastepny(const DIRECTION kierunek, const int distnace);
 public:
 	Roslina();
-	Roslina(Swiat* swiat, int x, int y, int wiek, int inicjatywa, int sila);
+	Roslina(Swiat* swiat, COORDINATES coor, int wiek, int sila);
 
-	void Akcja() override;
-	void Kolizja() override;
-	const void Rysuj() override;
-	const char GetZnak() override;
+	virtual void Akcja() override;
+	void Kolizja(Organizm* o) override; //do private?
+
+	virtual const char GetZnak() override;
+
 	~Roslina();
 
 };

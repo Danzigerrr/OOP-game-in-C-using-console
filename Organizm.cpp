@@ -33,3 +33,6 @@ COORDINATES Organizm::GetPozycja() {
 int Organizm::GetWiek() {
     return this->wiek;
 }
+Swiat* Organizm::GetSwiat() {
+    return swiat;
+}

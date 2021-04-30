@@ -33,6 +33,6 @@ public:
 
 	void WczytajSwiatZPliku();
 
-	
+	Organizm* GetPlansza();
 };
 

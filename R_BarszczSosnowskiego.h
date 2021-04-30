@@ -9,13 +9,11 @@ private:
 
 public:
 	BarszczSosnowskiego();
-	BarszczSosnowskiego(Swiat* swiat, const COORDINATES pos);
-	BarszczSosnowskiego(Swiat* swiat, const COORDINATES pos, int wiek, int sila);
+	BarszczSosnowskiego(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	const void Rysuj() override;
+	virtual void Akcja() override;
 	const char GetZnak() override;
-	void Akcja() override;
-	void Kolizja() override;
+	void Kolizja(Organizm* o) override;
 
 	~BarszczSosnowskiego();
 };

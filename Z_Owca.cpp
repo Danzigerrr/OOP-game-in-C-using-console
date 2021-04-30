@@ -2,8 +2,14 @@
 
 
 Owca::Owca() {}
-Owca::Owca(Swiat* swiat, const COORDINATES pos, int wiek, int inicjatywa, int sila)
-	: Zwierze(swiat, pos, wiek, inicjatywa, sila) {}
+Owca::Owca(Swiat* swiat, const COORDINATES pos, int wiek) {
+	this->wiek = wiek;
+	this->sila = 4;
+	this->inicjatywa = 4;
+	this->swiat = swiat;
+	this->pozycja = pos;
+}
+
 
 Owca::~Owca() {}
 

@@ -1,15 +1,16 @@
 #include "R_Trawa.h"
 
 Trawa::Trawa() {}
-Trawa::Trawa(Swiat* swiat, const COORDINATES position, int wiek, int sila)
+Trawa::Trawa(Swiat* swiat, const COORDINATES position, int wiek)
 {
 	this->wiek = wiek;
-	this->sila = sila;
+	this->sila = 0;
 	this->swiat = swiat;
 	this->pozycja = position;
 }
 
-const void Trawa::Rysuj() { cout << TRAWA; }
 const char Trawa::GetZnak() { return TRAWA; }
+void Trawa::Kolizja(Organizm* o) {}
+void Trawa::Akcja() {}
 
 Trawa::~Trawa() {}

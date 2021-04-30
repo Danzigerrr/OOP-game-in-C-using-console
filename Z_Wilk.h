@@ -7,10 +7,10 @@ private:
 
 public:
 	Wilk();
-	Wilk(Swiat* swiat, COORDINATES coor, int wiek, int inicjatywa, int sila);
+	Wilk(Swiat* swiat, COORDINATES coor, int wiek);
 
 	const char GetZnak() override;
 	void Akcja() override;
-
+	void Kolizja(Organizm* o) override;
 	~Wilk();
 };

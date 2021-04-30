@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Organizm.cpp" />
     <ClCompile Include="R_BarszczSosnowskiego.cpp" />
     <ClCompile Include="Czlowiek.cpp" />
     <ClCompile Include="R_Guarana.cpp" />

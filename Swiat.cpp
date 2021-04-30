@@ -68,8 +68,7 @@ void Swiat::WczytajSwiatZPliku() {
 			int x = get_value_from_char(infoOrganizmy, &i);
 			int y = get_value_from_char(infoOrganizmy, &i);
 			int wiek = get_value_from_char(infoOrganizmy, &i);
-			int inicjatywa = get_value_from_char(infoOrganizmy, &i);
-			int sila = get_value_from_char(infoOrganizmy, &i);
+			
 			
 			COORDINATES coor;
 			coor.x = x;
@@ -78,16 +77,16 @@ void Swiat::WczytajSwiatZPliku() {
 			Organizm* Org;
 
 			switch (gatunek) {
-			case ANTYLOPA: { Org = new Antylopa(this, coor, wiek, inicjatywa, sila);}break;
-			case LIS: { Org = new Lis(this, coor, wiek, inicjatywa, sila); }break;
-			case OWCA: { Org = new Owca(this, coor, wiek, inicjatywa, sila); }break;
-			case WILK: {  Org = new Wilk(this, coor, wiek, inicjatywa, sila);}break;
-			case ZOLW: { Org = new Zolw(this, coor, wiek, inicjatywa, sila); }break;
-			case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek, inicjatywa, sila); }break;
-			case GUARANA: { Org = new Guarana(this, coor, wiek, inicjatywa, sila); 	}break;
-			case MLECZ: { Org = new Mlecz(this, coor, wiek, inicjatywa, sila); 	}break;
-			case TRAWA: { Org = new Trawa(this, coor, wiek, inicjatywa, sila); 	}break;
-			case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek, inicjatywa, sila); }break;
+			case ANTYLOPA: { Org = new Antylopa(this, coor, wiek);}break;
+			case LIS: { Org = new Lis(this, coor, wiek); }break;
+			case OWCA: { Org = new Owca(this, coor, wiek); }break;
+			case WILK: {  Org = new Wilk(this, coor, wiek);}break;
+			case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
+			case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
+			case GUARANA: { Org = new Guarana(this, coor, wiek); 	}break;
+			case MLECZ: { Org = new Mlecz(this, coor, wiek); 	}break;
+			case TRAWA: { Org = new Trawa(this, coor, wiek); 	}break;
+			case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
 			}
 
 			plansza[x][y] = Org;
@@ -149,4 +148,8 @@ void Swiat::WykonajTure() {
 		o_ptr->Akcja();
 	}
 	tura++;
+}
+
+Organizm* Swiat::GetPlansza() {
+	return **plansza;
 }

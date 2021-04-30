@@ -7,13 +7,10 @@ class Czlowiek : public Zwierze {
 
 public:
 	Czlowiek();
-	Czlowiek(Swiat* swiat, const COORDINATES pos);
-	Czlowiek(Swiat* swiat, const COORDINATES, int wiek, int inicjatywa, int sila);
+	Czlowiek(Swiat* swiat, const COORDINATES, int wiek);
 
-	void Akcja() override;
-	void Kolizja() override;
-	void const Rysuj() override;
 	const char GetZnak() override;
-
+	void Akcja() override;
+	void Kolizja(Organizm* o) override;
 	~Czlowiek();
 };

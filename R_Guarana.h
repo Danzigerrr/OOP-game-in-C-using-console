@@ -6,12 +6,11 @@ private:
 
 public:
 	Guarana();
-	Guarana(Swiat* swiat, const COORDINATES pos);
-	Guarana(Swiat* swiat, const COORDINATES pos, int wiek, int sila);
+	Guarana(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	const void Rysuj() override;
+	virtual void Akcja() override;
 	const char GetZnak() override;
-	void Kolizja() override;
+	void Kolizja(Organizm* o) override;
 
 	~Guarana();
 };

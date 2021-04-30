@@ -7,12 +7,11 @@ private:
 
 public:
 	WilczeJagody();
-	WilczeJagody(Swiat* swiat, const COORDINATES pos);
-	WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek, int sila);
+	WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	const void Rysuj() override;
+	virtual void Akcja() override;
 	const char GetZnak() override;
-	void Kolizja() override;
+	void Kolizja(Organizm* o) override;
 
 	~WilczeJagody();
 };

@@ -7,12 +7,12 @@ private:
 
 public:
 	Owca();
-	Owca(Swiat* swiat, COORDINATES pos, int wiek, int inicjatywa, int sila);
+	Owca(Swiat* swiat, COORDINATES pos, int wiek);
 
 
 	const char GetZnak() override;
 	void Akcja() override;
-
+	void Kolizja(Organizm* o) override;
 
 	~Owca();
 };

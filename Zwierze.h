@@ -3,15 +3,15 @@
 
 class Zwierze : public Organizm {
 protected:
-	virtual void Split();
+	virtual void Split() = 0;
 public:
 	Zwierze();
-	Zwierze(Swiat* swiat, COORDINATES coor, int wiek, int inicjatywa, int sila); // do wczytania z pliku
+	//Zwierze(Swiat* swiat, COORDINATES coor, int wiek); // do wczytania z pliku
 
 	virtual void Akcja() override;
 
 	void Kolizja(Organizm* o) override; //do private?
 
-	virtual const char GetZnak() = 0;
+	virtual const char GetZnak() override;
 	~Zwierze();
 };

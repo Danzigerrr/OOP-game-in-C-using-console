@@ -1,8 +1,13 @@
 #include "Z_Wilk.h"
 
 Wilk::Wilk(){}
-Wilk::Wilk(Swiat* swiat, const COORDINATES pos, int wiek, int inicjatywa, int sila)
-	: Zwierze(swiat, pos, wiek, inicjatywa, sila) {}
+Wilk::Wilk(Swiat* swiat, const COORDINATES pos, int wiek) {
+	this->wiek = wiek;
+	this->sila = 9;
+	this->inicjatywa = 5;
+	this->swiat = swiat;
+	this->pozycja = pos;
+}
 
 Wilk::~Wilk() {}
 
