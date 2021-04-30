@@ -7,11 +7,12 @@ private:
 
 public:
 	Zolw();
-	Zolw(Swiat* swiat, const COORDINATES pos);
-	Zolw(Swiat* swiat, const COORDINATES, int wiek, int inicjatywa, int sila);
+	Zolw(Swiat* swiat, COORDINATES pos, int wiek, int inicjatywa, int sila);
 
-	const void Rysuj() override;
+
 	const char GetZnak() override;
+	void Akcja() override;
+
 
 	~Zolw();
 };

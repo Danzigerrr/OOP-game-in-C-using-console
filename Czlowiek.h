@@ -16,5 +16,4 @@ public:
 	const char GetZnak() override;
 
 	~Czlowiek();
-
 };

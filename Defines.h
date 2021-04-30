@@ -29,7 +29,7 @@ using namespace std;
 #define MLECZ '@' 
 #define GUARANA '#'
 #define WILCZEJAGODY '%' 
-#define BARSZCZSOSNOWSKIEGO '$'
+#define BARSZCZ '$'
 			
 #define ARROW_UP 72		
 #define ARROW_DOWN 80

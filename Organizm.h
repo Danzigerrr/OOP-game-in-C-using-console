@@ -16,7 +16,7 @@ public:
 	void nadajSwiat(Swiat* s);
 	void nadajPozycje(int x, int y);
 
-	virtual const char GetZnak();
+	virtual const char GetZnak() = 0;
 	int GetWiek();
 	int GetInicjatywa();
 	int GetSila();
@@ -26,5 +26,4 @@ public:
 	~Organizm();
 };
 
-
-	bool cmp(Organizm* o1, Organizm* o2);
+bool cmp(Organizm* o1, Organizm* o2);

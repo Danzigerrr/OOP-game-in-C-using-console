@@ -18,8 +18,10 @@ class Swiat
 private:
 	int wysokosc, szerokosc;
 	int tura;
-	Organizm ***plansza;
-	
+	Organizm*** plansza;
+
+	vector<Organizm*> wezWszystkieOrganizmy();
+	int get_value_from_char(char znak[50], int* iterator);
 public:
 
 	Swiat(const int width, const int height);
@@ -29,10 +31,8 @@ public:
 
 	void WykonajTure();
 
-	void DodajOrganizm(); 
-	/*
-	* sortowanie po dwoch zmiennych w wektorze:
-	* https://stackoverflow.com/questions/6771374/sorting-an-stl-vector-on-two-values
-	*/
+	void WczytajSwiatZPliku();
+
+	
 };
 

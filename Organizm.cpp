@@ -15,3 +15,21 @@ void Organizm::nadajPozycje(int x, int y) {
     pozycja.x = x;
     pozycja.y = y;
 }
+
+
+int Organizm::GetSila() {
+    return this->sila;
+
+}
+
+int Organizm::GetInicjatywa() {
+    return this->inicjatywa;
+}
+
+COORDINATES Organizm::GetPozycja() {
+    return this->pozycja;
+}
+
+int Organizm::GetWiek() {
+    return this->wiek;
+}
