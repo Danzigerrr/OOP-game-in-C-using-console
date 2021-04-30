@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Swiat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Czlowiek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Symulator1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_BarszczSosnowskiego.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Guarana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Mlecz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Trawa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="R_WilczeJagody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z_Wilk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z_Owca.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z_Lis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z_Zolw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Z_Antylopa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Organizm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Swiat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Roslina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zwierze.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Czlowiek.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Guarana.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Mlecz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Trawa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_WilczeJagody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="R_BarszczSosnowskiego.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z_Wilk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z_Owca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z_Lis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z_Zolw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Z_Antylopa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
