@@ -7,12 +7,17 @@ class Czlowiek : public Zwierze {
 private:
 	int UmiejetnoscAktywnaPrzez;
 	int UmiejetnoscOdnawianaPrzez;
+	void Split() override;
 public:
 	Czlowiek();
 	Czlowiek(Swiat* swiat, const COORDINATES, int wiek);
-
+	int GetUmiejetnoscAktywnaPrzez();
+	void SetUmiejetnoscAktywnaPrzez(int value);
+	int GetUmiejetnoscOdnawianaPrzez();
 	const char GetZnak() override;
 	void Akcja() override;
 	void Kolizja(Organizm* o) override;
 	~Czlowiek();
+
+
 };

@@ -10,24 +10,28 @@ Czlowiek::Czlowiek(Swiat* swiat, const COORDINATES pos, int wiek) {
 }
 
 
+
+int Czlowiek::GetUmiejetnoscAktywnaPrzez() {
+    return UmiejetnoscAktywnaPrzez;
+}
+
+int Czlowiek::GetUmiejetnoscOdnawianaPrzez() {
+    return UmiejetnoscOdnawianaPrzez;
+}
+
 Czlowiek::~Czlowiek() {}
 
 const char Czlowiek::GetZnak() {
 	return CZLOWIEK;
 }
 
-void Czlowiek::Akcja() {
-    KierunekRuchuCzlowieka = 0;
-    int PierwszyChar = _getch(); // podwojny input
+void Czlowiek::SetUmiejetnoscAktywnaPrzez(int value) {
+    UmiejetnoscAktywnaPrzez = value;
+}
 
-    if (PierwszyChar == ESC) exit(1);
-    if (PierwszyChar == ENTER && UmiejetnoscAktywnaPrzez == 0 && UmiejetnoscOdnawianaPrzez == 0) {
-        cout << "Specjalna umiejetnosc aktywowana";
-        UmiejetnoscAktywnaPrzez = UMIEJETNOSC_AKTYWNA;
-    }
-    else {
-        cout << "Czlowiek rusza sie w ";
-        switch ((KierunekRuchuCzlowieka = _getch())) {
+void Czlowiek::Akcja() {
+    cout << "czlowiek rusza sie: ";
+    switch (KierunekRuchuCzlowieka) {
         case KEY_UP: {
             cout << "Up" << endl;//key up
             if(pozycja.y > 0)
@@ -51,9 +55,8 @@ void Czlowiek::Akcja() {
         default:
             cout << "Not right key" << endl;  // not arrow
             break;
-        }
     }
-
+    
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 
@@ -88,9 +91,7 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
         bool RuchMozliwy = false;
         COORDINATES poz_atak = atakujacy->GetPozycja();
         while (RuchMozliwy == false) {
-            int random = rand() % 3;
-
-            switch (random) {
+             switch (rand() % 3) {
                 case UP: {
                     if (poz_atak.y > 0) {
                         pozycja.y--;
@@ -115,10 +116,7 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
                         RuchMozliwy = true;
                     }
                 }break;
-                
-
             }
-
         }
 
         atakujacy->SetPozycja(poz_atak);
@@ -158,46 +156,4 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
         }
     }
 }
-
-/*
-kolzija z obronca terenu:
-
-
-
-void Czlowiek::Kolizja(Organizm* obronca_terenu) {
-
-    //Specjalna umiejetnosc --> Człowiek odstrasza wszystkie zwierzęta.
-    //Zwierzę które stanie na polu Człowieka zostaje przesunięte na losowe pole sąsiednie.
-    if (UmiejetnoscAktywnaPrzez > 0)
-    {
-
-    }
-
-
-    else //normalna kolizja
-    {
-        if (sila != obronca_terenu->GetSila()) //sily sa rozne --> wygyrwa silniejszy
-        {
-            if (sila > obronca_terenu->GetSila()) //wygrywa czlowiek
-            {
-               Organizm *** plansza= swiat->GetPlansza();
-               plansza[pozycja.x][pozycja.y] = new Trawa();
-            }
-            else //wygrywa inny organizm
-            {
-                delete this;
-            }
-
-        }
-
-        else //jesli sily sa rowne wygrywa atakujacy
-        {
-            delete obronca_terenu;
-        }
-
-    }
-
-
-}
-*/
 

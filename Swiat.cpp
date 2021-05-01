@@ -3,7 +3,7 @@
 
 Swiat::Swiat(const int _width, const int _height)
 {
-	cout << "utworzono swiat o rozmiarach: szer = " << _width << " wys= " << _height << endl;
+	std::cout << "utworzono swiat o rozmiarach: szer = " << _width << " wys= " << _height << endl;
 
 	this->szerokosc = _width;
 	this->wysokosc = _height;
@@ -15,6 +15,8 @@ Swiat::Swiat(const int _width, const int _height)
 
 
 	vector<Organizm*> Y;
+	human = new Czlowiek;
+	Y.push_back(human); // tylko jeden czlowiek
 	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
 		Y.push_back(new Antylopa);
 		Y.push_back(new Lis);
@@ -41,6 +43,28 @@ Swiat::Swiat(const int _width, const int _height)
 			plansza[i][j]->nadajPozycje(i, j);
 		}
 	}
+
+	this->RysujSwiat();
+
+}
+Czlowiek* Swiat::GetHuman() {
+	return human;
+}
+void Swiat::GetHumanCommand() {
+	Czlowiek* Human = GetHuman();
+	int UmiejetnoscAktywnaPrzez = Human->GetUmiejetnoscAktywnaPrzez();
+	int UmiejetnoscOdnawianaPrzez = Human->GetUmiejetnoscOdnawianaPrzez();
+	COORDINATES pozycja = Human->GetPozycja();
+	int PierwszyChar = _getch(); // podwojny input
+
+	if (PierwszyChar == ESC) exit(1);
+	if (PierwszyChar == ENTER && UmiejetnoscAktywnaPrzez == 0 && UmiejetnoscOdnawianaPrzez == 0) {
+		std::cout << "Specjalna umiejetnosc aktywowana";
+		Human->SetUmiejetnoscAktywnaPrzez(UMIEJETNOSC_AKTYWNA);
+	}
+	else {
+		KierunekRuchuCzlowieka = _getch();
+	}
 }
 
 void Swiat::WczytajSwiatZPliku() {
@@ -48,9 +72,10 @@ void Swiat::WczytajSwiatZPliku() {
 	FILE* fptr;
 	fptr = fopen(test, "r");
 	if (fptr == NULL) {
-		cout << "ERROR opening file";
+		std::cout << "ERROR opening file";
 		exit(1);
 	}
+
 	char infoSwiat[50] = {};
 	fgets(infoSwiat, 50, fptr);
 	int j = 0;
@@ -58,9 +83,21 @@ void Swiat::WczytajSwiatZPliku() {
 	this->szerokosc = get_value_from_char(infoSwiat, &j);
 	this->tura = get_value_from_char(infoSwiat, &j);
 
-	char infoOrganizmy[50] = {};
 
-	vector<Organizm*> Y;
+	char infoHuman[50] = {};
+	fgets(infoHuman, 50, fptr);
+	int k = 0;
+	int x = get_value_from_char(infoHuman, &k);
+	int y = get_value_from_char(infoHuman, &k);
+	int wiek = get_value_from_char(infoHuman, &k);
+	COORDINATES coor{x,y};
+	Organizm* Org = human = new Czlowiek(this, coor, wiek);
+	plansza[x][y] = Org;
+	plansza[x][y]->nadajSwiat(this);
+	plansza[x][y]->nadajPozycje(x, y);
+
+
+	char infoOrganizmy[50] = {};
 	while (fgets(infoOrganizmy, 50, fptr) != NULL) {
 
 		if (infoOrganizmy[0] != '/') {
@@ -71,10 +108,7 @@ void Swiat::WczytajSwiatZPliku() {
 			int y = get_value_from_char(infoOrganizmy, &i);
 			int wiek = get_value_from_char(infoOrganizmy, &i);
 			
-			
-			COORDINATES coor{};
-			coor.x = x;
-			coor.y = y;
+			COORDINATES coor{x,y};
 
 			Organizm* Org = NULL;
 
@@ -98,7 +132,7 @@ void Swiat::WczytajSwiatZPliku() {
 	}
 	fclose(fptr);
 
-	cout << "POMYŚLNIE WCZYTANO ŚWIAT:\n";
+	std::cout << "POMYŚLNIE WCZYTANO ŚWIAT:\n";
 	this->RysujSwiat();
 }
 
@@ -114,7 +148,7 @@ int get_value_from_char(char znak[50], int* iterator)
 	return result;
 }
 Swiat::~Swiat() {
-	cout << "Destruktor Swiata\n";
+	std::cout << "Destruktor Swiata\n";
 	for (int i = 0; i < wysokosc; i++) {
 		for (int k = 0; k < szerokosc; k++)
 			delete plansza[i][k];
@@ -126,10 +160,10 @@ Swiat::~Swiat() {
 }
 
 void Swiat::RysujSwiat() {
-	cout << "\nSWIAT WYGLADA TAK:\n";
+	std::cout << "\nOTO SWIAT:\n";
 	for (int i = 0; i < wysokosc; i++)
 		for (int j = 0; j < szerokosc; j++)
-			cout << plansza[i][j]->GetZnak() << " ";
+			std::cout << plansza[i][j]->GetZnak() << " ";
 }
 
 vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
@@ -144,7 +178,7 @@ vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 
 void Swiat::WykonajTure() {
 	tura++;
-	cout << "Wykonywanie " << tura << " tury:\n";
+	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
 	sort(w.begin(), w.end(), cmp);

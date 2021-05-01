@@ -19,7 +19,7 @@ private:
 	int wysokosc, szerokosc;
 	int tura;
 	Organizm*** plansza;
-
+	Czlowiek* human;
 	
 	int get_value_from_char(char znak[50], int* iterator);
 public:
@@ -37,7 +37,8 @@ public:
 	int GetWysokosc();
 	int GetSzerokosc();
 	int GetTura();
-	
+	void GetHumanCommand();
+	Czlowiek* GetHuman();
 
 	Organizm*** GetPlansza();
 };
