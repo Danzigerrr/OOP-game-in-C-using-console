@@ -22,7 +22,7 @@ public:
 	int GetSila();
 	Swiat* GetSwiat();
 	COORDINATES GetPozycja();
-
+	void SetPozycja(COORDINATES pos);
 
 	~Organizm();
 };

@@ -36,3 +36,7 @@ int Organizm::GetWiek() {
 Swiat* Organizm::GetSwiat() {
     return swiat;
 }
+
+void Organizm::SetPozycja(COORDINATES pos) {
+    this->pozycja = pos;
+}

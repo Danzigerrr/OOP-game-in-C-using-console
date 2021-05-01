@@ -18,8 +18,8 @@ using namespace std;
 #define INDEX 184698
 #define CZLOWIEK 'H'
 #define ILOSC_GATUNKOW 11 
-#define ELIKSIR_AKTYWNY 5 //tury
-#define ELIKSIR_ODNAWIANY 5 //tury
+#define UMIEJETNOSC_AKTYWNA 5 //tury
+#define UMIEJETNOSC_ODNAWIANA 5 //tury
 #define ILOSC_ORGANIZMU_NA_POCZATKU 2
 //ANIMALS
 #define WILK 'W'
@@ -56,5 +56,5 @@ struct COORDINATES {
 
 class Swiat;
 
-int KierunekRuchuCzlowieka = 0;
+int KierunekRuchuCzlowieka = 0; //key input
 

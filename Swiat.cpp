@@ -153,8 +153,8 @@ void Swiat::WykonajTure() {
 	}
 }
 
-Organizm* Swiat::GetPlansza() {
-	return **plansza;
+Organizm*** Swiat::GetPlansza() {
+	return plansza;
 }
 
 

@@ -39,6 +39,6 @@ public:
 	int GetTura();
 	
 
-	Organizm* GetPlansza();
+	Organizm*** GetPlansza();
 };
 
