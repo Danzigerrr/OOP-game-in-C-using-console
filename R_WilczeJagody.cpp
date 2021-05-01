@@ -2,17 +2,20 @@
 
 WilczeJagody::WilczeJagody() {
 	this->sila = 99;
+	this->znak = WILCZEJAGODY;
+
 }
 WilczeJagody::WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 99;
+	this->znak = WILCZEJAGODY;
 	this->swiat = swiat;
 	this->pozycja = pos;
 }
 
 WilczeJagody::~WilczeJagody() {}
 void WilczeJagody::Kolizja(Organizm* o) { }
-const char WilczeJagody::GetZnak() { return WILCZEJAGODY; }
+
 
 void WilczeJagody::Akcja() {
 

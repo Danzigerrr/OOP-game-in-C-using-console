@@ -1,47 +1,71 @@
 #include "Z_Lis.h"
-
+#include "Swiat.h"
 
 Lis::Lis() {
 	this->sila = 3;
 	this->inicjatywa = 7;
+    this->znak = LIS;
 }
 Lis::Lis(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 3;
 	this->inicjatywa = 7;
+    this->znak = LIS;
 	this->swiat = swiat;
 	this->pozycja = pos;
 }
 
 Lis::~Lis() {}
 
-const char Lis::GetZnak() {
-	return LIS;
-}
-
-void Lis::Akcja() {
-
-}
 
 
-void Owca::Kolizja(Organizm* atakujacy) {
-    if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
-    {
-        if (sila > atakujacy->GetSila()) //wygrywa czlowiek
-        {
-            delete atakujacy;
-            Organizm*** plansza = swiat->GetPlansza();
-            plansza[pozycja.x][pozycja.y] = new Trawa();
-        }
-        else //wygrywa atakujacy
-        {
-            delete this;
+
+DIRECTION Lis::ZrobRuch() {
+    DIRECTION dir = NO_CHANGE;
+    int SprawdzoneMozliwosci = 0;
+    while (dir == NO_CHANGE) {
+        int random = rand() % 3;
+        switch (random) {
+            if (SprawdzoneMozliwosci < 4) SprawdzoneMozliwosci++;
+            else return NO_CHANGE;
+
+            case UP: {
+                if (pozycja.y - step >= 0) 
+                    // lis nigdy nie ruszy sie na ple zajmowae prez organizm silniejszy niz on
+                    if (this->swiat->GetPlansza()[pozycja.x][pozycja.y - step]->GetSila() < sila) { 
+                    cout << "Up" << endl;//key up
+                    pozycja.y -= step;
+                    dir = UP;
+                }
+            }break;
+            case DOWN: {
+                if (pozycja.y + step <= swiat->GetWysokosc()) 
+                    // lis nigdy nie ruszy sie na ple zajmowae prez organizm silniejszy niz on
+                    if (swiat->GetPlansza()[pozycja.x][pozycja.y + step]->GetSila() < sila) {
+                    cout << "Down" << endl;  // key down
+                    pozycja.y += step;
+                    dir = DOWN;
+                }
+            }break;
+            case LEFT: {
+                if (pozycja.x - step >= 0) 
+                    // lis nigdy nie ruszy sie na ple zajmowae prez organizm silniejszy niz on
+                    if (swiat->GetPlansza()[pozycja.x - step][pozycja.y]->GetSila() < sila) {
+                    cout << "Left" << endl;  // key left
+                    pozycja.x -= step;
+                    dir = LEFT;
+                }
+            }break;
+            case RIGHT: {
+                if (pozycja.x + step <= swiat->GetSzerokosc()) 
+                    // lis nigdy nie ruszy sie na ple zajmowae prez organizm silniejszy niz on
+                    if (swiat->GetPlansza()[pozycja.x + step][pozycja.y]->GetSila() < sila) {
+                    cout << "Right" << endl;  // key right
+                    pozycja.x += step;
+                    dir = RIGHT;
+                }
+            }break;
         }
     }
-
-    else //jesli sily sa rowne --> wygrywa atakujacy
-    {
-        delete this;
-    }
+    return dir;
 }
-

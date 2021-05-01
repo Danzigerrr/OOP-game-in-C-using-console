@@ -1,17 +1,67 @@
-﻿  Czlowiek.cpp
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(23,65): error C2059: syntax error: ')'
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(23,67): error C2143: syntax error: missing ';' before '{'
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(27,5): error C2181: illegal else without matching if
-  Organizm.cpp
+﻿  Organizm.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
+  Roslina.cpp
   R_BarszczSosnowskiego.cpp
+  Czlowiek.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(132,41): error C2248: 'Organizm::Kolizja': cannot access protected member declared in class 'Organizm'
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Organizm.h(12): message : see declaration of 'Organizm::Kolizja'
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Organizm.h(4): message : see declaration of 'Organizm'
   R_Guarana.cpp
   R_Mlecz.cpp
   R_Trawa.cpp
-  R_WilczeJagody.cpp
   Symulator1.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
+  R_WilczeJagody.cpp
+  Zwierze.cpp
   Z_Antylopa.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
   Z_Lis.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
   Z_Owca.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
   Z_Wilk.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
   Z_Zolw.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Zolw.h(6,7): error C3668: 'Zolw::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.h(10,7): error C3668: 'Czlowiek::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Antylopa.h(6,7): error C3668: 'Antylopa::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Lis.h(6,7): error C3668: 'Lis::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Owca.h(6,7): error C3668: 'Owca::Split': method with override specifier 'override' did not override any base class methods
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Z_Wilk.h(6,7): error C3668: 'Wilk::Split': method with override specifier 'override' did not override any base class methods
   Generating Code...

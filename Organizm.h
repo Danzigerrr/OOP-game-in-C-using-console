@@ -1,6 +1,6 @@
 #pragma once
 #include "Defines.h"
-#include "Swiat.h"
+
 class Organizm {
 protected:
 	int sila;
@@ -8,15 +8,20 @@ protected:
 	COORDINATES pozycja;
 	int wiek = 0;
 	Swiat* swiat;
+	int step = 1;
+	virtual void Kolizja(Organizm* o);
+	char znak;
 public:
 	Organizm();
 
-	virtual void Akcja() = 0;  // akcja trigerruje kolizje jesli jest problem
-	virtual void Kolizja(Organizm* o);
+	virtual void Akcja() = 0;  //abstakcyjna bo rozna dla zwierzat i roslin
+	virtual void SprawdzKolizje(DIRECTION dir);
+	virtual DIRECTION ZrobRuch();
+	
 	void nadajSwiat(Swiat* s);
 	void nadajPozycje(int x, int y);
 
-	virtual const char GetZnak() = 0;
+	const char GetZnak();
 	int GetWiek();
 	void SetWiek(int wiek);
 	int GetInicjatywa();
@@ -28,9 +33,8 @@ public:
 	COORDINATES GetPozycja();
 	void SetPozycja(COORDINATES pos);
 
-	void SprawdzKolizje();
-
 	~Organizm();
+	
 };
 
 bool cmp(Organizm* o1, Organizm* o2);

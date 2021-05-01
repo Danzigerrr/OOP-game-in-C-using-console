@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Organizm.cpp" />
+    <ClCompile Include="Roslina.cpp" />
     <ClCompile Include="R_BarszczSosnowskiego.cpp" />
     <ClCompile Include="Czlowiek.cpp" />
     <ClCompile Include="R_Guarana.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="R_Trawa.cpp" />
     <ClCompile Include="Symulator1.cpp" />
     <ClCompile Include="R_WilczeJagody.cpp" />
+    <ClCompile Include="Zwierze.cpp" />
     <ClCompile Include="Z_Antylopa.cpp" />
     <ClCompile Include="Z_Lis.cpp" />
     <ClCompile Include="Z_Owca.cpp" />

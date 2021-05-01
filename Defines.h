@@ -21,14 +21,13 @@ using namespace std;
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
 #define ILOSC_ORGANIZMU_NA_POCZATKU 2
-//ANIMALS
+
 #define WILK 'W'
 #define OWCA 'O'
 #define LIS 'L'
 #define ZOLW 'Z'
 #define ANTYLOPA 'A'
 
-//PLANTS
 #define TRAWA '_'
 #define MLECZ '@' 
 #define GUARANA '#'
@@ -46,7 +45,8 @@ enum DIRECTION {
 	UP,
 	DOWN,
 	LEFT,
-	RIGHT
+	RIGHT,
+	NO_CHANGE,
 };
 
 struct COORDINATES {

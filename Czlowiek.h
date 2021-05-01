@@ -7,7 +7,6 @@ class Czlowiek : public Zwierze {
 private:
 	int UmiejetnoscAktywnaPrzez;
 	int UmiejetnoscOdnawianaPrzez;
-	void Split() override;
 public:
 	Czlowiek();
 	Czlowiek(Swiat* swiat, const COORDINATES, int wiek);

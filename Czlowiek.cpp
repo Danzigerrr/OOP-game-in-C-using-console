@@ -33,37 +33,46 @@ void Czlowiek::SetUmiejetnoscOdnawianaPrzez(int value) {
 }
 
 void Czlowiek::Akcja() {
-    cout << "czlowiek rusza sie: ";
+    cout << "Czlowiek rusza sie: ";
+    DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {
         case KEY_UP: {
             cout << "Up" << endl;//key up
-            if(pozycja.y > 0)
-            pozycja.y--;
+            if (pozycja.y > 0) {
+                pozycja.y--;
+                dir = UP;
+            }
         }break;
         case KEY_DOWN: {
             cout << "Down" << endl;  // key down
-            if (pozycja.y < swiat->GetWysokosc())
+            if (pozycja.y < swiat->GetWysokosc()) {
                 pozycja.y++;
+                dir = DOWN;
+            }
         }break;
         case KEY_LEFT: {
             cout << "Left" << endl;  // key left
-            if (pozycja.x > 0)
+            if (pozycja.x > 0) {
                 pozycja.x--;
+                dir = LEFT;
+            }
         }break;
         case KEY_RIGHT: {
             cout << "Right" << endl;  // key right
-            if (pozycja.x < swiat->GetSzerokosc())
+            if (pozycja.x < swiat->GetSzerokosc()){
                 pozycja.x++;
+                dir = RIGHT;
+            }
         }break;
         default:
-            cout << "Not right key" << endl;  // not arrow
+            cout << "Incorrect key input" << endl;  // not arrow
             break;
     }
     
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 
-    SprawdzKolizje();
+    SprawdzKolizje(dir);
 
     if (UmiejetnoscAktywnaPrzez > 0 || UmiejetnoscOdnawianaPrzez > 0) {
         if (UmiejetnoscAktywnaPrzez > 0) { UmiejetnoscAktywnaPrzez--; }
@@ -133,20 +142,24 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
         {
             if (sila > atakujacy->GetSila()) //wygrywa czlowiek
             {
-               delete atakujacy;
-               Organizm *** plansza= swiat->GetPlansza();
-               plansza[pozycja.x][pozycja.y] = new Trawa();
+                cout << this->GetZnak() << " wygral\n";
+                delete atakujacy;
+                Organizm*** plansza = swiat->GetPlansza();
+                plansza[pozycja.x][pozycja.y] = new Trawa();
             }
             else //wygrywa atakujacy
             {
+                cout << atakujacy->GetZnak() << " wygral\n";
                 delete this;
             }
         }
 
         else //jesli sily sa rowne --> wygrywa atakujacy
         {
+            cout << atakujacy->GetZnak() << " wygral\n";
             delete this;
         }
+        
     }
 }
 

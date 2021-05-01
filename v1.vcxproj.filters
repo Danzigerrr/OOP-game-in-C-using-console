@@ -57,6 +57,12 @@
     <ClCompile Include="Organizm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Zwierze.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Roslina.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Organizm.h">

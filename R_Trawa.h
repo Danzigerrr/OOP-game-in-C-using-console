@@ -10,7 +10,7 @@ public:
 	Trawa(Swiat* swiat, const COORDINATES pos, int wiek);
 
 	virtual void Akcja() override;
-	const char GetZnak() override;
+
 	void Kolizja(Organizm* o) override;
 
 	~Trawa();

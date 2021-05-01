@@ -3,17 +3,21 @@
 
 Mlecz::Mlecz() {
 	this->sila = 0;
+	this->znak = MLECZ;
+
 }
 Mlecz::Mlecz(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 0;
+	this->znak = MLECZ;
 	this->swiat = swiat;
 	this->pozycja = pos;
+
 }
 
 Mlecz::~Mlecz() {}
 
-const char Mlecz::GetZnak() { return MLECZ; }
+
 void Mlecz::Kolizja(Organizm* o) {}
 
 void Mlecz::Akcja() {
