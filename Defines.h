@@ -10,13 +10,17 @@
 #include <fstream>
 //#include <conio.h>
 #include <algorithm>
+
+#include <conio.h>
 using namespace std;
 
 #define GROUND '_'
 #define INDEX 184698
 #define CZLOWIEK 'H'
 #define ILOSC_GATUNKOW 11 
-
+#define ELIKSIR_AKTYWNY 5 //tury
+#define ELIKSIR_ODNAWIANY 5 //tury
+#define ILOSC_ORGANIZMU_NA_POCZATKU 2
 //ANIMALS
 #define WILK 'W'
 #define OWCA 'O'
@@ -31,10 +35,12 @@ using namespace std;
 #define WILCZEJAGODY '%' 
 #define BARSZCZ '$'
 			
-#define ARROW_UP 72		
-#define ARROW_DOWN 80
-#define ARROW_LEFT 75
-#define ARROW_RIGHT 77
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define ENTER 13
+#define ESC 27
 
 enum DIRECTION {
 	UP,
@@ -50,5 +56,5 @@ struct COORDINATES {
 
 class Swiat;
 
-//char input[10] = {};
+int KierunekRuchuCzlowieka = 0;
 

@@ -20,9 +20,10 @@ private:
 	int tura;
 	Organizm*** plansza;
 
-	vector<Organizm*> wezWszystkieOrganizmy();
+	
 	int get_value_from_char(char znak[50], int* iterator);
 public:
+	vector<Organizm*> wezWszystkieOrganizmy();
 
 	Swiat(const int width, const int height);
 	~Swiat();
@@ -32,6 +33,11 @@ public:
 	void WykonajTure();
 
 	void WczytajSwiatZPliku();
+
+	int GetWysokosc();
+	int GetSzerokosc();
+	int GetTura();
+	
 
 	Organizm* GetPlansza();
 };

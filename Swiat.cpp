@@ -15,17 +15,19 @@ Swiat::Swiat(const int _width, const int _height)
 
 
 	vector<Organizm*> Y;
-	Y.push_back(new Antylopa);
-	Y.push_back(new Lis);
-	Y.push_back(new Owca);
-	Y.push_back(new Wilk);
-	Y.push_back(new Zolw);
+	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
+		Y.push_back(new Antylopa);
+		Y.push_back(new Lis);
+		Y.push_back(new Owca);
+		Y.push_back(new Wilk);
+		Y.push_back(new Zolw);
 
-	Y.push_back(new BarszczSosnowskiego);
-	Y.push_back(new Guarana);
-	Y.push_back(new Mlecz);
-	Y.push_back(new Trawa);
-	Y.push_back(new WilczeJagody);
+		Y.push_back(new BarszczSosnowskiego);
+		Y.push_back(new Guarana);
+		Y.push_back(new Mlecz);
+		Y.push_back(new Trawa);
+		Y.push_back(new WilczeJagody);
+	}
 
 	while (Y.size() < szerokosc * wysokosc)
 		Y.push_back(new Trawa);
@@ -70,29 +72,28 @@ void Swiat::WczytajSwiatZPliku() {
 			int wiek = get_value_from_char(infoOrganizmy, &i);
 			
 			
-			COORDINATES coor;
+			COORDINATES coor{};
 			coor.x = x;
 			coor.y = y;
 
-			Organizm* Org;
+			Organizm* Org = NULL;
 
 			switch (gatunek) {
-			case ANTYLOPA: { Org = new Antylopa(this, coor, wiek);}break;
-			case LIS: { Org = new Lis(this, coor, wiek); }break;
-			case OWCA: { Org = new Owca(this, coor, wiek); }break;
-			case WILK: {  Org = new Wilk(this, coor, wiek);}break;
-			case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
-			case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
-			case GUARANA: { Org = new Guarana(this, coor, wiek); 	}break;
-			case MLECZ: { Org = new Mlecz(this, coor, wiek); 	}break;
-			case TRAWA: { Org = new Trawa(this, coor, wiek); 	}break;
-			case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
+				case ANTYLOPA: { Org = new Antylopa(this, coor, wiek);}break;
+				case LIS: { Org = new Lis(this, coor, wiek); }break;
+				case OWCA: { Org = new Owca(this, coor, wiek); }break;
+				case WILK: {  Org = new Wilk(this, coor, wiek);}break;
+				case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
+				case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
+				case GUARANA: { Org = new Guarana(this, coor, wiek); 	}break;
+				case MLECZ: { Org = new Mlecz(this, coor, wiek); 	}break;
+				case TRAWA: { Org = new Trawa(this, coor, wiek); 	}break;
+				case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
 			}
 
 			plansza[x][y] = Org;
 			plansza[x][y]->nadajSwiat(this);
 			plansza[x][y]->nadajPozycje(x,y);
-			
 		}
 	}
 	fclose(fptr);
@@ -142,14 +143,27 @@ vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 }
 
 void Swiat::WykonajTure() {
+	tura++;
+	cout << "Wykonywanie " << tura << " tury:\n";
+
 	vector<Organizm*> w = wezWszystkieOrganizmy();
 	sort(w.begin(), w.end(), cmp);
 	for (auto o_ptr : w) {
 		o_ptr->Akcja();
 	}
-	tura++;
 }
 
 Organizm* Swiat::GetPlansza() {
 	return **plansza;
+}
+
+
+int Swiat::GetWysokosc() {
+	return wysokosc;
+}
+int Swiat::GetSzerokosc() {
+	return szerokosc;
+}
+int Swiat::GetTura() {
+	return tura;
 }

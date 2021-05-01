@@ -4,7 +4,9 @@
 using namespace std;
 
 class Czlowiek : public Zwierze {
-
+private:
+	int UmiejetnoscAktywnaPrzez;
+	int UmiejetnoscOdnawianaPrzez;
 public:
 	Czlowiek();
 	Czlowiek(Swiat* swiat, const COORDINATES, int wiek);

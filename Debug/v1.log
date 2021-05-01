@@ -1,4 +1,8 @@
 ﻿  Czlowiek.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(23,65): error C2059: syntax error: ')'
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(23,67): error C2143: syntax error: missing ';' before '{'
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Czlowiek.cpp(27,5): error C2181: illegal else without matching if
+  Organizm.cpp
   R_BarszczSosnowskiego.cpp
   R_Guarana.cpp
   R_Mlecz.cpp
@@ -11,11 +15,3 @@
   Z_Wilk.cpp
   Z_Zolw.cpp
   Generating Code...
-  Swiat.cpp
-R_Trawa.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Organizm::Split(class Organizm *)" (?Split@Organizm@@UAEXPAV1@@Z)
-R_Trawa.obj : error LNK2001: unresolved external symbol "protected: virtual void __thiscall Roslina::Split(void)" (?Split@Roslina@@MAEXXZ)
-R_Trawa.obj : error LNK2019: unresolved external symbol "public: __thiscall Roslina::Roslina(void)" (??0Roslina@@QAE@XZ) referenced in function "public: __thiscall Trawa::Trawa(class Swiat *,struct COORDINATES,int,int)" (??0Trawa@@QAE@PAVSwiat@@UCOORDINATES@@HH@Z)
-R_Trawa.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Roslina::Akcja(void)" (?Akcja@Roslina@@UAEXXZ)
-R_Trawa.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Roslina::Kolizja(void)" (?Kolizja@Roslina@@UAEXXZ)
-R_Trawa.obj : error LNK2019: unresolved external symbol "public: __thiscall Roslina::~Roslina(void)" (??1Roslina@@QAE@XZ) referenced in function "public: __thiscall Trawa::~Trawa(void)" (??1Trawa@@QAE@XZ)
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\Debug\v1.exe : fatal error LNK1120: 6 unresolved externals
