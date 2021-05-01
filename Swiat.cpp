@@ -15,8 +15,7 @@ Swiat::Swiat(const int _width, const int _height)
 
 
 	vector<Organizm*> Y;
-	human = new Czlowiek;
-	Y.push_back(human); // tylko jeden czlowiek
+	Y.push_back(new Czlowiek); // tylko jeden czlowiek
 	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
 		Y.push_back(new Antylopa);
 		Y.push_back(new Lis);
@@ -47,11 +46,19 @@ Swiat::Swiat(const int _width, const int _height)
 	this->RysujSwiat();
 
 }
-Czlowiek* Swiat::GetHuman() {
-	return human;
+
+Organizm* Swiat::GetHuman() {
+
+	vector<Organizm*> w = wezWszystkieOrganizmy();
+
+	for (auto o_ptr : w) {
+		if (o_ptr->GetZnak() == 'H')
+			return o_ptr;
+	}
+
 }
 void Swiat::GetHumanCommand() {
-	Czlowiek* Human = GetHuman();
+	Czlowiek* Human = (Czlowiek*)GetHuman();
 	int UmiejetnoscAktywnaPrzez = Human->GetUmiejetnoscAktywnaPrzez();
 	int UmiejetnoscOdnawianaPrzez = Human->GetUmiejetnoscOdnawianaPrzez();
 	COORDINATES pozycja = Human->GetPozycja();
@@ -84,19 +91,6 @@ void Swiat::WczytajSwiatZPliku() {
 	this->tura = get_value_from_char(infoSwiat, &j);
 
 
-	char infoHuman[50] = {};
-	fgets(infoHuman, 50, fptr);
-	int k = 0;
-	int x = get_value_from_char(infoHuman, &k);
-	int y = get_value_from_char(infoHuman, &k);
-	int wiek = get_value_from_char(infoHuman, &k);
-	COORDINATES coor{x,y};
-	Organizm* Org = human = new Czlowiek(this, coor, wiek);
-	plansza[x][y] = Org;
-	plansza[x][y]->nadajSwiat(this);
-	plansza[x][y]->nadajPozycje(x, y);
-
-
 	char infoOrganizmy[50] = {};
 	while (fgets(infoOrganizmy, 50, fptr) != NULL) {
 
@@ -123,6 +117,7 @@ void Swiat::WczytajSwiatZPliku() {
 				case MLECZ: { Org = new Mlecz(this, coor, wiek); 	}break;
 				case TRAWA: { Org = new Trawa(this, coor, wiek); 	}break;
 				case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
+				case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
 			}
 
 			plansza[x][y] = Org;
@@ -200,4 +195,8 @@ int Swiat::GetSzerokosc() {
 }
 int Swiat::GetTura() {
 	return tura;
+}
+
+void Swiat::SetPlansza(Organizm*** plansza) {
+	this->plansza = plansza;
 }

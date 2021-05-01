@@ -28,6 +28,9 @@ const char Czlowiek::GetZnak() {
 void Czlowiek::SetUmiejetnoscAktywnaPrzez(int value) {
     UmiejetnoscAktywnaPrzez = value;
 }
+void Czlowiek::SetUmiejetnoscOdnawianaPrzez(int value) {
+    UmiejetnoscOdnawianaPrzez = value;
+}
 
 void Czlowiek::Akcja() {
     cout << "czlowiek rusza sie: ";
@@ -60,17 +63,7 @@ void Czlowiek::Akcja() {
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 
-    vector<Organizm*> w = swiat->wezWszystkieOrganizmy();
-    for (auto o_ptr : w) {
-       COORDINATES coor = o_ptr->GetPozycja();
-
-       if (coor.x == pozycja.x && coor.y == pozycja.y) {
-           cout << "Kolizja " << CZLOWIEK << " z " << o_ptr->GetZnak() << endl;
-           o_ptr->Kolizja(this);
-           break;
-       }
-
-    }
+    SprawdzKolizje();
 
     if (UmiejetnoscAktywnaPrzez > 0 || UmiejetnoscOdnawianaPrzez > 0) {
         if (UmiejetnoscAktywnaPrzez > 0) { UmiejetnoscAktywnaPrzez--; }

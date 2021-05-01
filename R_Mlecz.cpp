@@ -1,7 +1,9 @@
 #include "R_Mlecz.h"
 #define ILOSC_PROB_ROZPRZEST 3
 
-Mlecz::Mlecz() {}
+Mlecz::Mlecz() {
+	this->sila = 0;
+}
 Mlecz::Mlecz(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 0;

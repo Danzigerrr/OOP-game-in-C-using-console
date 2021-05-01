@@ -1,6 +1,8 @@
 #include "R_Trawa.h"
 
-Trawa::Trawa() {}
+Trawa::Trawa() {
+	this->sila = 0;
+}
 Trawa::Trawa(Swiat* swiat, const COORDINATES position, int wiek)
 {
 	this->wiek = wiek;

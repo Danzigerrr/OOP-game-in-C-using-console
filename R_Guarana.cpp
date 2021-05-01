@@ -2,7 +2,9 @@
 
 
 
-Guarana::Guarana() {}
+Guarana::Guarana() {
+	this->sila = 0;
+}
 Guarana::Guarana(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 0;

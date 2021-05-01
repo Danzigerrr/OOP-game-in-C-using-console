@@ -14,6 +14,7 @@ public:
 	int GetUmiejetnoscAktywnaPrzez();
 	void SetUmiejetnoscAktywnaPrzez(int value);
 	int GetUmiejetnoscOdnawianaPrzez();
+	void SetUmiejetnoscOdnawianaPrzez(int value);
 	const char GetZnak() override;
 	void Akcja() override;
 	void Kolizja(Organizm* o) override;

@@ -2,7 +2,9 @@
 
 
 
-BarszczSosnowskiego::BarszczSosnowskiego() {}
+BarszczSosnowskiego::BarszczSosnowskiego() {
+	this->sila = 10;
+}
 BarszczSosnowskiego::BarszczSosnowskiego(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 10;

@@ -1,6 +1,8 @@
 #include "R_WilczeJagody.h"
 
-WilczeJagody::WilczeJagody() {}
+WilczeJagody::WilczeJagody() {
+	this->sila = 99;
+}
 WilczeJagody::WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 99;

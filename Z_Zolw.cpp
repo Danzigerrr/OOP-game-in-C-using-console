@@ -1,6 +1,9 @@
 #include "Z_Zolw.h"
 
-Zolw::Zolw() {}
+Zolw::Zolw() {
+	this->sila = 2;
+	this->inicjatywa = 1;
+}
 Zolw::Zolw(Swiat* swiat, const COORDINATES pos, int wiek) {
 	this->wiek = wiek;
 	this->sila = 2;
@@ -17,4 +20,8 @@ const char Zolw::GetZnak() {
 
 void Zolw::Akcja() {
 
+}
+
+void Zolw::Kolizja(Organizm* atakujacy) {
+     delete this;
 }
