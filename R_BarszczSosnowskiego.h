@@ -12,7 +12,7 @@ public:
 
 	void Akcja() override;
 
-	void Kolizja(Organizm* o) override;
+	void Kolizja(Zwierze* o, DIRECTION dir) override;
 
 	~BarszczSosnowskiego();
 };

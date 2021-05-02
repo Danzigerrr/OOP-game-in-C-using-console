@@ -8,25 +8,25 @@ const char Organizm::GetZnak() {
     return znak;
 }
 int Organizm::GetSila() {
-    return this->sila;
+    return sila;
 }
 void Organizm::SetSila(int sila) {
     this->sila = sila;
 }
 int Organizm::GetInicjatywa() {
-    return this->inicjatywa;
+    return inicjatywa;
 }
 void Organizm::SetInicjatywa(int inicjatywa) {
     this->inicjatywa = inicjatywa;
 }
 COORDINATES Organizm::GetPozycja() {
-    return this->pozycja;
+    return pozycja;
 }
 void Organizm::SetPozycja(COORDINATES pos) {
     this->pozycja = pos;
 }
 int Organizm::GetWiek() {
-    return this->wiek;
+    return wiek;
 }
 void Organizm::SetWiek(int wiek) {
     this->wiek = wiek;
@@ -37,10 +37,8 @@ Swiat* Organizm::GetSwiat() {
 void Organizm::SetSwiat(Swiat* swiat) {
     this->swiat = swiat;
 }
-//void Organizm::Akcja() {
-//    cout << "\n " << GetZnak() << " wykonuje akcje\n";
-//}
-void Organizm::NormalnaKolizja(Organizm* atakujacy) {
+
+void Organizm::NormalnaKolizja(Zwierze* atakujacy, DIRECTION dir) {
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
         if (sila > atakujacy->GetSila()) //wygrywa obronca
@@ -48,7 +46,7 @@ void Organizm::NormalnaKolizja(Organizm* atakujacy) {
             cout << this->GetZnak() << " DEF wygral\n";
 
             COORDINATES coor = pozycja;
-            Organizm* Org = NULL;
+            Zwierze* Org = NULL;
             char gatunek = GetZnak();
             switch (gatunek) {
                 case ANTYLOPA: { Org = new Antylopa(swiat, coor, wiek); }break;
@@ -56,11 +54,6 @@ void Organizm::NormalnaKolizja(Organizm* atakujacy) {
                 case OWCA: { Org = new Owca(swiat, coor, wiek); }break;
                 case WILK: {  Org = new Wilk(swiat, coor, wiek); }break;
                 case ZOLW: { Org = new Zolw(swiat, coor, wiek); }break;
-                case BARSZCZ: { Org = new BarszczSosnowskiego(swiat, coor, wiek); }break;
-                case GUARANA: { Org = new Guarana(swiat, coor, wiek); }break;
-                case MLECZ: { Org = new Mlecz(swiat, coor, wiek); }break;
-                case TRAWA: { Org = new Trawa(swiat, coor, wiek); }break;
-                case WILCZEJAGODY: { Org = new WilczeJagody(swiat, coor, wiek); }break;
                 case CZLOWIEK: { Org = new Czlowiek(swiat, coor, wiek); }break;
             }
 
@@ -72,26 +65,45 @@ void Organizm::NormalnaKolizja(Organizm* atakujacy) {
 
             cout << "    " << atakujacy->GetZnak() << " ATT wygral z " << GetZnak() << endl;
 
-            COORDINATES coor = atakujacy->GetPozycja();
-            Organizm* trawa = new Trawa();
-            char znak = swiat->GetPole(coor)->GetZnak();
-            cout << "znak -" << znak <<"- " ;
-
-            swiat->GetPlansza()[coor.x][coor.y] = new Trawa();
             cout << "99999999";
-       //     swiat->SetPole(pozycja, Org);
+
+            //ustawianie trawy na poprzednim polu atakujacego
+            if (true) {
+                COORDINATES stare = atakujacy->GetPozycja();
+                int atakStep = atakujacy->GetStep();
+                COORDINATES starecoor = stare;
+
+                switch(dir) {
+                case UP:{
+                    starecoor.y += atakStep;
+                }break;
+                case DOWN: {
+                    starecoor.y -= atakStep;
+                }break;
+                case LEFT: {
+                    starecoor.x += atakStep;
+                }break;
+                case RIGHT: {
+                    starecoor.x -= atakStep;
+                }break;
+                }
+
+                swiat->SetPole(starecoor, new Mlecz(swiat, starecoor, 0));
+            }
+
+            swiat->SetPole(pozycja, atakujacy);
         }
     }
 
     else //jesli sily sa rowne --> wygrywa atakujacy
     {
-        cout << atakujacy->GetZnak() << " ATT wygral\n";
-        swiat->SetPole(atakujacy->GetPozycja(), new Trawa());
-        swiat->SetPole(pozycja, atakujacy);
+        cout << "    " << atakujacy->GetZnak() << " ATT wygral z " << GetZnak() << endl;
+     /*   swiat->SetPole(atakujacy->GetPozycja(), new Trawa());
+        swiat->SetPole(pozycja, atakujacy);*/
 
         cout << "7777777";
     }
 }
-void Organizm::Kolizja(Organizm* atakujacy) {
-    NormalnaKolizja(atakujacy);
+void Organizm::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
+    NormalnaKolizja(atakujacy, dir);
 }

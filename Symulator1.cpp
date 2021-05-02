@@ -4,17 +4,17 @@
 
 int main(){
 
-    int szer=10, wys=4;
+    int szer=10, wys=5;
 
     /*cout << "wpisz szer i wys\n";
     cin >> szer;
     cin >> wys;*/
 
     Swiat swiat(szer, wys);
-    swiat.testuj();
+
     while (true) {
         swiat.WykonajTure(); 
-        swiat.testuj();
+       
     }
 
 

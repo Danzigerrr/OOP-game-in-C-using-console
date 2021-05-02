@@ -57,7 +57,7 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
 
     if (dir != NO_CHANGE) {
 
-        Organizm* Def = swiat->GetPlansza()[pozycja.y][pozycja.x];
+        Organizm* Def = swiat->GetPole(pozycja);
 
         if (sila < 5 && Def->GetZnak() == ZOLW) // jesli organizm ma sile <5 --> zolw odeprze jego atak
         {
@@ -79,8 +79,13 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
         }
         else {
             cout << "Kolizja Att=" << this->GetZnak() << " z Def=" << Def->GetZnak() << " ";
-            Def->Kolizja(this);
+            Def->Kolizja(this,dir);
         }
     }
 
+}
+
+int Zwierze::GetStep()
+{
+    return step;
 }

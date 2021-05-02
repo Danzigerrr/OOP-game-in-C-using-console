@@ -17,7 +17,7 @@ void WilczeJagody::init() {
 WilczeJagody::~WilczeJagody() {}
 
 //Zwierze które zjadło tę roślinę ginie 
-void WilczeJagody::Kolizja(Organizm* atakujacy) {
+void WilczeJagody::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
         if (sila > atakujacy->GetSila()) //wygrywa czlowiek

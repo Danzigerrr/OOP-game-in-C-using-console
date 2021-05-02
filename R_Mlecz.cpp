@@ -1,5 +1,5 @@
 #include "R_Mlecz.h"
-#define ILOSC_PROB_ROZPRZEST 3
+#define ILOSC_PROB_ROZPRZEST 0
 
 Mlecz::Mlecz() {
 	init();

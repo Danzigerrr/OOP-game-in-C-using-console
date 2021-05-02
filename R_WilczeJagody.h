@@ -8,7 +8,7 @@ public:
 	WilczeJagody();
 	WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	void Kolizja(Organizm* o) override;
+	void Kolizja(Zwierze* atakujacy, DIRECTION dir) override;
 
 	~WilczeJagody();
 };

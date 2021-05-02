@@ -60,9 +60,9 @@ void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
 }
 
 void Czlowiek::Akcja() {
-    if (NULL == GetSwiat()) cout << "\nNUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
+    if (NULL == swiat) cout << "\n dla czeloweika swiat jest NUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
 
-    cout << "Czlowiek rusza sie: ";
+    cout << "Czlowiek rusza sie z poz" << pozycja.x << " "  << pozycja.y << endl;
     DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {
         case KEY_UP: {
@@ -75,6 +75,7 @@ void Czlowiek::Akcja() {
         case KEY_DOWN: {
             cout << "Down" << endl;  // key down
             if (pozycja.y < swiat->GetWysokosc()) {
+               
                 pozycja.y++;
                 dir = DOWN;
             }
@@ -89,8 +90,9 @@ void Czlowiek::Akcja() {
         case KEY_RIGHT: {
             cout << "Right" << endl;  // key right
             if (pozycja.x < swiat->GetSzerokosc()){
+ 
                 pozycja.x++;
-               
+                swiat->RysujSwiat();
                 dir = RIGHT;
             }
         }break;
@@ -98,7 +100,9 @@ void Czlowiek::Akcja() {
             cout << "Incorrect key input" << endl;  // not arrow
             break;
     }
+    if (dir == NO_CHANGE) cout << "NO change" << endl;
 
+    swiat->RysujSwiat();
     cout << "nowa pozycja: " << pozycja.x << " " << pozycja.y << endl;
 
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
@@ -116,7 +120,7 @@ void Czlowiek::Akcja() {
 
 
 
-void Czlowiek::Kolizja(Organizm* atakujacy) {
+void Czlowiek::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 
     //Specjalna umiejetnosc --> Człowiek odstrasza wszystkie zwierzęta.
     //Zwierzę które stanie na polu Człowieka zostaje przesunięte na losowe pole sąsiednie.
@@ -161,7 +165,7 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
 
             if (coor.x == pozycja.x && coor.y == pozycja.y) {
                 cout << "Kolizja " << atakujacy->GetZnak() << " z " << o_ptr->GetZnak() << endl;
-                o_ptr->Kolizja(atakujacy);
+                o_ptr->Kolizja(atakujacy, dir);
                 break;
             }
         }
@@ -170,7 +174,7 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
 
     else //normalna kolizja
     {
-        NormalnaKolizja(atakujacy);
+        NormalnaKolizja(atakujacy, dir);
         
     }
 }

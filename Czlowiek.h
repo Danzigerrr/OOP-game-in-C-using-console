@@ -19,7 +19,7 @@ public:
 	void SetUmiejetnoscOdnawianaPrzez(int value);
 	void SetKierunekRuchuCzlowieka(int dir);
 	void Akcja() override;
-	void Kolizja(Organizm* o) override;
+	void Kolizja(Zwierze* o, DIRECTION dir) override;
 	~Czlowiek();
 
 

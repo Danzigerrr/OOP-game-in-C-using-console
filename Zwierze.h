@@ -10,6 +10,7 @@ protected:
 public:
 	Zwierze();
 	~Zwierze();
+	int GetStep();
 
 	virtual void Akcja() override;
 

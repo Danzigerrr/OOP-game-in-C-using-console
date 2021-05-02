@@ -8,6 +8,7 @@ public:
 	Antylopa();
 	Antylopa(Swiat* swiat, COORDINATES coor, int wiek);
 
-	void Kolizja(Organizm* o) override;
+	void Kolizja(Zwierze* atakujacy, DIRECTION dir) override;
+
 	~Antylopa();
 };

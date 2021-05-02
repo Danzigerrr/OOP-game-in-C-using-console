@@ -20,7 +20,7 @@ void BarszczSosnowskiego::init() {
 BarszczSosnowskiego::~BarszczSosnowskiego() {}
 
 //Zwierze które zjadło tę roślinę ginie.Jedynie
-void BarszczSosnowskiego::Kolizja(Organizm* atakujacy) {
+void BarszczSosnowskiego::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 	
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {

@@ -43,7 +43,7 @@ enum DIRECTION {
 	DOWN,
 	LEFT,
 	RIGHT,
-	NO_CHANGE,
+	NO_CHANGE
 };
 
 struct COORDINATES {

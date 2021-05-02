@@ -21,7 +21,8 @@ void Zolw::Akcja() {
 	}
 }
 
-void Zolw::Kolizja(Organizm* atakujacy) {
+void Zolw::Kolizja(Zwierze* atakujacy, DIRECTION dir)
+{
     COORDINATES coor = pozycja;
     Organizm* Org = NULL;
     char gatunek = GetZnak();

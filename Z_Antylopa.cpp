@@ -21,7 +21,8 @@ void Antylopa::init() {
 Antylopa::~Antylopa() {}
 
 
-void Antylopa::Kolizja(Organizm* atakujacy) {
+void Antylopa::Kolizja(Zwierze* atakujacy, DIRECTION dir)
+{
     bool AntylopaUcieka = rand() % 1;
 
     if (AntylopaUcieka) {
@@ -40,7 +41,7 @@ void Antylopa::Kolizja(Organizm* atakujacy) {
     }
 
     else { 
-        NormalnaKolizja(atakujacy);
+        NormalnaKolizja(atakujacy, dir);
     }
 }
 

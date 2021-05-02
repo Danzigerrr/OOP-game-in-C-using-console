@@ -203,8 +203,12 @@ void Swiat::WykonajTure() {
 		cout << "\n---------\n";
 		cout << "   " <<o_ptr->GetZnak() << " na pozycji " << coor.x << " " << coor.y << " wykonuje akcje: \n";
 		testuj();
+		if (o_ptr->GetZnak() == CZLOWIEK)
+			o_ptr->Akcja();
+		else
 		o_ptr->Akcja();
 		testuj();
+
 		RysujSwiat();
 		testuj();
 	}

@@ -19,7 +19,8 @@ void Guarana::init() {
 
 Guarana::~Guarana() {}
 
-void Guarana::Kolizja(Organizm* atakujacy) {
+void Guarana::Kolizja(Zwierze* atakujacy, DIRECTION dir)
+{
 
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {

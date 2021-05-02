@@ -21,14 +21,14 @@ private:
 	Organizm*** plansza;
 	bool cmp(Organizm*o1, Organizm* o2);
 	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
-	void RysujSwiat();
+	
 	void PrzygotujKolejnaRunde();
 public:
 	vector<Organizm*> wezWszystkieOrganizmy();
 
 	Swiat(const int width, const int height);
 	~Swiat();
-
+void RysujSwiat(); //potem wrzuc do private
 	Organizm* GetPole(COORDINATES coor);
 
 	void WykonajTure();
