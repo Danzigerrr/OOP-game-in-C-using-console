@@ -19,20 +19,22 @@ private:
 	int wysokosc, szerokosc;
 	int tura;
 	Organizm*** plansza;
+	bool cmp(Organizm*o1, Organizm* o2);
+	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
+	void RysujSwiat();
 
-	int get_value_from_char(char znak[50], int* iterator); //do wczytania z pliku
 public:
 	vector<Organizm*> wezWszystkieOrganizmy();
 
 	Swiat(const int width, const int height);
 	~Swiat();
 
-	void RysujSwiat();
+	Organizm* GetPole(COORDINATES coor);
 
 	void WykonajTure();
 
 	void WczytajSwiatZPliku();
-
+	
 	int GetWysokosc();
 	int GetSzerokosc();
 	int GetTura();
@@ -41,6 +43,6 @@ public:
 
 	Organizm*** GetPlansza();
 	void SetPlansza(Organizm*** plansza);
-	bool cmp(Organizm* o1, Organizm* o2);
+	void SetPole(COORDINATES coor, Organizm* org);
 };
 

@@ -14,14 +14,11 @@
 #include <conio.h>
 using namespace std;
 
-#define GROUND '_'
 #define INDEX 184698
-#define CZLOWIEK 'H'
-#define ILOSC_GATUNKOW 11 
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
-#define ILOSC_ORGANIZMU_NA_POCZATKU 2
 
+#define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'
 #define LIS 'L'
@@ -29,10 +26,10 @@ using namespace std;
 #define ANTYLOPA 'A'
 
 #define TRAWA '_'
-#define MLECZ '@' 
-#define GUARANA '#'
-#define WILCZEJAGODY '%' 
-#define BARSZCZ '$'
+#define MLECZ 'M' 
+#define GUARANA 'G'
+#define WILCZEJAGODY 'J' 
+#define BARSZCZ 'B'
 			
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -56,5 +53,5 @@ struct COORDINATES {
 
 class Swiat;
 
-int KierunekRuchuCzlowieka = 0; //key input
+
 

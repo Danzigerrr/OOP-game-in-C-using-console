@@ -6,7 +6,7 @@ private:
 	void init() override;
 public:
 	Owca();
-	Owca(Swiat* swiat, COORDINATES pos, int wiek) : Owca() {};
+	Owca(Swiat* swiat, COORDINATES pos, int wiek);
 	~Owca();
 	
 	/*	explenation:														   

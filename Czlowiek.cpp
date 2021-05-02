@@ -1,12 +1,20 @@
 ﻿#include "Czlowiek.h"
 #include "Swiat.h"
-Czlowiek::Czlowiek() {}
+Czlowiek::Czlowiek() {
+    init();
+
+}
 Czlowiek::Czlowiek(Swiat* swiat, const COORDINATES pos, int wiek) {
+    init();
 	this->wiek = wiek;
-	this->sila = 5;
-	this->inicjatywa = 4;
 	this->swiat = swiat;
 	this->pozycja = pos;
+}
+
+void Czlowiek::init() {
+    this->znak = CZLOWIEK;
+    this->sila = 5;
+    this->inicjatywa = 4;
 }
 
 
@@ -21,15 +29,36 @@ int Czlowiek::GetUmiejetnoscOdnawianaPrzez() {
 
 Czlowiek::~Czlowiek() {}
 
-const char Czlowiek::GetZnak() {
-	return CZLOWIEK;
-}
-
 void Czlowiek::SetUmiejetnoscAktywnaPrzez(int value) {
     UmiejetnoscAktywnaPrzez = value;
 }
 void Czlowiek::SetUmiejetnoscOdnawianaPrzez(int value) {
     UmiejetnoscOdnawianaPrzez = value;
+}
+void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
+    KierunekRuchuCzlowieka = value;
+
+    switch (KierunekRuchuCzlowieka) {
+    case KEY_UP: {
+        cout << "Up" << endl;//key up
+
+    }break;
+    case KEY_DOWN: {
+        cout << "Down" << endl;  // key down
+
+    }break;
+    case KEY_LEFT: {
+        cout << "Left" << endl;  // key left
+
+    }break;
+    case KEY_RIGHT: {
+        cout << "Right" << endl;  // key right
+
+    }break;
+    default:
+        cout << "Incorrect key input" << endl;  // not arrow
+        break;
+    }
 }
 
 void Czlowiek::Akcja() {
@@ -61,6 +90,7 @@ void Czlowiek::Akcja() {
             cout << "Right" << endl;  // key right
             if (pozycja.x < swiat->GetSzerokosc()){
                 pozycja.x++;
+               
                 dir = RIGHT;
             }
         }break;
@@ -68,11 +98,13 @@ void Czlowiek::Akcja() {
             cout << "Incorrect key input" << endl;  // not arrow
             break;
     }
-    
+
+    cout << "nowa pozycja: " << pozycja.x << " " << pozycja.y << endl;
+
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 
-    SprawdzKolizje(dir);
+    CzyOdbilAtak(dir);
 
     if (UmiejetnoscAktywnaPrzez > 0 || UmiejetnoscOdnawianaPrzez > 0) {
         if (UmiejetnoscAktywnaPrzez > 0) { UmiejetnoscAktywnaPrzez--; }
@@ -138,27 +170,7 @@ void Czlowiek::Kolizja(Organizm* atakujacy) {
 
     else //normalna kolizja
     {
-        if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
-        {
-            if (sila > atakujacy->GetSila()) //wygrywa czlowiek
-            {
-                cout << this->GetZnak() << " wygral\n";
-                delete atakujacy;
-                Organizm*** plansza = swiat->GetPlansza();
-                plansza[pozycja.x][pozycja.y] = new Trawa();
-            }
-            else //wygrywa atakujacy
-            {
-                cout << atakujacy->GetZnak() << " wygral\n";
-                delete this;
-            }
-        }
-
-        else //jesli sily sa rowne --> wygrywa atakujacy
-        {
-            cout << atakujacy->GetZnak() << " wygral\n";
-            delete this;
-        }
+        NormalnaKolizja(atakujacy);
         
     }
 }

@@ -2,15 +2,12 @@
 #include "Roslina.h"
 class Mlecz : public Roslina {
 private:
-	void Split() override;
-
+	void init() override;
 public:
 	Mlecz();
 	Mlecz(Swiat* swiat, const COORDINATES pos, int wiek);
 
-	virtual void Akcja() override;
-
-	void Kolizja(Organizm* o) override;
+	void Akcja() override;
 
 	~Mlecz();
 };

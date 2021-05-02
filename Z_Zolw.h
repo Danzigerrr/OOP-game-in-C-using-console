@@ -6,7 +6,7 @@ private:
 	void init() override;
 public:
 	Zolw();
-	Zolw(Swiat* swiat, COORDINATES pos, int wiek) : Zolw() {};
+	Zolw(Swiat* swiat, COORDINATES pos, int wiek);
 
 	void Akcja() override;
 	void Kolizja(Organizm* o) override;

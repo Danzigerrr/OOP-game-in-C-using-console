@@ -2,13 +2,17 @@
 #include "Organizm.h"
 
 class Roslina : public Organizm {
+private:
+	int inicjatywa = 0;
 protected:
-	//virtual void Split() = 0;
+	void NormalnaAkcja();
+	virtual void init() = 0;
+	void Split();
+	bool CzyRozprzestrzeniac();
 	//Organizm* nastepny(const DIRECTION kierunek, const int distnace);
 public:
 	Roslina(); 
 	~Roslina();
 
-	virtual void Akcja() override ;
-	void Kolizja(Organizm* o) override; 
+	virtual void Akcja() override;
 };

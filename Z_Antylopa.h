@@ -6,7 +6,7 @@ private:
 	void init() override;
 public:
 	Antylopa();
-	Antylopa(Swiat* swiat, COORDINATES coor, int wiek) : Antylopa() {};
+	Antylopa(Swiat* swiat, COORDINATES coor, int wiek);
 
 	void Kolizja(Organizm* o) override;
 	~Antylopa();

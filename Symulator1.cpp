@@ -1,17 +1,20 @@
 #include "Swiat.h"
 
+//int KierunekRuchuCzlowieka;
 
 int main(){
 
-    int szer = 20, wys = 20;
+    int szer=3, wys=3;
 
-    cout << "wpisz szer i wys\n";
+    /*cout << "wpisz szer i wys\n";
     cin >> szer;
-    cin >> wys;
+    cin >> wys;*/
 
-    Swiat *swiat = new Swiat(szer, wys);
+    Swiat swiat(szer, wys);
 
-    
+    while (true) {
+        swiat.WykonajTure();
+    }
 
 
     return 0;

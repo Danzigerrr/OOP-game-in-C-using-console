@@ -9,12 +9,12 @@ protected:
 	int wiek = 0;
 	Swiat* swiat;
 	char znak;
+	void NormalnaKolizja(Organizm* o);
 public:
 	Organizm();
 
 	virtual void Akcja() = 0;  //abstakcyjna bo rozna dla zwierzat i roslin
 	virtual void Kolizja(Organizm* o); //public bo musi byc dostepna w dla inncyh w metodzie SprawdzKolizje()
-
 
 	const char GetZnak();
 	int GetWiek();

@@ -2,13 +2,10 @@
 #include "Roslina.h"
 class Guarana : public Roslina {
 private:
-	void Split() override;
-
+	void init() override;
 public:
 	Guarana();
 	Guarana(Swiat* swiat, const COORDINATES pos, int wiek);
-
-	virtual void Akcja() override;
 
 	void Kolizja(Organizm* o) override;
 

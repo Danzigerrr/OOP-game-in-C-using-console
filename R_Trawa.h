@@ -3,15 +3,11 @@
 
 class Trawa : public Roslina {
 private:
-	void Split() override;
-
+	void init() override;
 public:
 	Trawa();
 	Trawa(Swiat* swiat, const COORDINATES pos, int wiek);
-
-	virtual void Akcja() override;
-
-	void Kolizja(Organizm* o) override;
-
 	~Trawa();
+
+
 };

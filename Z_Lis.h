@@ -7,7 +7,7 @@ private:
 
 public:
 	Lis();
-	Lis(Swiat* swiat, COORDINATES pos, int wiek) : Lis() {};
+	Lis(Swiat* swiat, COORDINATES pos, int wiek);
 
 	DIRECTION ZrobRuch() override;
 
