@@ -20,8 +20,7 @@ private:
 	int tura;
 	Organizm*** plansza;
 
-	
-	int get_value_from_char(char znak[50], int* iterator);
+	int get_value_from_char(char znak[50], int* iterator); //do wczytania z pliku
 public:
 	vector<Organizm*> wezWszystkieOrganizmy();
 
@@ -42,5 +41,6 @@ public:
 
 	Organizm*** GetPlansza();
 	void SetPlansza(Organizm*** plansza);
+	bool cmp(Organizm* o1, Organizm* o2);
 };
 

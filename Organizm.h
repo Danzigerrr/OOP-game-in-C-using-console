@@ -8,18 +8,13 @@ protected:
 	COORDINATES pozycja;
 	int wiek = 0;
 	Swiat* swiat;
-	int step = 1;
-	virtual void Kolizja(Organizm* o);
 	char znak;
 public:
 	Organizm();
 
 	virtual void Akcja() = 0;  //abstakcyjna bo rozna dla zwierzat i roslin
-	virtual void SprawdzKolizje(DIRECTION dir);
-	virtual DIRECTION ZrobRuch();
-	
-	void nadajSwiat(Swiat* s);
-	void nadajPozycje(int x, int y);
+	virtual void Kolizja(Organizm* o); //public bo musi byc dostepna w dla inncyh w metodzie SprawdzKolizje()
+
 
 	const char GetZnak();
 	int GetWiek();
@@ -37,4 +32,4 @@ public:
 	
 };
 
-bool cmp(Organizm* o1, Organizm* o2);
+

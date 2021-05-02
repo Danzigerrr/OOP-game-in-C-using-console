@@ -2,26 +2,23 @@
 
 
 Antylopa::Antylopa() {
-	this->sila = 4;
-	this->inicjatywa = 4;
-    this->step = 2;
-    this->znak = ANTYLOPA;
+    init();
 }
 Antylopa::Antylopa(Swiat* swiat, const COORDINATES pos, int wiek) {
+    init();
 	this->wiek = wiek;
-	this->sila = 4;
-	this->inicjatywa = 4;
-    this->step = 2;
-    this->znak = ANTYLOPA;
 	this->swiat = swiat;
 	this->pozycja = pos;
 }
 
-Antylopa::~Antylopa() {}
-
-void Antylopa::Akcja() {
-
+void Antylopa::init() {
+    this->sila = 4;
+    this->inicjatywa = 4;
+    this->step = 2;
+    this->znak = ANTYLOPA;
 }
+
+Antylopa::~Antylopa() {}
 
 
 void Antylopa::Kolizja(Organizm* atakujacy) {

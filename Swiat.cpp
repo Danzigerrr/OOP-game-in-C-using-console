@@ -113,16 +113,16 @@ void Swiat::WczytajSwiatZPliku() {
 				case WILK: {  Org = new Wilk(this, coor, wiek);}break;
 				case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
 				case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
-				case GUARANA: { Org = new Guarana(this, coor, wiek); 	}break;
-				case MLECZ: { Org = new Mlecz(this, coor, wiek); 	}break;
-				case TRAWA: { Org = new Trawa(this, coor, wiek); 	}break;
+				case GUARANA: { Org = new Guarana(this, coor, wiek); }break;
+				case MLECZ: { Org = new Mlecz(this, coor, wiek); }break;
+				case TRAWA: { Org = new Trawa(this, coor, wiek); }break;
 				case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
 				case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
 			}
 
 			plansza[x][y] = Org;
-			plansza[x][y]->nadajSwiat(this);
-			plansza[x][y]->nadajPozycje(x,y);
+			plansza[x][y]->SetSwiat(this);
+			plansza[x][y]->SetPozycja(coor);
 		}
 	}
 	fclose(fptr);
@@ -200,3 +200,12 @@ int Swiat::GetTura() {
 void Swiat::SetPlansza(Organizm*** plansza) {
 	this->plansza = plansza;
 }
+
+
+bool cmp(Organizm* o1, Organizm* o2) {
+	if (o1->GetInicjatywa() != o2->GetInicjatywa()) {
+		return o1->GetInicjatywa() < o2->GetInicjatywa();
+	}
+	return o1->GetWiek() < o2->GetWiek();
+}
+

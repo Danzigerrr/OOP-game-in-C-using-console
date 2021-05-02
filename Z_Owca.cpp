@@ -2,18 +2,20 @@
 #include "Swiat.h"
 
 Owca::Owca() {
-	this->sila = 4;
-	this->inicjatywa = 4;
-    this->znak = OWCA;
+	init();
 }
-Owca::Owca(Swiat* swiat, const COORDINATES pos, int wiek) {
+Owca::Owca(Swiat* swiat, COORDINATES pos, int wiek) {
+	init();
 	this->wiek = wiek;
-	this->sila = 4;
-	this->inicjatywa = 4;
-    this->znak = OWCA;
 	this->swiat = swiat;
 	this->pozycja = pos;
 }
 
+
 Owca::~Owca() {}
 
+void Owca::init() {
+	this->sila = 4;
+	this->inicjatywa = 4;
+	this->znak = OWCA;
+}

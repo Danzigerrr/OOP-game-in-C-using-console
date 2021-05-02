@@ -2,17 +2,19 @@
 #include "Swiat.h"
 
 Lis::Lis() {
-	this->sila = 3;
-	this->inicjatywa = 7;
-    this->znak = LIS;
+    init();
 }
 Lis::Lis(Swiat* swiat, const COORDINATES pos, int wiek) {
+    init();
 	this->wiek = wiek;
-	this->sila = 3;
-	this->inicjatywa = 7;
-    this->znak = LIS;
 	this->swiat = swiat;
 	this->pozycja = pos;
+}
+
+void Lis::init() {
+    this->sila = 3;
+    this->inicjatywa = 7;
+    this->znak = LIS;
 }
 
 Lis::~Lis() {}

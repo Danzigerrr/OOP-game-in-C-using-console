@@ -1,14 +1,10 @@
 #include "Z_Zolw.h"
 #include "Swiat.h"
 Zolw::Zolw() {
-	this->sila = 2;
-	this->inicjatywa = 1;
-	this->znak = ZOLW;
+	init();
 }
 Zolw::Zolw(Swiat* swiat, const COORDINATES pos, int wiek) {
-	this->sila = 2;
-	this->inicjatywa = 1;
-	this->znak = ZOLW;
+	init();
 	this->wiek = wiek;
 	this->swiat = swiat;
 	this->pozycja = pos;
@@ -27,4 +23,11 @@ void Zolw::Akcja() {
 
 void Zolw::Kolizja(Organizm* atakujacy) {
      delete this;
+}
+
+
+void Zolw::init() {
+	this->sila = 2;
+	this->inicjatywa = 1;
+	this->znak = ZOLW;
 }
