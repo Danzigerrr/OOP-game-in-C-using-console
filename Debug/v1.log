@@ -1,5 +1,2 @@
-﻿  Swiat.cpp
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(34,18): warning C4018: '<': signed/unsigned mismatch
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(138,15): warning C4566: character represented by universal-character-name '\u015A' cannot be represented in the current code page (1252)
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(66): warning C4715: 'Swiat::GetHuman': not all control paths return a value
+﻿  Roslina.cpp
   v1.vcxproj -> C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\Debug\v1.exe

@@ -30,7 +30,7 @@ void Antylopa::Kolizja(Organizm* atakujacy) {
                 int Xpos = pozycja.x - 1 + i;
                 int Ypos = pozycja.y - 1 + i;
 
-                if(Xpos < swiat->GetSzerokosc() && Ypos < swiat->GetWysokosc())//wtedy szuka tylko w zaalokowanej pamieci
+                if(Xpos < swiat->GetSzerokosc() && Ypos < swiat->GetWysokosc() && Xpos >= 0 && Ypos >= 0)//wtedy szuka tylko w zaalokowanej pamieci
                     if (swiat->GetPlansza()[Xpos][Ypos]->GetZnak() == TRAWA) { //szukanie pola z Trawa
                         pozycja.x = Xpos;
                         pozycja.y = Ypos;

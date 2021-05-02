@@ -9,9 +9,10 @@ Swiat::Swiat(const int _width, const int _height)
 	this->wysokosc = _height;
 	this->tura = 0;
 
-	plansza = new Organizm * *[_height];
-	for (int i = 0; i < _height; i++)
-		plansza[i] = new Organizm * [_width];
+	plansza = new Organizm **[szerokosc];
+	for (int i = 0; i < szerokosc; i++) {
+		plansza[i] = new Organizm * [wysokosc];
+	}
 
 
 	vector<Organizm*> Y;
@@ -31,27 +32,26 @@ Swiat::Swiat(const int _width, const int _height)
 		Y.push_back(new WilczeJagody);
 	}
 	*/
+	COORDINATES coor{ 0,0 };
 	while (Y.size() < szerokosc * wysokosc)
 		Y.push_back(new Trawa);
 
 	random_shuffle(Y.begin(), Y.end());
 
-	for (int i = 0; i < wysokosc; i++) {
-		for (int j = 0; j < szerokosc; j++) {
-			plansza[j][i] = Y[i * wysokosc + j];
+
+	for (int j = 0; j < szerokosc; j++) {
+		for (int i = 0; i < wysokosc; i++) {
+			int id = j * wysokosc + i;
+			plansza[j][i] = Y[id];
 			plansza[j][i]->SetSwiat(this);
 
-			if (this == NULL) cout << "NULL";
-			else cout << "not null";
-
-			COORDINATES coor{ i,j };
+			COORDINATES coor{ j,i };
 
 			plansza[j][i]->SetPozycja(coor);
 		}
 	}
 
 	RysujSwiat();
-
 }
 
 Organizm* Swiat::GetHuman() {
@@ -62,6 +62,7 @@ Organizm* Swiat::GetHuman() {
 		if (o_ptr->GetZnak() == 'H')
 			return o_ptr;
 	}
+	return NULL;
 
 }
 void Swiat::GetHumanCommand() {
@@ -164,22 +165,23 @@ Swiat::~Swiat() {
 
 void Swiat::RysujSwiat() {
 	std::cout << "\nOTO SWIAT:\n  ";
-	for (int i = 0; i < szerokosc; i++)
-		cout << i << " ";
+	for (int i = 0; i < szerokosc; i++) cout << i << " ";
 	cout << endl;
+
 	for (int i = 0; i < wysokosc; i++) {
 		cout <<  i << " ";
 		for (int j = 0; j < szerokosc; j++)
-			std::cout << plansza[i][j]->GetZnak() << " ";
+			std::cout << plansza[j][i]->GetZnak() << " ";
 		cout << endl;
 	}
 	cout << " koniec rsyowania swiata\n ";
+	cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
 }
 
 vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 	vector<Organizm*> res;
-	for (int i = 0; i < wysokosc; i++) {
-		for (int j = 0; j < szerokosc; j++) {
+	for (int i = 0; i < szerokosc; i++) {
+		for (int j = 0; j < wysokosc; j++) {
 			res.push_back(plansza[i][j]);
 		}
 	}
@@ -189,25 +191,47 @@ vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 void Swiat::WykonajTure() {
 
 	GetHumanCommand();
+	testuj();
 	tura++;
 	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
 	//std::sort(w.begin(), w.end(), cmp);
-
+	testuj();
 	for (auto o_ptr : w) {
 		COORDINATES coor = o_ptr->GetPozycja();
-
+		cout << "\n---------\n";
 		cout << "   " <<o_ptr->GetZnak() << " na pozycji " << coor.x << " " << coor.y << " wykonuje akcje: \n";
+		testuj();
 		o_ptr->Akcja();
+		testuj();
 		RysujSwiat();
+		testuj();
 	}
-	system("CLS");
-	RysujSwiat();
-	cout << "Niech czlowiek wykona ruch: " << endl;
-	if (GetHuman()->GetSwiat() == NULL) cout << "null";
+	PrzygotujKolejnaRunde();
+	testuj();
 }
 
+void Swiat::testuj() {
+	vector<Organizm*> w = wezWszystkieOrganizmy();
+	for (auto o_ptr : w) {
+		if (NULL == o_ptr->GetSwiat()) cout << "\n dla" << o_ptr->GetZnak() << " swiat is NUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
+	}
+}
+
+void Swiat::PrzygotujKolejnaRunde() {
+	system("CLS");
+	RysujSwiat();
+
+	if (GetHuman() == NULL) {
+		cout << "GAME OVER";
+		exit(1);
+	}
+	else {
+		cout << "Niech czlowiek wykona ruch: " << endl;
+		if (GetHuman()->GetSwiat() == NULL) cout << "null";
+	}
+}
 
 void Swiat::SetPole(COORDINATES coor, Organizm* org) {
 	this->plansza[coor.x][coor.y] = org;

@@ -17,8 +17,6 @@ void Czlowiek::init() {
     this->inicjatywa = 4;
 }
 
-
-
 int Czlowiek::GetUmiejetnoscAktywnaPrzez() {
     return UmiejetnoscAktywnaPrzez;
 }
@@ -62,6 +60,8 @@ void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
 }
 
 void Czlowiek::Akcja() {
+    if (NULL == GetSwiat()) cout << "\nNUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
+
     cout << "Czlowiek rusza sie: ";
     DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {

@@ -68,7 +68,9 @@ void Organizm::NormalnaKolizja(Organizm* atakujacy) {
         }
         else //wygrywa atakujacy
         {
-            cout << atakujacy->GetZnak() << " ATT wygral\n";
+            if (GetSwiat() == NULL) cout << "NULL pointer";
+
+            cout << "    " << atakujacy->GetZnak() << " ATT wygral z " << GetZnak() << endl;
 
             COORDINATES coor = atakujacy->GetPozycja();
             Organizm* trawa = new Trawa();
@@ -86,6 +88,8 @@ void Organizm::NormalnaKolizja(Organizm* atakujacy) {
         cout << atakujacy->GetZnak() << " ATT wygral\n";
         swiat->SetPole(atakujacy->GetPozycja(), new Trawa());
         swiat->SetPole(pozycja, atakujacy);
+
+        cout << "7777777";
     }
 }
 void Organizm::Kolizja(Organizm* atakujacy) {

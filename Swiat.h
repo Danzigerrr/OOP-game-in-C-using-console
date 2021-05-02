@@ -22,7 +22,7 @@ private:
 	bool cmp(Organizm*o1, Organizm* o2);
 	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
 	void RysujSwiat();
-
+	void PrzygotujKolejnaRunde();
 public:
 	vector<Organizm*> wezWszystkieOrganizmy();
 
@@ -44,5 +44,6 @@ public:
 	Organizm*** GetPlansza();
 	void SetPlansza(Organizm*** plansza);
 	void SetPole(COORDINATES coor, Organizm* org);
+	void testuj();
 };
 
