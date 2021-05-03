@@ -19,7 +19,7 @@ Swiat::Swiat(const int _width, const int _height)
 	Y.push_back(new Czlowiek); // tylko jeden czlowiek
 	
 	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
-		//Y.push_back(new Antylopa);
+		Y.push_back(new Antylopa);
 		//Y.push_back(new Lis);
 		//Y.push_back(new Owca);
 		//Y.push_back(new Wilk);
@@ -211,8 +211,7 @@ void Swiat::WykonajTure() {
 	for (int j = 0; j < iloscwszystkichorg; j++) {
 		Organizm *o_ptr = w.front();
 		if (o_ptr->GetWykonalRuch() == false) {
-	cout << "\n\n---------\n\n";
-			cout << "   " << o_ptr->GetZnak() << " wykonuje akcje \n";
+			cout << "\n\n---------\n\n  " << o_ptr->GetZnak() << " wykonuje akcje \n";
 
 			COORDINATES coor = o_ptr->GetPozycja();
 			cout << " jest na pozycji " << coor.x << " " << coor.y;
@@ -222,6 +221,8 @@ void Swiat::WykonajTure() {
 
 			RysujSwiat();
 
+			int aktualnyWiek = o_ptr->GetWiek();
+			o_ptr->SetWiek(aktualnyWiek + 1);
 			o_ptr->SetWykonalRuch(true);
 		}
 		w = wezWszystkieOrganizmy(); // aktualizacja vektora

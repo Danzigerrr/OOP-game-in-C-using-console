@@ -20,15 +20,7 @@ bool Roslina::ObliczSzanseNaRozsianie() {
 	if (szansa <= SZANSA_NA_ROZSIEW) return true;
 	else return false;
 }
-void Roslina::ZabijAtakujacego(Zwierze* atakujacy, DIRECTION dir) {
-    cout << atakujacy->GetZnak() << " wygral\n orgnaizm zabija atakujacego\n";
-    delete atakujacy;
-    COORDINATES coor = pozycja;
-    Swiat* s = swiat;
-    delete this;
-    s->SetPole(coor, new Trawa(s, coor, 0));
 
-}
 void Roslina::ZbadajSasiadow() {
     bool rozsiana = false;
     while (rozsiana == false) {

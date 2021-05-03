@@ -1,9 +1,9 @@
 #pragma once
-#include "Roslina.h"
+#include "TrujacaRoslina.h"
 
 
 
-class BarszczSosnowskiego : public Roslina {
+class BarszczSosnowskiego : public TrujacaRoslina {
 private:
 	void init() override;
 	void zabijSasiada(COORDINATES coor);

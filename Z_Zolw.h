@@ -9,7 +9,6 @@ public:
 	Zolw(Swiat* swiat, COORDINATES pos, int wiek);
 
 	void Akcja() override;
-	void Kolizja(Zwierze* atakujacy, DIRECTION dir) override;
 
 	~Zolw();
 };
