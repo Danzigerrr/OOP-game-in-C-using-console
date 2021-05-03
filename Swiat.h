@@ -15,6 +15,7 @@
 #include "Z_Wilk.h"
 #include "Z_Zolw.h"
 
+class Organizm;
 
 class Swiat
 {
@@ -22,10 +23,11 @@ private:
 	int wysokosc, szerokosc;
 	int tura;
 	Organizm*** plansza;
-	bool cmp(Organizm*o1, Organizm* o2);
+	
 	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
 	
 	void PrzygotujKolejnaRunde();
+
 public:
 	vector<Organizm*> wezWszystkieOrganizmy();
 
@@ -50,3 +52,4 @@ void RysujSwiat(); //potem wrzuc do private
 	void testuj();
 };
 
+bool cmp(Organizm* o1, Organizm* o2);

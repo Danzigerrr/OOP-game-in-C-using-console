@@ -1,6 +1,7 @@
 #pragma once
 #include "Defines.h"
 class Zwierze;
+class Swiat;
 
 class Organizm {
 protected:
@@ -18,7 +19,7 @@ protected:
 	virtual void init() = 0;
 public:
 	Organizm();
-
+	
 	virtual void Akcja() = 0;  //abstakcyjna bo rozna dla zwierzat i roslin
 	virtual void Kolizja(Zwierze* o, DIRECTION dir); //public bo musi byc dostepna w dla inncyh w metodzie SprawdzKolizje()
 

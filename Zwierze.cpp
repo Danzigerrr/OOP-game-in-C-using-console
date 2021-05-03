@@ -6,7 +6,9 @@ Zwierze::~Zwierze(){}
 
 void Zwierze::Akcja() {
     DIRECTION dir = ZrobRuch();
-    CzyOdbilAtak(dir);
+
+    if (dir != NO_CHANGE)
+        CzyOdbilAtak(dir);
 }
 
 
@@ -50,37 +52,38 @@ DIRECTION Zwierze::ZrobRuch() {
     return dir;
 }
 
+void Zwierze::NastapiloOdbicie(DIRECTION dir) {
+    cout << "Odbicie!" << endl;
+    switch (dir) { // organizm sie cofa
+        case UP: {
+            pozycja.y += step;
+        }break;
+        case DOWN: {
+            pozycja.y -= step;
+        }break;
+        case LEFT: {
+            pozycja.x += step;
+        }break;
+        case RIGHT: {
+            pozycja.x -= step;
+        }break;
+    }
+    cout << "powrot na pozycje " << pozycja.x << " " << pozycja.y << endl;
+}
 
 void Zwierze::CzyOdbilAtak(DIRECTION dir) {
 
-    if (dir != NO_CHANGE) {
-
-        Organizm* Def = swiat->GetPole(pozycja);
-
-        // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
-        if (sila < 5 && Def->GetZnak() == ZOLW)
-        {
-            swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
-            switch (dir) { // organizm sie cofa
-                case UP: {
-                    pozycja.y += step;
-                }break;
-                case DOWN: {
-                    pozycja.y -= step;
-                }break;
-                case LEFT: {
-                    pozycja.x += step;
-                }break;
-                case RIGHT: {
-                    pozycja.x -= step;
-                }break;
-            }
-        }
-        else {
-            cout << "Kolizja Att=" << this->GetZnak() << " z Def=" << Def->GetZnak() << " ";
-            Def->Kolizja(this, dir);
-        }
+    Organizm* Def = swiat->GetPole(pozycja);
+    Zwierze* Att = this;
+    // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
+    if (sila < 5 && Def->GetZnak() == ZOLW){
+        NastapiloOdbicie(dir);
     }
+    else {
+        cout << "Kolizja Att=" << Att->GetZnak() << " z Def=" << Def->GetZnak() << " ";
+        Def->Kolizja(Att, dir);
+    }
+
 
 }
 

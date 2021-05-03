@@ -1,4 +1,5 @@
-﻿#include "Swiat.h"
+﻿#include "Organizm.h"
+#include "Swiat.h"
 #define ILOSC_ORGANIZMU_NA_POCZATKU 1
 
 Swiat::Swiat(const int _width, const int _height)
@@ -16,14 +17,14 @@ Swiat::Swiat(const int _width, const int _height)
 
 
 	vector<Organizm*> Y;
-	Y.push_back(new Czlowiek); // tylko jeden czlowiek
+	//Y.push_back(new Czlowiek); // tylko jeden czlowiek
 	
 	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
-		Y.push_back(new Antylopa);
+		//Y.push_back(new Antylopa);
 		//Y.push_back(new Lis);
 		//Y.push_back(new Owca);
 		//Y.push_back(new Wilk);
-		//Y.push_back(new Zolw);
+	//	Y.push_back(new Zolw);
 
 		//Y.push_back(new BarszczSosnowskiego);
 		//Y.push_back(new Guarana);
@@ -35,13 +36,23 @@ Swiat::Swiat(const int _width, const int _height)
 	while (Y.size() < szerokosc * wysokosc)
 		Y.push_back(new Trawa());
 
-	random_shuffle(Y.begin(), Y.end());
+	//random_shuffle(Y.begin(), Y.end());
 
+	//Y.reserve(Y.size());
 
 	for (int j = 0; j < szerokosc; j++) {
 		for (int i = 0; i < wysokosc; i++) {
 			int id = j * wysokosc + i;
-			plansza[j][i] = Y[id];
+
+			if (id == 0) {
+				plansza[j][i] = new Czlowiek;
+			}
+			else if (id == 1) {
+				plansza[j][i] = new Zolw;
+			}
+			else
+				plansza[j][i] = Y[id];
+
 			plansza[j][i]->SetSwiat(this);
 
 			COORDINATES coor{ j,i };
@@ -199,7 +210,7 @@ void Swiat::WykonajTure() {
 	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
-	//std::sort(w.begin(), w.end(), cmp);
+	//sort(w.begin(), w.end(), cmp);
 	int iloscwszystkichorg = 0;
 	for (auto o_ptr : w) {
 		iloscwszystkichorg++;
@@ -211,15 +222,12 @@ void Swiat::WykonajTure() {
 	for (int j = 0; j < iloscwszystkichorg; j++) {
 		Organizm *o_ptr = w.front();
 		if (o_ptr->GetWykonalRuch() == false) {
-			cout << "\n\n---------\n\n  " << o_ptr->GetZnak() << " wykonuje akcje \n";
-
 			COORDINATES coor = o_ptr->GetPozycja();
-			cout << " jest na pozycji " << coor.x << " " << coor.y;
-		
-
+			cout << o_ptr->GetZnak() <<  " na poz " << coor.x << " " << coor.y << " wykonuje akcje \n";
+	
 			o_ptr->Akcja();
 
-			RysujSwiat();
+			//RysujSwiat();
 
 			int aktualnyWiek = o_ptr->GetWiek();
 			o_ptr->SetWiek(aktualnyWiek + 1);
@@ -287,13 +295,15 @@ void Swiat::SetPlansza(Organizm*** plansza) {
 }
 
 
-
-bool Swiat::cmp(Organizm *o1, Organizm *o2) {
+bool cmp(Organizm* o1, Organizm* o2) {
 	if (o1->GetInicjatywa() != o2->GetInicjatywa()) {
 		return o1->GetInicjatywa() < o2->GetInicjatywa();
 	}
 	return o1->GetWiek() < o2->GetWiek();
 }
+
+
+
 
 
 

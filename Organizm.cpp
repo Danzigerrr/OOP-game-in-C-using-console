@@ -101,3 +101,4 @@ bool Organizm::GetWykonalRuch() {
     return wykonalRuch;
 }
 
+

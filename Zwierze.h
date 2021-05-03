@@ -4,7 +4,8 @@
 class Zwierze : public Organizm {
 protected:
 
-	virtual void CzyOdbilAtak(DIRECTION dir);
+	void CzyOdbilAtak(DIRECTION dir);
+	void NastapiloOdbicie(DIRECTION dir);
 	virtual DIRECTION ZrobRuch();
 	int step = 1;
 public:
