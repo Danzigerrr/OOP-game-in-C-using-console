@@ -11,6 +11,7 @@ protected:
 	bool ObliczSzanseNaRozsianie();
 	void ZbadajSasiadow();
 	//Organizm* nastepny(const DIRECTION kierunek, const int distnace);
+	void ZabijAtakujacego(Zwierze* atakujacy, DIRECTION dir);
 public:
 	Roslina(); 
 	~Roslina();

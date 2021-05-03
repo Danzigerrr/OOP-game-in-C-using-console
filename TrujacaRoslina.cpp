@@ -1,5 +1,5 @@
 #include "TrujacaRoslina.h"
-
+#include "Swiat.h"
 void TrujacaRoslina::ZabijAtakujacego(Zwierze* atakujacy, DIRECTION dir) {
     cout << atakujacy->GetZnak() << " wygral\n orgnaizm zabija atakujacego\n";
     delete atakujacy;

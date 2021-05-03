@@ -1,5 +1,5 @@
 #include "R_Trawa.h"
-
+#include "Swiat.h"
 Trawa::Trawa() {
 	init();
 

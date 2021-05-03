@@ -59,9 +59,8 @@ void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
     }
 }
 
-void Czlowiek::Akcja() {
-
-    cout << "Czlowiek rusza sie z poz" << pozycja.x << " "  << pozycja.y << endl;
+DIRECTION Czlowiek::ZrobRuch() {
+ cout << "Czlowiek rusza sie z poz" << pozycja.x << " "  << pozycja.y << endl;
     DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {
     case KEY_UP: {
@@ -99,14 +98,21 @@ void Czlowiek::Akcja() {
         break;
     }
 
+
     cout << "nowa pozycja: ";
     if (dir == NO_CHANGE) {
         cout << "NO change" << endl;
-
     }
     else {
-       cout  << pozycja.x << " " << pozycja.y << endl;
+        cout << pozycja.x << " " << pozycja.y << endl;
     }
+
+    return dir;
+}
+
+void Czlowiek::Akcja() {
+
+    DIRECTION dir = ZrobRuch();
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 

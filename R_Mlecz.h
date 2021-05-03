@@ -1,5 +1,6 @@
 #pragma once
 #include "Roslina.h"
+
 class Mlecz : public Roslina {
 private:
 	void init() override;

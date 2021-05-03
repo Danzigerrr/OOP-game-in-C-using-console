@@ -15,7 +15,7 @@ protected:
 	void AtakujacyWygral(Zwierze* atakujacy, DIRECTION dir);
 	void ObroncaWygral(Zwierze* atakujacy, DIRECTION dir);
 	COORDINATES ObliczStareCoor(Zwierze* atakujacy, DIRECTION dir);
-
+	virtual void init() = 0;
 public:
 	Organizm();
 

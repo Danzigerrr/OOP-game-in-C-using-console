@@ -1,6 +1,6 @@
 #pragma once
 #include "Zwierze.h"
-#include "Swiat.h"
+
 class Antylopa : public Zwierze {
 private:
 	void init() override;

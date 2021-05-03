@@ -1,5 +1,5 @@
 #include "Z_Antylopa.h"
-
+#include "Swiat.h"
 
 Antylopa::Antylopa() {
     init();

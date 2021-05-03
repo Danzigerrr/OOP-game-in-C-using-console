@@ -1,4 +1,5 @@
 #include "R_Mlecz.h"
+#include "Swiat.h"
 #define ILOSC_PROB_ROZPRZEST 3
 
 Mlecz::Mlecz() {

@@ -18,15 +18,13 @@ DIRECTION Zwierze::ZrobRuch() {
             case UP: {
                 if (pozycja.y - step >= 0) {
                     cout << "Up" << endl;//key up
-                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.y -= step;
                     dir = UP;
                 }
             }break;
             case DOWN: {
-                if (pozycja.y + step <= swiat->GetWysokosc()) {
+                if (pozycja.y + step < swiat->GetWysokosc()) {
                     cout << "Down" << endl;  // key down
-                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.y += step;
                     dir = DOWN;
                 }
@@ -34,21 +32,21 @@ DIRECTION Zwierze::ZrobRuch() {
             case LEFT: {
                 if (pozycja.x - step >= 0) {
                     cout << "Left" << endl;  // key left
-                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.x -= step;
                     dir = LEFT;
                 }
             }break;
             case RIGHT: {
-                if (pozycja.x + step <= swiat->GetSzerokosc()) {
+                if (pozycja.x + step < swiat->GetSzerokosc()) {
                     cout << "Right" << endl;  // key right
-                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.x += step;
                     dir = RIGHT;
                 }
             }break;
         }
     }
+    cout << "nowa pozycja zwierzecia " << znak << ": " << pozycja.x << " " << pozycja.y << endl;
+
     return dir;
 }
 
@@ -59,7 +57,8 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
 
         Organizm* Def = swiat->GetPole(pozycja);
 
-        if (sila < 5 && Def->GetZnak() == ZOLW) // jesli organizm ma sile <5 --> zolw odeprze jego atak
+        // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
+        if (sila < 5 && Def->GetZnak() == ZOLW)
         {
             swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
             switch (dir) { // organizm sie cofa
@@ -79,7 +78,7 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
         }
         else {
             cout << "Kolizja Att=" << this->GetZnak() << " z Def=" << Def->GetZnak() << " ";
-            Def->Kolizja(this,dir);
+            Def->Kolizja(this, dir);
         }
     }
 

@@ -3,7 +3,7 @@
 
 class Zwierze : public Organizm {
 protected:
-	virtual void init() = 0;
+
 	virtual void CzyOdbilAtak(DIRECTION dir);
 	virtual DIRECTION ZrobRuch();
 	int step = 1;

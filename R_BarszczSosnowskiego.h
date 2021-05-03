@@ -3,7 +3,7 @@
 
 
 
-class BarszczSosnowskiego : public TrujacaRoslina {
+class BarszczSosnowskiego : public Roslina {
 private:
 	void init() override;
 	void zabijSasiada(COORDINATES coor);

@@ -1,7 +1,7 @@
 #pragma once
 #include "Roslina.h"
 
-class WilczeJagody : public TrujacaRoslina {
+class WilczeJagody : public Roslina {
 private:
 	void init() override;
 

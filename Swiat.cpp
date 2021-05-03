@@ -25,9 +25,9 @@ Swiat::Swiat(const int _width, const int _height)
 		//Y.push_back(new Wilk);
 		//Y.push_back(new Zolw);
 
-		Y.push_back(new BarszczSosnowskiego);
+		//Y.push_back(new BarszczSosnowskiego);
 		//Y.push_back(new Guarana);
-		Y.push_back(new Mlecz());
+		//Y.push_back(new Mlecz());
 		//Y.push_back(new WilczeJagody);
 	}
 	
@@ -225,10 +225,12 @@ void Swiat::WykonajTure() {
 			o_ptr->SetWykonalRuch(true);
 		}
 		w = wezWszystkieOrganizmy(); // aktualizacja vektora
+		//std::sort(w.begin(), w.end(), cmp);
 		kolejnyorganizm++;
 		for (int i = 0; i < kolejnyorganizm; i++) {
 			w.erase(w.begin()); // pop front
 		}
+
 	}
 	PrzygotujKolejnaRunde();
 

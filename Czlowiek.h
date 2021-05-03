@@ -1,7 +1,6 @@
 #pragma once
 #include "Zwierze.h"
-#include <iostream>
-using namespace std;
+#include "Swiat.h"
 
 class Czlowiek : public Zwierze {
 private:
@@ -10,6 +9,7 @@ private:
 	int KierunekRuchuCzlowieka;
 	void KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir);
 	void init() override;
+	DIRECTION ZrobRuch() override;
 public:
 	Czlowiek();
 	Czlowiek(Swiat* swiat, const COORDINATES, int wiek);

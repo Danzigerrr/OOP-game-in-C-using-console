@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Defines.h"
 #include "Organizm.h"
+#include "Zwierze.h"
+#include "Roslina.h"
 #include "Czlowiek.h"
 #include "R_BarszczSosnowskiego.h"
 #include "R_Guarana.h"
@@ -12,7 +14,7 @@
 #include "Z_Owca.h"
 #include "Z_Wilk.h"
 #include "Z_Zolw.h"
-#include "TrujacaRoslina.h"
+
 
 class Swiat
 {

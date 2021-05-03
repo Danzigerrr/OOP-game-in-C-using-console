@@ -1,6 +1,5 @@
 #include "Swiat.h"
 
-//int KierunekRuchuCzlowieka;
 
 int main(){
 
