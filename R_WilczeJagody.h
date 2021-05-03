@@ -1,9 +1,10 @@
 #pragma once
 #include "Roslina.h"
 
-class WilczeJagody : public Roslina {
+class WilczeJagody : public TrujacaRoslina {
 private:
 	void init() override;
+
 public:
 	WilczeJagody();
 	WilczeJagody(Swiat* swiat, const COORDINATES pos, int wiek);

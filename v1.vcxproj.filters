@@ -63,6 +63,9 @@
     <ClCompile Include="Roslina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TrujacaRoslina.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Organizm.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Z_Antylopa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrujacaRoslina.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

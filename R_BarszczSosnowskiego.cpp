@@ -24,26 +24,19 @@ void BarszczSosnowskiego::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 	
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
-        if (sila > atakujacy->GetSila()) //wygrywa czlowiek
+        if (sila > atakujacy->GetSila()) //wygrywa obronca
         {
-            cout << this->GetZnak() << " wygral\n";
-            delete atakujacy;
-            Organizm*** plansza = swiat->GetPlansza();
-            plansza[pozycja.x][pozycja.y] = new Trawa();
+			ObroncaWygral(atakujacy, dir);
         }
         else //wygrywa atakujacy
         {
-            cout << atakujacy->GetZnak() << " wygral\n";
-            delete atakujacy;
-            delete this;
+            ZabijAtakujacego(atakujacy,dir);
         }
     }
 
     else //jesli sily sa rowne --> wygrywa atakujacy
     {
-        cout << atakujacy->GetZnak() << " wygral\n";
-        delete atakujacy;
-        delete this;
+        ZabijAtakujacego(atakujacy, dir);
     }
 
 }
@@ -51,12 +44,23 @@ void BarszczSosnowskiego::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 
 //Zabija wszystkie zwierzęta w swoim sąsiedztwie poza
 void BarszczSosnowskiego::Akcja() {
+
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++) {
-			int Xpos = pozycja.x - 1 + i;
-			int Ypos = pozycja.y - 1 + i;
+			COORDINATES coor{ pozycja.x - 1 + j, pozycja.y - 1 + i };
 
-			if (Xpos < swiat->GetSzerokosc() && Ypos < swiat->GetWysokosc() && Xpos >=0 && Ypos >= 0)//wtedy szuka tylko w zaalokowanej pamieci
-				swiat->GetPlansza()[Xpos][Ypos] = new Trawa();
+			if (	coor.x < swiat->GetSzerokosc() && coor.y < swiat->GetWysokosc() &&
+					coor.x >= 0 &&					  coor.y >= 0 &&
+					!(coor.x == pozycja.x &&		  coor.y == pozycja.y)
+				)
+			{
+				zabijSasiada(coor);
+				cout << "\n oto swiat po zabicu sasiada:" << endl;
+				swiat->RysujSwiat();
+			}
 		}
+}
+
+void BarszczSosnowskiego::zabijSasiada(COORDINATES coor) {
+	swiat->SetPole(coor, new Trawa(swiat, coor, 0));
 }

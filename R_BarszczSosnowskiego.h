@@ -3,9 +3,11 @@
 
 
 
-class BarszczSosnowskiego : public Roslina {
+class BarszczSosnowskiego : public TrujacaRoslina {
 private:
 	void init() override;
+	void zabijSasiada(COORDINATES coor);
+
 public:
 	BarszczSosnowskiego();
 	BarszczSosnowskiego(Swiat* swiat, const COORDINATES pos, int wiek);

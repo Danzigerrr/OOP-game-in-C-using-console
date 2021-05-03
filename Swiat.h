@@ -12,6 +12,7 @@
 #include "Z_Owca.h"
 #include "Z_Wilk.h"
 #include "Z_Zolw.h"
+#include "TrujacaRoslina.h"
 
 class Swiat
 {

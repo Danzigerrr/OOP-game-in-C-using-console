@@ -100,3 +100,4 @@ void Organizm::SetWykonalRuch(bool value) {
 bool Organizm::GetWykonalRuch() {
     return wykonalRuch;
 }
+

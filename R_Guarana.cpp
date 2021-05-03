@@ -24,28 +24,23 @@ void Guarana::Kolizja(Zwierze* atakujacy, DIRECTION dir)
 
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
-        if (sila > atakujacy->GetSila()) //wygrywa czlowiek
+        if (sila > atakujacy->GetSila()) //wygrywa obronca
         {
-            cout << this->GetZnak() << " wygral\n";
-            delete atakujacy;
-            Organizm*** plansza = swiat->GetPlansza();
-            plansza[pozycja.x][pozycja.y] = new Trawa();
+            ObroncaWygral(atakujacy, dir);
         }
         else //wygrywa atakujacy
         {
-            cout << atakujacy->GetZnak() << " wygral\n";
+            AtakujacyWygral(atakujacy, dir);
             int obecnaSilaAtak = atakujacy->GetSila();
             atakujacy->SetSila(obecnaSilaAtak + ZWIEKSZENIE_SILY);
-            delete this;
         }
     }
 
     else //jesli sily sa rowne --> wygrywa atakujacy
     {
-        cout << atakujacy->GetZnak() << " wygral\n";
+        AtakujacyWygral(atakujacy, dir);
         int obecnaSilaAtak = atakujacy->GetSila();
         atakujacy->SetSila(obecnaSilaAtak + ZWIEKSZENIE_SILY);
-        delete this;
     }
 }
 

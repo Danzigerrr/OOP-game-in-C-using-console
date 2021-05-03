@@ -7,8 +7,9 @@ private:
 protected:
 	void NormalnaAkcjaRoslin();
 	virtual void init() = 0;
-	void Split();
-	bool CzyRozprzestrzeniac();
+	bool Split(COORDINATES coor);
+	bool ObliczSzanseNaRozsianie();
+	void ZbadajSasiadow();
 	//Organizm* nastepny(const DIRECTION kierunek, const int distnace);
 public:
 	Roslina(); 

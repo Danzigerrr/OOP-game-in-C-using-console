@@ -154,6 +154,7 @@
     <ClCompile Include="R_Trawa.cpp" />
     <ClCompile Include="Symulator1.cpp" />
     <ClCompile Include="R_WilczeJagody.cpp" />
+    <ClCompile Include="TrujacaRoslina.cpp" />
     <ClCompile Include="Zwierze.cpp" />
     <ClCompile Include="Z_Antylopa.cpp" />
     <ClCompile Include="Z_Lis.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Swiat.h" />
     <ClInclude Include="R_Trawa.h" />
     <ClInclude Include="R_WilczeJagody.h" />
+    <ClInclude Include="TrujacaRoslina.h" />
     <ClInclude Include="Z_Antylopa.h" />
     <ClInclude Include="Zwierze.h" />
     <ClInclude Include="Z_Lis.h" />

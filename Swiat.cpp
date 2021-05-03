@@ -25,7 +25,7 @@ Swiat::Swiat(const int _width, const int _height)
 		//Y.push_back(new Wilk);
 		//Y.push_back(new Zolw);
 
-		//Y.push_back(new BarszczSosnowskiego);
+		Y.push_back(new BarszczSosnowskiego);
 		//Y.push_back(new Guarana);
 		Y.push_back(new Mlecz());
 		//Y.push_back(new WilczeJagody);
@@ -192,7 +192,7 @@ vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 }
 
 void Swiat::WykonajTure() {
-
+	
 	GetHumanCommand();
 
 	tura++;
@@ -211,12 +211,12 @@ void Swiat::WykonajTure() {
 	for (int j = 0; j < iloscwszystkichorg; j++) {
 		Organizm *o_ptr = w.front();
 		if (o_ptr->GetWykonalRuch() == false) {
-
-			cout << "   " << o_ptr->GetZnak() << " wykonuje akcje ";
+	cout << "\n\n---------\n\n";
+			cout << "   " << o_ptr->GetZnak() << " wykonuje akcje \n";
 
 			COORDINATES coor = o_ptr->GetPozycja();
 			cout << " jest na pozycji " << coor.x << " " << coor.y;
-			cout << "\n---------\n";
+		
 
 			o_ptr->Akcja();
 

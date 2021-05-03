@@ -20,29 +20,21 @@ WilczeJagody::~WilczeJagody() {}
 void WilczeJagody::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
-        if (sila > atakujacy->GetSila()) //wygrywa czlowiek
+        if (sila > atakujacy->GetSila()) //wygrywa obronca
         {
-            cout << this->GetZnak() << " wygral\n";
-            delete atakujacy;
-            Organizm*** plansza = swiat->GetPlansza();
-            plansza[pozycja.x][pozycja.y] = new Trawa();
+            ObroncaWygral(atakujacy, dir);
         }
         else //wygrywa atakujacy
         {
-            cout << atakujacy->GetZnak() << " wygral\n";
-            delete atakujacy;
-            delete this;
+            ZabijAtakujacego(atakujacy, dir);
         }
     }
 
     else //jesli sily sa rowne --> wygrywa atakujacy
     {
-        cout << atakujacy->GetZnak() << " wygral\n";
-        delete atakujacy;
-        delete this;
+        ZabijAtakujacego(atakujacy, dir);
     }
 
 }
-
 
 

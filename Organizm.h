@@ -10,11 +10,12 @@ protected:
 	int wiek = 0;
 	Swiat* swiat;
 	char znak;
-	bool wykonalRuch;
+	bool wykonalRuch = false;
 	void NormalnaKolizja(Zwierze* atakujacy, DIRECTION dir);
 	void AtakujacyWygral(Zwierze* atakujacy, DIRECTION dir);
 	void ObroncaWygral(Zwierze* atakujacy, DIRECTION dir);
 	COORDINATES ObliczStareCoor(Zwierze* atakujacy, DIRECTION dir);
+
 public:
 	Organizm();
 
