@@ -8,7 +8,7 @@ private:
 	int UmiejetnoscAktywnaPrzez;
 	int UmiejetnoscOdnawianaPrzez;
 	int KierunekRuchuCzlowieka;
-
+	void KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir);
 	void init() override;
 public:
 	Czlowiek();

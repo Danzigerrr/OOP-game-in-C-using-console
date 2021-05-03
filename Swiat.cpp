@@ -175,7 +175,11 @@ void Swiat::RysujSwiat() {
 		cout << endl;
 	}
 	cout << " koniec rsyowania swiata\n ";
-	cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+
+	if (GetHuman() != NULL)
+		cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+	else
+		cout << "Czlowiek nie istnieje\n";
 }
 
 vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
@@ -226,14 +230,15 @@ void Swiat::testuj() {
 void Swiat::PrzygotujKolejnaRunde() {
 	system("CLS");
 	RysujSwiat();
-
-	if (GetHuman() == NULL) {
+	Czlowiek* Human = (Czlowiek*)GetHuman();
+	if (Human == NULL) {
 		cout << "GAME OVER";
 		exit(1);
 	}
 	else {
 		cout << "Niech czlowiek wykona ruch: " << endl;
-		if (GetHuman()->GetSwiat() == NULL) cout << "null";
+		if (Human->GetUmiejetnoscAktywnaPrzez() > 0) cout << "aktywnosc aktywna przez:" << Human->GetUmiejetnoscAktywnaPrzez() << endl;
+		if (Human->GetUmiejetnoscOdnawianaPrzez() > 0) cout << "aktywnosc odnawiana przez:" << Human->GetUmiejetnoscOdnawianaPrzez() << endl;
 	}
 }
 
