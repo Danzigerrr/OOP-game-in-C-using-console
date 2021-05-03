@@ -18,7 +18,7 @@ DIRECTION Zwierze::ZrobRuch() {
             case UP: {
                 if (pozycja.y - step >= 0) {
                     cout << "Up" << endl;//key up
-                    swiat->SetPole(pozycja, new Trawa());
+                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.y -= step;
                     dir = UP;
                 }
@@ -26,7 +26,7 @@ DIRECTION Zwierze::ZrobRuch() {
             case DOWN: {
                 if (pozycja.y + step <= swiat->GetWysokosc()) {
                     cout << "Down" << endl;  // key down
-                    swiat->SetPole(pozycja, new Trawa());
+                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.y += step;
                     dir = DOWN;
                 }
@@ -34,7 +34,7 @@ DIRECTION Zwierze::ZrobRuch() {
             case LEFT: {
                 if (pozycja.x - step >= 0) {
                     cout << "Left" << endl;  // key left
-                    swiat->SetPole(pozycja, new Trawa());
+                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.x -= step;
                     dir = LEFT;
                 }
@@ -42,7 +42,7 @@ DIRECTION Zwierze::ZrobRuch() {
             case RIGHT: {
                 if (pozycja.x + step <= swiat->GetSzerokosc()) {
                     cout << "Right" << endl;  // key right
-                    swiat->SetPole(pozycja, new Trawa());
+                    swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
                     pozycja.x += step;
                     dir = RIGHT;
                 }
@@ -61,7 +61,7 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
 
         if (sila < 5 && Def->GetZnak() == ZOLW) // jesli organizm ma sile <5 --> zolw odeprze jego atak
         {
-            swiat->SetPole(pozycja, new Trawa());
+            swiat->SetPole(pozycja, new Trawa(swiat, pozycja, 0));
             switch (dir) { // organizm sie cofa
                 case UP: {
                     pozycja.y += step;

@@ -8,16 +8,14 @@
 #include <vector>
 #include <string>
 #include <fstream>
-//#include <conio.h>
 #include <algorithm>
-
 #include <conio.h>
 using namespace std;
 
 #define INDEX 184698
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
-
+#define SZANSA_NA_ROZSIEW 10 //szansa na 100 %
 #define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'

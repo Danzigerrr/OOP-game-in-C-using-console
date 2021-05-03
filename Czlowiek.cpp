@@ -60,52 +60,52 @@ void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
 }
 
 void Czlowiek::Akcja() {
-    if (NULL == swiat) cout << "\n dla czeloweika swiat jest NUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
 
     cout << "Czlowiek rusza sie z poz" << pozycja.x << " "  << pozycja.y << endl;
     DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {
-        case KEY_UP: {
-            cout << "Up" << endl;
-            if (pozycja.y > 0) {
-                pozycja.y--;
-                dir = UP;
-            }
-        }break;
-        case KEY_DOWN: {
-            cout << "Down" << endl; 
-            if (pozycja.y < swiat->GetWysokosc() - 1 ) {
-               
-                pozycja.y++;
-                dir = DOWN;
-            }
-        }break;
-        case KEY_LEFT: {
-            cout << "Left" << endl; 
-            if (pozycja.x > 0) {
-                pozycja.x--;
-                dir = LEFT;
-            }
-        }break;
-        case KEY_RIGHT: {
-            cout << "Right" << endl; 
-            if (pozycja.x < swiat->GetSzerokosc() - 1){
- 
-                pozycja.x++;
-                swiat->RysujSwiat();
-                dir = RIGHT;
-            }
-        }break;
-        default:
-            cout << "Incorrect key input" << endl; 
-            break;
+    case KEY_UP: {
+        cout << "Up" << endl;
+        if (pozycja.y > 0) {
+            pozycja.y--;
+            dir = UP;
+        }
+    }break;
+    case KEY_DOWN: {
+        cout << "Down" << endl;
+        if (pozycja.y < swiat->GetWysokosc() - 1) {
+
+            pozycja.y++;
+            dir = DOWN;
+        }
+    }break;
+    case KEY_LEFT: {
+        cout << "Left" << endl;
+        if (pozycja.x > 0) {
+            pozycja.x--;
+            dir = LEFT;
+        }
+    }break;
+    case KEY_RIGHT: {
+        cout << "Right" << endl;
+        if (pozycja.x < swiat->GetSzerokosc() - 1) {
+
+            pozycja.x++;
+            dir = RIGHT;
+        }
+    }break;
+    default:
+        cout << "Incorrect key input" << endl; 
+        break;
     }
+
+    cout << "nowa pozycja: ";
     if (dir == NO_CHANGE) {
         cout << "NO change" << endl;
 
     }
     else {
-        cout << "nowa pozycja: " << pozycja.x << " " << pozycja.y << endl;
+       cout  << pozycja.x << " " << pozycja.y << endl;
     }
     if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
     if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
@@ -119,6 +119,7 @@ void Czlowiek::Akcja() {
         if (UmiejetnoscAktywnaPrzez == 0 && UmiejetnoscOdnawianaPrzez == 0) UmiejetnoscOdnawianaPrzez = UMIEJETNOSC_ODNAWIANA;
         else if (UmiejetnoscOdnawianaPrzez > 0) { UmiejetnoscOdnawianaPrzez--; }
     }
+   
 }
 
 void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
@@ -163,7 +164,8 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
         ObroncaWygral(atakujacy, dir);
 
     else {
-
+        //atakujace zwierze zostaje przesuniete na sasiadujace przy czlowieku pole
+        //(mozliwe nadpisanie danego pola)
         atakujacy->SetPozycja(noweCoorAtakujacego);
         swiat->SetPole(noweCoorAtakujacego, atakujacy);
 

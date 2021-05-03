@@ -5,7 +5,7 @@ class Roslina : public Organizm {
 private:
 	int inicjatywa = 0;
 protected:
-	void NormalnaAkcja();
+	void NormalnaAkcjaRoslin();
 	virtual void init() = 0;
 	void Split();
 	bool CzyRozprzestrzeniac();

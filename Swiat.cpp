@@ -17,24 +17,23 @@ Swiat::Swiat(const int _width, const int _height)
 
 	vector<Organizm*> Y;
 	Y.push_back(new Czlowiek); // tylko jeden czlowiek
-	/*
+	
 	for (int i = 0; i < ILOSC_ORGANIZMU_NA_POCZATKU; i++) {
-		Y.push_back(new Antylopa);
-		Y.push_back(new Lis);
-		Y.push_back(new Owca);
-		Y.push_back(new Wilk);
-		Y.push_back(new Zolw);
+		//Y.push_back(new Antylopa);
+		//Y.push_back(new Lis);
+		//Y.push_back(new Owca);
+		//Y.push_back(new Wilk);
+		//Y.push_back(new Zolw);
 
-		Y.push_back(new BarszczSosnowskiego);
-		Y.push_back(new Guarana);
-		Y.push_back(new Mlecz);
-		Y.push_back(new Trawa);
-		Y.push_back(new WilczeJagody);
+		//Y.push_back(new BarszczSosnowskiego);
+		//Y.push_back(new Guarana);
+		Y.push_back(new Mlecz());
+		//Y.push_back(new WilczeJagody);
 	}
-	*/
+	
 	COORDINATES coor{ 0,0 };
 	while (Y.size() < szerokosc * wysokosc)
-		Y.push_back(new Trawa);
+		Y.push_back(new Trawa());
 
 	random_shuffle(Y.begin(), Y.end());
 
@@ -195,29 +194,44 @@ vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
 void Swiat::WykonajTure() {
 
 	GetHumanCommand();
-	testuj();
+
 	tura++;
 	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
 	//std::sort(w.begin(), w.end(), cmp);
-	testuj();
+	int iloscwszystkichorg = 0;
 	for (auto o_ptr : w) {
-		COORDINATES coor = o_ptr->GetPozycja();
-		cout << "\n---------\n";
-		cout << "   " <<o_ptr->GetZnak() << " na pozycji " << coor.x << " " << coor.y << " wykonuje akcje: \n";
-		testuj();
-		if (o_ptr->GetZnak() == CZLOWIEK)
-			o_ptr->Akcja();
-		else
-		o_ptr->Akcja();
-		testuj();
+		iloscwszystkichorg++;
+		o_ptr->SetWykonalRuch(false);
+	}
 
-		RysujSwiat();
-		testuj();
+	int kolejnyorganizm = 0;
+
+	for (int j = 0; j < iloscwszystkichorg; j++) {
+		Organizm *o_ptr = w.front();
+		if (o_ptr->GetWykonalRuch() == false) {
+
+			cout << "   " << o_ptr->GetZnak() << " wykonuje akcje ";
+
+			COORDINATES coor = o_ptr->GetPozycja();
+			cout << " jest na pozycji " << coor.x << " " << coor.y;
+			cout << "\n---------\n";
+
+			o_ptr->Akcja();
+
+			RysujSwiat();
+
+			o_ptr->SetWykonalRuch(true);
+		}
+		w = wezWszystkieOrganizmy(); // aktualizacja vektora
+		kolejnyorganizm++;
+		for (int i = 0; i < kolejnyorganizm; i++) {
+			w.erase(w.begin()); // pop front
+		}
 	}
 	PrzygotujKolejnaRunde();
-	testuj();
+
 }
 
 void Swiat::testuj() {

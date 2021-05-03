@@ -56,7 +56,7 @@ void BarszczSosnowskiego::Akcja() {
 			int Xpos = pozycja.x - 1 + i;
 			int Ypos = pozycja.y - 1 + i;
 
-			if (0 <= Xpos < swiat->GetSzerokosc() && 0 <= Ypos < swiat->GetWysokosc())//wtedy szuka tylko w zaalokowanej pamieci
+			if (Xpos < swiat->GetSzerokosc() && Ypos < swiat->GetWysokosc() && Xpos >=0 && Ypos >= 0)//wtedy szuka tylko w zaalokowanej pamieci
 				swiat->GetPlansza()[Xpos][Ypos] = new Trawa();
 		}
 }

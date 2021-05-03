@@ -10,6 +10,7 @@ protected:
 	int wiek = 0;
 	Swiat* swiat;
 	char znak;
+	bool wykonalRuch;
 	void NormalnaKolizja(Zwierze* atakujacy, DIRECTION dir);
 	void AtakujacyWygral(Zwierze* atakujacy, DIRECTION dir);
 	void ObroncaWygral(Zwierze* atakujacy, DIRECTION dir);
@@ -36,6 +37,9 @@ public:
 
 	COORDINATES GetPozycja();
 	void SetPozycja(COORDINATES pos);
+
+	void SetWykonalRuch(bool value);
+	bool GetWykonalRuch();
 
 	~Organizm();
 };

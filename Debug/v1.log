@@ -1,4 +1,20 @@
-﻿  Swiat.cpp
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(36,18): warning C4018: '<': signed/unsigned mismatch
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(139,15): warning C4566: character represented by universal-character-name '\u015A' cannot be represented in the current code page (1252)
+﻿  Czlowiek.cpp
+  Organizm.cpp
+  R_BarszczSosnowskiego.cpp
+  R_Guarana.cpp
+  R_Mlecz.cpp
+  R_Trawa.cpp
+  R_WilczeJagody.cpp
+  Roslina.cpp
+  Symulator1.cpp
+  Z_Antylopa.cpp
+  Z_Lis.cpp
+  Z_Owca.cpp
+  Z_Wilk.cpp
+  Z_Zolw.cpp
+  Zwierze.cpp
+  Generating Code...
+  Swiat.cpp
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(35,18): warning C4018: '<': signed/unsigned mismatch
+C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(138,15): warning C4566: character represented by universal-character-name '\u015A' cannot be represented in the current code page (1252)
   v1.vcxproj -> C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\Debug\v1.exe

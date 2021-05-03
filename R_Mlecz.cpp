@@ -1,5 +1,5 @@
 #include "R_Mlecz.h"
-#define ILOSC_PROB_ROZPRZEST 0
+#define ILOSC_PROB_ROZPRZEST 3
 
 Mlecz::Mlecz() {
 	init();
@@ -22,8 +22,9 @@ void Mlecz::init() {
 
 void Mlecz::Akcja() {
 	for (int i = 0; i < ILOSC_PROB_ROZPRZEST; i++) {
-		NormalnaAkcja();
+		NormalnaAkcjaRoslin();
 	}
+
 }
 
 

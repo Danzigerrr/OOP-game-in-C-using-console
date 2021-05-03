@@ -93,3 +93,10 @@ COORDINATES Organizm::ObliczStareCoor(Zwierze* atakujacy, DIRECTION dir) {
     }
     return coor;
 }
+
+void Organizm::SetWykonalRuch(bool value) {
+    this->wykonalRuch = value;
+}
+bool Organizm::GetWykonalRuch() {
+    return wykonalRuch;
+}
