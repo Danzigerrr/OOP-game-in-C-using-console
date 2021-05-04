@@ -272,6 +272,27 @@ void Swiat::WczytajSwiatZPliku() {
 		WykonajTure();
 	
 }
+string Swiat::ZapiszPoczatkowySwiat() {
+	std::stringstream res;
+	res << "\nOTO SWIAT:\n  ";
+	for (int i = 0; i < szerokosc; i++) res << i << " ";
+	res << endl;
+
+	for (int i = 0; i < wysokosc; i++) {
+		res << i << " ";
+		for (int j = 0; j < szerokosc; j++)
+			res << plansza[j][i]->GetZnak() << " ";
+		res << endl;
+	}
+
+	if (GetHuman() != NULL)
+		res << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+	else
+		res << "Czlowiek nie istnieje\n";
+
+	string result = res.str();
+	return result;
+}
 
 void Swiat::RysujSwiat() {
 	std::cout << "\nOTO SWIAT:\n  ";
@@ -303,6 +324,8 @@ bool Swiat::SprawdzCzySaAktywneOrganizmy() {
 void Swiat::WykonajTure() {
 
 	GetHumanCommand();
+
+	string StarySwiat = ZapiszPoczatkowySwiat();
 
 	tura++;
 	std::cout << "Wykonywanie " << tura << " tury:\n";
@@ -338,7 +361,9 @@ void Swiat::WykonajTure() {
 			break;
 	}
 
+	cout << "\n\n\n\tSTARY SWIAT:" << endl << StarySwiat << endl;;
 
+	cout << "\n\tNOWY SWIAT:" << endl;
 	RysujSwiat();
 	PrzygotujKolejnaRunde();
 

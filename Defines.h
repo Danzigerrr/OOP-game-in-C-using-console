@@ -10,7 +10,7 @@
 #include <fstream>
 #include <algorithm>
 #include <conio.h>
-
+#include <sstream>  
 #include <Windows.h>
 using namespace std;
 

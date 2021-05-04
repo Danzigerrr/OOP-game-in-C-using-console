@@ -26,7 +26,7 @@ private:
 	int iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
 	void PrzygotujKolejnaRunde();
 	
-
+	string ZapiszPoczatkowySwiat();
 	Organizm* StworzOrganizmTegoGatunku(char gatunek, COORDINATES coor, int wiek);
 	void WczytajOrganizmyZPliku(FILE* fptr);
 	void WczytajInfoOSwiecieZPliku(FILE* fptr);
