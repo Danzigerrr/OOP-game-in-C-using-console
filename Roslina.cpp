@@ -38,7 +38,6 @@ void Roslina::ZbadajSasiadow() {
                     rozsiana = Split(coor);
 
                 if (rozsiana == true) {
-                    cout << "koniec rozsiewu  " << endl;
                     j = 2 * ZASIEG_ROZSIEWU_POZIOM;
                     i = 2 * ZASIEG_ROZSIEWU_PION;
                 }
@@ -53,6 +52,7 @@ void Roslina::ZbadajSasiadow() {
 bool Roslina::Split(COORDINATES coor) {
 
     if (swiat->GetPole(coor)->GetZnak() == TRAWA) {
+        if(GetZnak() != TRAWA)//dla trawy nie infromuj o rozsianiu
         cout << "\n gatunek " << znak << " rozsial sie na polu " << coor.x << " " << coor.y << endl;;
         
         switch (znak) {

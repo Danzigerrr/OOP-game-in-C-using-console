@@ -26,11 +26,12 @@ private:
 
 	void PrzygotujKolejnaRunde();
 	
-	void ZapiszSwiatDoPliku();
-	void WczytajSwiatZPliku();
-	void WykonajTure();
-	void RozpocznijNowaGre();
 
+
+	void WczytajOrganizmyZPliku(FILE* fptr);
+	void WczytajInfoOSwiecieZPliku(FILE* fptr);
+	void UtworzPlanszeZPliku();
+	char* WczytajNazwePliku();
 	void GetHumanCommand();
 	Organizm* GetHuman();
 	vector<Organizm*> wezWszystkieOrganizmy();
@@ -39,10 +40,13 @@ private:
 public:
 	void RysujSwiat(); //potem wrzuc do private
 	Swiat();
-	void PokazMenuGry();
 	Swiat(const int width, const int height);
 	~Swiat();
 
+	void WczytajSwiatZPliku();
+
+	void WykonajTure();
+	void ZapiszSwiatDoPliku();
 	int GetWysokosc();
 	int GetSzerokosc();
 	int GetTura();

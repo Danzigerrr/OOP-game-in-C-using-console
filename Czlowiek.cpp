@@ -172,36 +172,21 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
     else {
         //atakujace zwierze zostaje przesuniete na sasiadujace przy czlowieku pole
         //(mozliwe nadpisanie danego pola)
+
+        cout << "TARCZA ALZURA ZADZIALALA!";
+        cout << atakujacy->GetZnak() << " zostal przesuniety na pole " << noweCoorAtakujacego.x << " " << noweCoorAtakujacego.y << endl;
         atakujacy->SetPozycja(noweCoorAtakujacego);
         swiat->SetPole(noweCoorAtakujacego, atakujacy);
 
-      /*  vector<Organizm*> w = swiat->wezWszystkieOrganizmy();
-        for (auto o_ptr : w) {
-            COORDINATES coor = o_ptr->GetPozycja();
-
-            if (coor.x == pozycja.x && coor.y == pozycja.y) {
-                cout << "Kolizja " << atakujacy->GetZnak() << " z " << o_ptr->GetZnak() << endl;
-                o_ptr->Kolizja(atakujacy, dir);
-                break;
-            }
-        }*/
     }
 }
 
 void Czlowiek::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 
-    //Specjalna umiejetnosc --> Człowiek odstrasza wszystkie zwierzęta.
-    //Zwierzę które stanie na polu Człowieka zostaje przesunięte na losowe pole sąsiednie.
     if (UmiejetnoscAktywnaPrzez > 0)
-    {
         KolizjaZAktywnaUmiejetnoscia(atakujacy, dir);
-    }
-
-
-    else //normalna kolizja
-    {
+    else 
         NormalnaKolizja(atakujacy, dir);
-        
-    }
+       
 }
 

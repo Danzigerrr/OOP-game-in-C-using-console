@@ -27,50 +27,64 @@ DIRECTION Lis::ZrobRuch() {
     int SprawdzoneMozliwosci = 0;
     while (dir == NO_CHANGE) {
         int random = rand() % 3;
-        switch (random) {
-            if (SprawdzoneMozliwosci < 4) SprawdzoneMozliwosci++;
-            else return NO_CHANGE; //jesli nie ma gdzie sie ruszyc, lis zostaje w miejscu
+        COORDINATES coor = pozycja;
+        cout << " START:     " << coor.x << "  " << coor.y << " S= " << step << endl;
+        
+        if (SprawdzoneMozliwosci < 10) SprawdzoneMozliwosci++;
+        else break; //jesli nie ma gdzie sie ruszyc, lis zostaje w miejscu
 
-            COORDINATES coor = pozycja;
+        switch (random) {    
              // lis nigdy nie ruszy sie na ple zajmowae prez organizm silniejszy niz on
             case UP: {
                 if (pozycja.y - step >= 0){
                     coor.y -= step;
+                    cout << " UP     "<< coor.x << "  " << coor.y << endl;
                     if (swiat->GetPole(coor)->GetSila() < sila) {
                         cout << "Up" << endl;
                         pozycja = coor;
                         dir = UP;
                     }
+                    else
+                        coor = pozycja;
                 }
             }break;
             case DOWN: {
                 if (pozycja.y + step < swiat->GetWysokosc()) {
                     coor.y += step;
-                    
+                    cout << " DOWN    " << coor.x << "  " << coor.y << endl;
                     if (swiat->GetPole(coor)->GetSila() < sila) {
                         cout << "Down" << endl; 
                         pozycja = coor;
                         dir = DOWN;
                     }
+                    else
+                        coor = pozycja;
                 }
             }break;
             case LEFT: {
                 if (pozycja.x - step >= 0) {
                     coor.x -= step;
+                    cout << " LEFT    " << coor.x << "  " << coor.y << endl;
                     if (swiat->GetPole(coor)->GetSila() < sila) {
                         cout << "Left" << endl;  
                         pozycja = coor;
                         dir = LEFT;
                     }
+                    else
+                        coor = pozycja;
                 }
             }break;
             case RIGHT: {
-                if (pozycja.x + step < swiat->GetSzerokosc()) 
+                if (pozycja.x + step < swiat->GetSzerokosc()) {
                     coor.x += step;
+                    cout << " RIGHT    " << coor.x << "  " << coor.y << endl;
                     if (swiat->GetPole(coor)->GetSila() < sila) {
-                    cout << "Right" << endl; 
-                    pozycja = coor;
-                    dir = RIGHT;
+                        cout << "Right" << endl;
+                        pozycja = coor;
+                        dir = RIGHT;
+                    }
+                    else
+                        coor = pozycja;
                 }
             }break;
         }

@@ -10,12 +10,15 @@
 #include <fstream>
 #include <algorithm>
 #include <conio.h>
+
+#include <Windows.h>
 using namespace std;
 
 #define INDEX 184698
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
 #define SZANSA_NA_ROZSIEW 10 //szansa na 100 %
+#define ILOSC_GATUNKOW_BEZ_CZLOWIEKA 10
 #define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'
@@ -35,8 +38,7 @@ using namespace std;
 #define KEY_RIGHT 77
 #define ENTER 13
 #define ESC 27
-#define F1 112
-#define F2 113
+#define TAB 9
 
 enum DIRECTION {
 	UP,
