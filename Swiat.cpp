@@ -48,7 +48,7 @@ Swiat::Swiat(const int _width, const int _height)
 				plansza[j][i] = new Czlowiek;
 			}
 			else if (id == 1) {
-				plansza[j][i] = new Zolw;
+				plansza[j][i] = new Wilk;
 			}
 			else
 				plansza[j][i] = Y[id];
@@ -241,6 +241,7 @@ void Swiat::WykonajTure() {
 		}
 
 	}
+	RysujSwiat();
 	PrzygotujKolejnaRunde();
 
 }

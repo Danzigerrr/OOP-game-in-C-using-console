@@ -3,6 +3,10 @@
 Zwierze::Zwierze(){}
 Zwierze::~Zwierze(){}
 
+int Zwierze::GetStep(){
+    return step;
+}
+
 
 void Zwierze::Akcja() {
     DIRECTION dir = ZrobRuch();
@@ -14,8 +18,13 @@ void Zwierze::Akcja() {
 
 DIRECTION Zwierze::ZrobRuch() {
     DIRECTION dir = NO_CHANGE;
+    int proby = 0;
     while (dir == NO_CHANGE) {
         int random = rand() % 3;
+
+        if (proby < 10) proby++;
+        else break;
+
         switch (random) {
             case UP: {
                 if (pozycja.y - step >= 0) {
@@ -47,7 +56,11 @@ DIRECTION Zwierze::ZrobRuch() {
             }break;
         }
     }
-    cout << "nowa pozycja zwierzecia " << znak << ": " << pozycja.x << " " << pozycja.y << endl;
+
+    if (dir != NO_CHANGE)
+        cout << "nowa pozycja zwierzecia " << znak << ": " << pozycja.x << " " << pozycja.y << endl;
+    else
+        cout << "pozycja zwierzecia nie zmienila sie" << endl;
 
     return dir;
 }
@@ -73,21 +86,93 @@ void Zwierze::NastapiloOdbicie(DIRECTION dir) {
 
 void Zwierze::CzyOdbilAtak(DIRECTION dir) {
 
-    Organizm* Def = swiat->GetPole(pozycja);
+    Zwierze* Def = (Zwierze*)swiat->GetPole(pozycja);
     Zwierze* Att = this;
-    // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
-    if (sila < 5 && Def->GetZnak() == ZOLW){
-        NastapiloOdbicie(dir);
+
+    if (Def->GetZnak() == Att->GetZnak()) {
+        cout << "ten sam gatunek stoi na tym polu\n";
+        RozmazanieZwierzat(Def,dir);
     }
     else {
-        cout << "Kolizja Att=" << Att->GetZnak() << " z Def=" << Def->GetZnak() << " ";
-        Def->Kolizja(Att, dir);
+        // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
+        if (sila < 5 && Def->GetZnak() == ZOLW) {
+            NastapiloOdbicie(dir);
+        }
+        else {
+            cout << "Kolizja Att=" << Att->GetZnak() << " z Def=" << Def->GetZnak() << " ";
+            Def->Kolizja(Att, dir);
+        }
     }
-
 
 }
 
-int Zwierze::GetStep()
-{
-    return step;
+void Zwierze::RozmazanieZwierzat(Zwierze* Obronca, DIRECTION dir) {
+    NastapiloOdbicie(dir);
+    Zwierze* Att = this;
+
+    bool CzyUdaloSieRozmnozyc = false;
+
+    CzyUdaloSieRozmnozyc = ZnajdzPoleDoRozmnazania(Att, Obronca);
+    if(!CzyUdaloSieRozmnozyc) ZnajdzPoleDoRozmnazania(Obronca, Att);
+
+    if (!CzyUdaloSieRozmnozyc) cout << "Zwierze " << znak << " nie rozmnozylo sie" << endl;
+}
+
+
+bool Zwierze::ZnajdzPoleDoRozmnazania(Zwierze* org1, Zwierze* org2) {
+    bool rozmozone = false;
+    COORDINATES pozycja = org1->GetPozycja();
+    COORDINATES pozycja2 = org2->GetPozycja();
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 0; j <= 2; j++) {
+            int Xpos = pozycja.x - 1 + j;
+            int Ypos = pozycja.y - 1 + i;
+            COORDINATES coor{ Xpos, Ypos };
+            // cout << " X= " << Xpos << " Y= " << Ypos << endl;
+            if (
+                coor.x < swiat->GetSzerokosc() && coor.y < swiat->GetWysokosc() &&
+                coor.x >= 0 && coor.y >= 0 &&
+                !(coor.x == pozycja.x && coor.y == pozycja.y) && 
+                !(coor.x == pozycja2.x && coor.y == pozycja2.y)
+                )
+                rozmozone = Rozmnazaj(coor);
+
+            if (rozmozone == true) {
+                cout << "koniec rozmazania " << endl;
+                return rozmozone;
+            }
+        }
+    }
+    
+    
+    return rozmozone;
+}
+
+
+
+bool Zwierze::Rozmnazaj(COORDINATES coor) {
+
+    if (swiat->GetPole(coor)->GetZnak() == TRAWA) {
+        cout << "\n gatunek " << znak << " rozmnozyl sie na polu " << coor.x << " " << coor.y << endl;;
+
+        switch (znak) {
+        case ANTYLOPA: {
+            swiat->SetPole(coor, new Antylopa(swiat, coor, 0));
+        }break;
+        case LIS: {
+            swiat->SetPole(coor, new Lis(swiat, coor, 0));
+        }break;
+        case OWCA: {
+            swiat->SetPole(coor, new Owca(swiat, coor, 0));
+        }break;
+        case WILK: {
+            swiat->SetPole(coor, new Wilk(swiat, coor, 0));
+        }break;
+        case ZOLW: {
+            swiat->SetPole(coor, new Zolw(swiat, coor, 0));
+        }break;
+        }
+        return true;
+    }
+    return false;
 }
