@@ -2,6 +2,28 @@
 #include "Swiat.h"
 #define ILOSC_ORGANIZMU_NA_POCZATKU 1
 
+void Swiat::PokazMenuGry() {
+	cout << "wybierz opcje:" << endl;
+	cout << "1. Wczytaj stan gry z pliku *.txt" << endl;
+	cout << "2. Rozpocznij nowa gre:" << endl;
+	int komenda;
+	cin >> komenda;
+
+	switch (komenda)
+	{
+	case 1: {
+		WczytajSwiatZPliku();
+	}break;
+	case 2: {
+		RozpocznijNowaGre();
+	}break;
+	default: {
+		cout << "niepoprawna komenda" << endl;
+		break;
+	}
+	}
+}
+
 Swiat::Swiat(const int _width, const int _height)
 {
 	std::cout << "utworzono swiat o rozmiarach: szer = " << _width << " wys= " << _height << endl;
@@ -63,17 +85,12 @@ Swiat::Swiat(const int _width, const int _height)
 
 	RysujSwiat();
 }
-
-Organizm* Swiat::GetHuman() {
-
-	vector<Organizm*> w = wezWszystkieOrganizmy();
-
-	for (auto o_ptr : w) {
-		if (o_ptr->GetZnak() == 'H')
-			return o_ptr;
-	}
-	return NULL;
-
+Swiat::Swiat() {
+	cout << "witaj nowy swiecie!\n";
+	szerokosc = 0;
+	wysokosc = 0;
+	tura = 0;
+	plansza = NULL;
 }
 void Swiat::GetHumanCommand() {
 	Czlowiek* Human = (Czlowiek*)GetHuman();
@@ -87,15 +104,57 @@ void Swiat::GetHumanCommand() {
 		std::cout << "Specjalna umiejetnosc aktywowana";
 		Human->SetUmiejetnoscAktywnaPrzez(UMIEJETNOSC_AKTYWNA);
 	}
+	if (PierwszyChar == F1)	ZapiszSwiatDoPliku();
 	else {
 		Human->SetKierunekRuchuCzlowieka(_getch());
 	}
 }
 
+void Swiat::ZapiszSwiatDoPliku() {
+
+
+}
+
+void Swiat::RozpocznijNowaGre() {
+
+	int szer = 10, wys = 5;
+
+	/*cout << "wpisz szer i wys\n";
+	cin >> szer;
+	cin >> wys;*/
+	if (szer > 0 && wys > 0) {
+
+		Swiat swiat(szer, wys);
+
+		while (true) {
+			WykonajTure();
+		}
+	}
+	else{
+		cout << "niepoprawne wartosci, wpisz dane jeszcze raz\n";
+		RozpocznijNowaGre();
+	}
+}
+
 void Swiat::WczytajSwiatZPliku() {
-	char test[] = "test1.txt";
+/*out << "wpisz nazwe pliku:\n";
+	string nazwaPliku;
+
+	cin >> nazwaPliku;
+	cout <<"koniec "<< nazwaPliku << endl;
+	int n = nazwaPliku.length();
+
+	// declaring character array
+	char *char_array = new char[n + 1];
+
+	// copying the contents of the
+	// string to char array
+	strcpy(char_array, nazwaPliku.c_str());
+	*/
+
+
 	FILE* fptr;
-	fptr = fopen(test, "r");
+	fptr = fopen("test1.txt", "r");
 	if (fptr == NULL) {
 		std::cout << "ERROR opening file";
 		exit(1);
@@ -108,6 +167,21 @@ void Swiat::WczytajSwiatZPliku() {
 	this->szerokosc = get_value_from_char(infoSwiat, &j);
 	this->tura = get_value_from_char(infoSwiat, &j);
 
+	cout << "swiat ma wymiary: szer= " << szerokosc << " " << " wys= " << wysokosc << ". Jest tura nr " << tura << endl;
+
+	plansza = new Organizm * *[szerokosc];
+	for (int i = 0; i < szerokosc; i++) {
+		plansza[i] = new Organizm * [wysokosc];
+	}
+
+	//cala plansza to trawa, potem sie wstawia zwierzeta
+	for (int j = 0; j < szerokosc; j++) {
+		for (int i = 0; i < wysokosc; i++) {
+			COORDINATES coor{ j,i };
+			SetPole(coor, new Trawa(this, coor, 0));
+		}
+	}
+
 
 	char infoOrganizmy[50] = {};
 	while (fgets(infoOrganizmy, 50, fptr) != NULL) {
@@ -115,21 +189,21 @@ void Swiat::WczytajSwiatZPliku() {
 		if (infoOrganizmy[0] != '/') //komentarz
 		{
 			char gatunek = infoOrganizmy[0];
-			
+
 			int i = 2;
 			int x = get_value_from_char(infoOrganizmy, &i);
 			int y = get_value_from_char(infoOrganizmy, &i);
 			int wiek = get_value_from_char(infoOrganizmy, &i);
-			
-			COORDINATES coor{x,y};
+
+			COORDINATES coor{ x,y };
 
 			Organizm* Org = NULL;
 
 			switch (gatunek) {
-				case ANTYLOPA: { Org = new Antylopa(this, coor, wiek);}break;
+				case ANTYLOPA: { Org = new Antylopa(this, coor, wiek); }break;
 				case LIS: { Org = new Lis(this, coor, wiek); }break;
 				case OWCA: { Org = new Owca(this, coor, wiek); }break;
-				case WILK: {  Org = new Wilk(this, coor, wiek);}break;
+				case WILK: {  Org = new Wilk(this, coor, wiek); }break;
 				case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
 				case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
 				case GUARANA: { Org = new Guarana(this, coor, wiek); }break;
@@ -139,38 +213,21 @@ void Swiat::WczytajSwiatZPliku() {
 				case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
 			}
 
-			plansza[x][y] = Org;
-			plansza[x][y]->SetSwiat(this);
-			plansza[x][y]->SetPozycja(coor);
+			if (Org == NULL){
+				cout << "niepoprawne dane!";
+				exit(1);
+			}
+			else {
+				plansza[x][y] = Org;
+				plansza[x][y]->SetSwiat(this);
+				plansza[x][y]->SetPozycja(coor);
+			}
 		}
 	}
 	fclose(fptr);
 
 	std::cout << "POMYŚLNIE WCZYTANO ŚWIAT:\n";
 	this->RysujSwiat();
-}
-
-int Swiat::get_value_from_char(char *znak, int* iterator)
-{
-	int result = 0, i = 0;
-	while (znak[*iterator + i] >= 48 && znak[*iterator + i] <= 57)
-	{
-		result = result * 10 + (znak[*iterator + i] - 48);
-		i++;
-	}
-	*iterator += 1 + i;
-	return result;
-}
-Swiat::~Swiat() {
-	std::cout << "Destruktor Swiata\n";
-	for (int i = 0; i < wysokosc; i++) {
-		for (int k = 0; k < szerokosc; k++)
-			delete plansza[i][k];
-	}
-	for (int i = 0; i < wysokosc; i++) {
-		delete[] plansza[i];
-	}
-	delete[] plansza;
 }
 
 void Swiat::RysujSwiat() {
@@ -190,16 +247,6 @@ void Swiat::RysujSwiat() {
 		cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
 	else
 		cout << "Czlowiek nie istnieje\n";
-}
-
-vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
-	vector<Organizm*> res;
-	for (int i = 0; i < szerokosc; i++) {
-		for (int j = 0; j < wysokosc; j++) {
-			res.push_back(plansza[i][j]);
-		}
-	}
-	return res;
 }
 
 void Swiat::WykonajTure() {
@@ -234,7 +281,7 @@ void Swiat::WykonajTure() {
 			o_ptr->SetWykonalRuch(true);
 		}
 		w = wezWszystkieOrganizmy(); // aktualizacja vektora
-		//std::sort(w.begin(), w.end(), cmp);
+	//	std::sort(w.begin(), w.end(), cmp);
 		kolejnyorganizm++;
 		for (int i = 0; i < kolejnyorganizm; i++) {
 			w.erase(w.begin()); // pop front
@@ -244,13 +291,6 @@ void Swiat::WykonajTure() {
 	RysujSwiat();
 	PrzygotujKolejnaRunde();
 
-}
-
-void Swiat::testuj() {
-	vector<Organizm*> w = wezWszystkieOrganizmy();
-	for (auto o_ptr : w) {
-		if (NULL == o_ptr->GetSwiat()) cout << "\n dla" << o_ptr->GetZnak() << " swiat is NUUUUUUUUUUUUUUUUUUUUUUUUUULL\n";
-	}
 }
 
 void Swiat::PrzygotujKolejnaRunde() {
@@ -268,6 +308,8 @@ void Swiat::PrzygotujKolejnaRunde() {
 	}
 }
 
+
+
 void Swiat::SetPole(COORDINATES coor, Organizm* org) {
 	this->plansza[coor.x][coor.y] = org;
 }
@@ -277,24 +319,29 @@ Organizm* Swiat::GetPole(COORDINATES coor) {
 	return plansza[coor.x][coor.y];
 }
 
-Organizm*** Swiat::GetPlansza() {
-	return plansza;
-}
-
 int Swiat::GetWysokosc() {
 	return wysokosc;
 }
+
 int Swiat::GetSzerokosc() {
 	return szerokosc;
 }
+
 int Swiat::GetTura() {
 	return tura;
 }
 
-void Swiat::SetPlansza(Organizm*** plansza) {
-	this->plansza = plansza;
+Swiat::~Swiat() {
+	std::cout << "Destruktor Swiata\n";
+	for (int i = 0; i < wysokosc; i++) {
+		for (int k = 0; k < szerokosc; k++)
+			delete plansza[i][k];
+	}
+	for (int i = 0; i < wysokosc; i++) {
+		delete[] plansza[i];
+	}
+	delete[] plansza;
 }
-
 
 bool cmp(Organizm* o1, Organizm* o2) {
 	if (o1->GetInicjatywa() != o2->GetInicjatywa()) {
@@ -303,8 +350,39 @@ bool cmp(Organizm* o1, Organizm* o2) {
 	return o1->GetWiek() < o2->GetWiek();
 }
 
+int Swiat::get_value_from_char(char* znak, int* iterator)
+{
+	int result = 0, i = 0;
+	while (znak[*iterator + i] >= 48 && znak[*iterator + i] <= 57)
+	{
+		result = result * 10 + (znak[*iterator + i] - 48);
+		i++;
+	}
+	*iterator += 1 + i;
+	return result;
+}
 
+vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
+	vector<Organizm*> res;
+	for (int i = 0; i < szerokosc; i++) {
+		for (int j = 0; j < wysokosc; j++) {
+			res.push_back(plansza[i][j]);
+		}
+	}
+	return res;
+}
 
+Organizm* Swiat::GetHuman() {
+
+	vector<Organizm*> w = wezWszystkieOrganizmy();
+
+	for (auto o_ptr : w) {
+		if (o_ptr->GetZnak() == 'H')
+			return o_ptr;
+	}
+	return NULL;
+
+}
 
 
 

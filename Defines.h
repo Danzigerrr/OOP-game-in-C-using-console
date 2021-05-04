@@ -35,6 +35,8 @@ using namespace std;
 #define KEY_RIGHT 77
 #define ENTER 13
 #define ESC 27
+#define F1 112
+#define F2 113
 
 enum DIRECTION {
 	UP,
