@@ -137,24 +137,17 @@ void Swiat::RozpocznijNowaGre() {
 }
 
 void Swiat::WczytajSwiatZPliku() {
-/*out << "wpisz nazwe pliku:\n";
+	system("CLS");
+	cout << "wpisz nazwe pliku:\n";
 	string nazwaPliku;
-
 	cin >> nazwaPliku;
-	cout <<"koniec "<< nazwaPliku << endl;
+	nazwaPliku += ".txt";
+	//przekonwertowanie na tablice charow
 	int n = nazwaPliku.length();
-
-	// declaring character array
-	char *char_array = new char[n + 1];
-
-	// copying the contents of the
-	// string to char array
-	strcpy(char_array, nazwaPliku.c_str());
-	*/
-
-
-	FILE* fptr;
-	fptr = fopen("test1.txt", "r");
+	char * nazwaPlikuTabChar = new char[n + 1];
+	strcpy(nazwaPlikuTabChar, nazwaPliku.c_str());
+	
+	FILE* fptr = fopen(nazwaPlikuTabChar, "r");
 	if (fptr == NULL) {
 		std::cout << "ERROR opening file";
 		exit(1);
@@ -167,7 +160,8 @@ void Swiat::WczytajSwiatZPliku() {
 	this->szerokosc = get_value_from_char(infoSwiat, &j);
 	this->tura = get_value_from_char(infoSwiat, &j);
 
-	cout << "swiat ma wymiary: szer= " << szerokosc << " " << " wys= " << wysokosc << ". Jest tura nr " << tura << endl;
+	system("CLS");
+	cout << "Swiat: szer= " << szerokosc << " " << " wys= " << wysokosc << " tura= " << tura << endl;
 
 	plansza = new Organizm * *[szerokosc];
 	for (int i = 0; i < szerokosc; i++) {
@@ -195,6 +189,14 @@ void Swiat::WczytajSwiatZPliku() {
 			int y = get_value_from_char(infoOrganizmy, &i);
 			int wiek = get_value_from_char(infoOrganizmy, &i);
 
+			if (x >= szerokosc || y >= wysokosc) {
+				cout << "niepoprawna pozycja ";
+				if (x >= szerokosc) cout << "x ";
+				if (y >= wysokosc)  cout << "y ";
+				cout << "ktoregos orgaznimu!";
+				exit(1);
+			}
+
 			COORDINATES coor{ x,y };
 
 			Organizm* Org = NULL;
@@ -214,20 +216,26 @@ void Swiat::WczytajSwiatZPliku() {
 			}
 
 			if (Org == NULL){
-				cout << "niepoprawne dane!";
+				cout << "niepoprawna nazwa organizmu!";
 				exit(1);
 			}
 			else {
-				plansza[x][y] = Org;
-				plansza[x][y]->SetSwiat(this);
-				plansza[x][y]->SetPozycja(coor);
+
+				if (plansza[x][y]->GetZnak() != TRAWA)
+					cout << "Pole " << x << " " << y << " jest juz zajete przez " << plansza[x][y]->GetZnak() << endl;
+				else {
+					cout << "Nowy organizm: " << Org->GetZnak() << "  pozycja: " << Org->GetPozycja().x << " " << Org->GetPozycja().y << "  wiek: " << Org->GetWiek() << endl;
+					plansza[x][y] = Org;
+					plansza[x][y]->SetSwiat(this);
+					plansza[x][y]->SetPozycja(coor);
+				}
 			}
 		}
 	}
 	fclose(fptr);
 
-	std::cout << "POMYŚLNIE WCZYTANO ŚWIAT:\n";
-	this->RysujSwiat();
+	std::cout << "POMYSLNIE WCZYTANO SWIAT:\n";
+	RysujSwiat();
 }
 
 void Swiat::RysujSwiat() {

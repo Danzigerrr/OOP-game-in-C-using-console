@@ -1,5 +1,4 @@
 ﻿  Swiat.cpp
 C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(58,18): warning C4018: '<': signed/unsigned mismatch
-C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(227,15): warning C4566: character represented by universal-character-name '\u015A' cannot be represented in the current code page (1252)
 C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(137): warning C4717: 'Swiat::RozpocznijNowaGre': recursive on all control paths, function will cause runtime stack overflow
   v1.vcxproj -> C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\Debug\v1.exe

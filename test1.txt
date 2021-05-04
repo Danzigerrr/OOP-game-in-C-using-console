@@ -4,4 +4,4 @@ H 1 1 3
 //zwierzeta
 W 3 2 5
 //rosliny
-M 3 5 3
+M 3 3 3
