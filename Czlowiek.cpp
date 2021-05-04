@@ -113,8 +113,6 @@ DIRECTION Czlowiek::ZrobRuch() {
 void Czlowiek::Akcja() {
 
     DIRECTION dir = ZrobRuch();
-    if (UmiejetnoscAktywnaPrzez > 0) {cout << "Specjalna umiejetnosc aktywna przez: " << UmiejetnoscAktywnaPrzez << endl;}
-    if (UmiejetnoscOdnawianaPrzez > 0) {cout << "Specjalna umiejetnosc odnawiana przez: " << UmiejetnoscOdnawianaPrzez << endl;}
 
     if(dir != NO_CHANGE)
     CzyOdbilAtak(dir);
@@ -173,7 +171,7 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
         //atakujace zwierze zostaje przesuniete na sasiadujace przy czlowieku pole
         //(mozliwe nadpisanie danego pola)
 
-        cout << "TARCZA ALZURA ZADZIALALA!";
+        cout << "SPECJALNA UMIEJETNOSC DALA O SOBIE ZNAK - TARCZA ALZURA ZADZIALALA! HURRA!!!";
         cout << atakujacy->GetZnak() << " zostal przesuniety na pole " << noweCoorAtakujacego.x << " " << noweCoorAtakujacego.y << endl;
         atakujacy->SetPozycja(noweCoorAtakujacego);
         swiat->SetPole(noweCoorAtakujacego, atakujacy);

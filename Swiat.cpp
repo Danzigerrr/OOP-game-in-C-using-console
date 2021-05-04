@@ -21,22 +21,22 @@ Swiat::Swiat(const int _width, const int _height)
 	
 	int iloscPol = szerokosc * wysokosc;
 	int iloscOrg = iloscPol * ILOSC_ORGANIZMU_NA_POCZATKU / 100;
-	cout << "Swiat bedzie mial " << iloscOrg << " organizmow, co stanowi " << ILOSC_ORGANIZMU_NA_POCZATKU << "% ilsoci pol.\n";
+	std::cout << "Swiat bedzie mial " << iloscOrg << " organizmow, co stanowi " << ILOSC_ORGANIZMU_NA_POCZATKU << "% ilsoci pol.\n";
 	int iterator = 1;
 	while(iloscOrg > iterator){
 		int i = iterator % ILOSC_GATUNKOW_BEZ_CZLOWIEKA;
 		Organizm* Org = NULL;
 		switch (i) {
+			case 0: { Org = new Wilk; }break;
 			case 1: { Org = new Antylopa; }break;
 			case 2: { Org = new Lis; }break;
 			case 3: { Org = new Owca; }break;
-			case 4: { Org = new Wilk; }break;
-			case 5: { Org = new Zolw; }break;
+			case 4: { Org = new Zolw; }break;
+			case 5: { Org = new WilczeJagody; }break;
 			case 6: { Org = new BarszczSosnowskiego; }break;
 			case 7: { Org = new Guarana; }break;
 			case 8: { Org = new Mlecz; }break;
 			case 9: { Org = new Trawa; }break;
-			case 0: { Org = new WilczeJagody; }break;
 		}
 		Y.push_back(Org);
 		iterator++;
@@ -64,7 +64,7 @@ Swiat::Swiat(const int _width, const int _height)
 	RysujSwiat();
 }
 Swiat::Swiat() {
-	cout << "witaj nowy swiecie!\n";
+	std::cout << "witaj nowy swiecie!\n";
 	szerokosc = 0;
 	wysokosc = 0;
 	tura = 0;
@@ -74,11 +74,11 @@ void Swiat::GetHumanCommand() {
 
 	if (GetHuman() != NULL) {
 		Czlowiek* Human = (Czlowiek*)GetHuman();
-		cout << "Oblsuga:\n";
-		cout << "Strzalki -> ruch czlowieka\n";
-		cout << "Przycisk TAB -> zapis pliku\n";
-		cout << "Przycisk ESC -> koniec programu\n";
-		cout << endl;
+		std::cout << "Oblsuga:\n";
+		std::cout << "Strzalki -> ruch czlowieka\n";
+		std::cout << "Przycisk TAB -> zapis pliku\n";
+		std::cout << "Przycisk ESC -> koniec programu\n";
+		std::cout << endl;
 		int UmiejetnoscAktywnaPrzez = Human->GetUmiejetnoscAktywnaPrzez();
 		int UmiejetnoscOdnawianaPrzez = Human->GetUmiejetnoscOdnawianaPrzez();
 		COORDINATES pozycja = Human->GetPozycja();
@@ -98,8 +98,8 @@ void Swiat::GetHumanCommand() {
 					Human->SetUmiejetnoscAktywnaPrzez(UMIEJETNOSC_AKTYWNA);
 				}
 				else {
-					if(UmiejetnoscAktywnaPrzez > 0 ) cout << "Specjalna umiejetnosc jest w uzyciu";
-					if(UmiejetnoscOdnawianaPrzez > 0) cout << "Specjalna umiejetnosc jest odnawiana";
+					if(UmiejetnoscAktywnaPrzez > 0 ) std::cout << "Specjalna umiejetnosc jest w uzyciu";
+					if(UmiejetnoscOdnawianaPrzez > 0) std::cout << "Specjalna umiejetnosc jest odnawiana";
 				}
 			}break;
 
@@ -110,7 +110,7 @@ void Swiat::GetHumanCommand() {
 		}
 	}
 	else {
-		cout << "czlowiek nie istnieje! GAME OVER";
+		std::cout << "czlowiek nie istnieje! GAME OVER";
 		exit(1);
 	}
 		
@@ -127,16 +127,16 @@ void Swiat::ZapiszSwiatDoPliku() {
 			if (org->GetZnak() != TRAWA) {
 				myfile << org->GetZnak() << " " << org->GetPozycja().x << " " << org->GetPozycja().y << " " << org->GetWiek() << "\n";
 
-				cout << "zapisano " << org->GetZnak() << " " << org->GetPozycja().x << " " << org->GetPozycja().y << " " << org->GetWiek() << "\n";
+				std::cout << "zapisano " << org->GetZnak() << " " << org->GetPozycja().x << " " << org->GetPozycja().y << " " << org->GetWiek() << "\n";
 			}
 		}
 
 		system("CLS");
-		cout << "Pomyslnie zapisano gre w pliku " << nazwaPliku << endl;
+		std::cout << "Pomyslnie zapisano gre w pliku " << nazwaPliku << endl;
 		myfile.close();
 	}
 	else {
-		cout << "I'm sorry, I am Unable to open file with name " << nazwaPliku << endl;;
+		std::cout << "I'm sorry, I am Unable to open file with name " << nazwaPliku << endl;;
 		exit(1);
 	}
 }
@@ -177,10 +177,10 @@ void Swiat::WczytajOrganizmyZPliku(FILE* fptr) {
 			int wiek = get_value_from_char(infoOrganizmy, &i);
 
 			if (x >= szerokosc || y >= wysokosc) {
-				cout << "niepoprawna pozycja ";
-				if (x >= szerokosc) cout << "x ";
-				if (y >= wysokosc)  cout << "y ";
-				cout << "ktoregos orgaznimu!";
+				std::cout << "niepoprawna pozycja ";
+				if (x >= szerokosc) std::cout << "x ";
+				if (y >= wysokosc)  std::cout << "y ";
+				std::cout << "ktoregos orgaznimu!";
 				exit(1);
 			}
 
@@ -189,19 +189,19 @@ void Swiat::WczytajOrganizmyZPliku(FILE* fptr) {
 			Organizm* Org = StworzOrganizmTegoGatunku(gatunek, coor, wiek);
 
 			if (Org == NULL) {
-				cout << "niepoprawna nazwa organizmu!";
+				std::cout << "niepoprawna nazwa organizmu!";
 				exit(1);
 			}
 			else {
 
 				if (plansza[x][y]->GetZnak() != TRAWA)
-					cout << "Pole " << x << " " << y << " jest juz zajete przez " << plansza[x][y]->GetZnak() << endl;
+					std::cout << "Pole " << x << " " << y << " jest juz zajete przez " << plansza[x][y]->GetZnak() << endl;
 				else {
 
 					if (GetHuman() != NULL && Org->GetZnak() == CZLOWIEK)
-						cout << "Na swiecie moze istniec tylko jeden czlowiek!\n";
+						std::cout << "Na swiecie moze istniec tylko jeden czlowiek!\n";
 					else {
-						cout << "Nowy organizm: " << gatunek << "  pozycja: " << x << " " << y << "  wiek: " << wiek << endl;
+						std::cout << "Nowy organizm: " << gatunek << "  pozycja: " << x << " " << y << "  wiek: " << wiek << endl;
 						SetPole(coor, Org);
 
 					}
@@ -221,7 +221,7 @@ void Swiat::WczytajInfoOSwiecieZPliku(FILE* fptr) {
 }
 void Swiat::UtworzPlanszeZPliku() {
 	system("CLS");
-	cout << "Swiat: szer= " << szerokosc << " " << " wys= " << wysokosc << " tura= " << tura << endl;
+	std::cout << "Swiat: szer= " << szerokosc << " " << " wys= " << wysokosc << " tura= " << tura << endl;
 
 	plansza = new Organizm * *[szerokosc];
 	for (int i = 0; i < szerokosc; i++) {
@@ -238,7 +238,7 @@ void Swiat::UtworzPlanszeZPliku() {
 }
 char* Swiat::WczytajNazwePliku() {
 	system("CLS");
-	cout << "wpisz nazwe pliku:\n";
+	std::cout << "wpisz nazwe pliku:\n";
 	string nazwaPliku;
 	cin >> nazwaPliku;
 	nazwaPliku += ".txt";
@@ -263,7 +263,7 @@ void Swiat::WczytajSwiatZPliku() {
 		UtworzPlanszeZPliku();
 		WczytajOrganizmyZPliku(fptr);
 
-		cout << "POMYSLNIE WCZYTANO SWIAT:\n";
+		std::cout << "POMYSLNIE WCZYTANO SWIAT:\n";
 		RysujSwiat();
 	}
 	fclose(fptr);
@@ -285,8 +285,13 @@ string Swiat::ZapiszPoczatkowySwiat() {
 		res << endl;
 	}
 
-	if (GetHuman() != NULL)
-		res << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+	if (GetHuman() != NULL) {
+		Czlowiek *H = (Czlowiek*)GetHuman();
+		res << "Pozycja czlowieka: " << H->GetPozycja().x << " " << H->GetPozycja().y << endl;
+		if (H->GetUmiejetnoscAktywnaPrzez() > 0) { std::cout << "Specjalna umiejetnosc aktywna przez: " << H->GetUmiejetnoscAktywnaPrzez() << endl; }
+		if (H->GetUmiejetnoscOdnawianaPrzez() > 0) { std::cout << "Specjalna umiejetnosc odnawiana przez: " << H->GetUmiejetnoscOdnawianaPrzez() << endl; }
+
+	}
 	else
 		res << "Czlowiek nie istnieje\n";
 
@@ -296,20 +301,20 @@ string Swiat::ZapiszPoczatkowySwiat() {
 
 void Swiat::RysujSwiat() {
 	std::cout << "\nOTO SWIAT:\n  ";
-	for (int i = 0; i < szerokosc; i++) cout << i << " ";
-	cout << endl;
+	for (int i = 0; i < szerokosc; i++) std::cout << i << " ";
+	std::cout << endl;
 
 	for (int i = 0; i < wysokosc; i++) {
-		cout <<  i << " ";
+		std::cout <<  i << " ";
 		for (int j = 0; j < szerokosc; j++)
 			std::cout << plansza[j][i]->GetZnak() << " ";
-		cout << endl;
+		std::cout << endl;
 	}
 
 	if (GetHuman() != NULL)
-		cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+		std::cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
 	else
-		cout << "Czlowiek nie istnieje\n";
+		std::cout << "Czlowiek nie istnieje\n";
 }
 
 bool Swiat::SprawdzCzySaAktywneOrganizmy() {
@@ -343,7 +348,7 @@ void Swiat::WykonajTure() {
 
 			COORDINATES coor = org->GetPozycja();
 			if(org -> GetZnak() != TRAWA) // dal trawy nie pokazuj
-			cout << org->GetZnak() << " z inicj= " << org->GetInicjatywa() << " z wiekiem= " << org->GetWiek() << " na poz= " << coor.x << " " << coor.y <<  " wykonuje akcje: \n";
+			std::cout << org->GetZnak() << " z inicj= " << org->GetInicjatywa() << " z wiekiem= " << org->GetWiek() << " na poz= " << coor.x << " " << coor.y <<  " wykonuje akcje: \n";
 
 			org->Akcja();
 
@@ -361,9 +366,9 @@ void Swiat::WykonajTure() {
 			break;
 	}
 
-	cout << "\n\n\n\tSTARY SWIAT:" << endl << StarySwiat << endl;;
+	std::cout << "\n\n\n\tSTARY SWIAT:" << endl << StarySwiat << endl;;
 
-	cout << "\n\tNOWY SWIAT:" << endl;
+	std::cout << "\n\tNOWY SWIAT:" << endl;
 	RysujSwiat();
 	PrzygotujKolejnaRunde();
 
@@ -378,7 +383,7 @@ void Swiat::PrzygotujKolejnaRunde() {
 
 
 	while (std::cin.get() != 'n' ) {
-		cout << "koniec tury, klinknij klawisz n + enter\n";
+		std::cout << "koniec tury, klinknij klawisz n + enter\n";
 	}
 
 	std::system("CLS");
@@ -386,13 +391,13 @@ void Swiat::PrzygotujKolejnaRunde() {
 	Czlowiek* Human = (Czlowiek*)GetHuman();
 
 	if (Human == NULL) {
-		cout << "GAME OVER";
+		std::cout << "GAME OVER";
 		exit(1);
 	}
 	else {
-		cout << "Niech czlowiek wykona ruch: " << endl;
-		if (Human->GetUmiejetnoscAktywnaPrzez() > 0) cout << "aktywnosc aktywna przez:" << Human->GetUmiejetnoscAktywnaPrzez() << endl;
-		if (Human->GetUmiejetnoscOdnawianaPrzez() > 0) cout << "aktywnosc odnawiana przez:" << Human->GetUmiejetnoscOdnawianaPrzez() << endl;
+		std::cout << "Niech czlowiek wykona ruch: " << endl;
+		if (Human->GetUmiejetnoscAktywnaPrzez() > 0) std::cout << "aktywnosc aktywna przez:" << Human->GetUmiejetnoscAktywnaPrzez() << endl;
+		if (Human->GetUmiejetnoscOdnawianaPrzez() > 0) std::cout << "aktywnosc odnawiana przez:" << Human->GetUmiejetnoscOdnawianaPrzez() << endl;
 	}
 	
 }
@@ -404,7 +409,7 @@ void Swiat::SetPole(COORDINATES coor, Organizm* org) {
 }
 
 Organizm* Swiat::GetPole(COORDINATES coor) {
-	if (this == NULL) cout << "NULL";
+	if (this == NULL) std::cout << "NULL";
 	return plansza[coor.x][coor.y];
 }
 

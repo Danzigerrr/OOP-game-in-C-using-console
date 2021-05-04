@@ -1,20 +1,3 @@
-﻿  Czlowiek.cpp
-  Organizm.cpp
-  R_BarszczSosnowskiego.cpp
-  R_Guarana.cpp
-  R_Mlecz.cpp
-  R_Trawa.cpp
-  R_WilczeJagody.cpp
-  Roslina.cpp
-  Symulator1.cpp
-  TrujacaRoslina.cpp
-  Z_Antylopa.cpp
-  Z_Lis.cpp
-  Z_Owca.cpp
-  Z_Wilk.cpp
-  Z_Zolw.cpp
-  Zwierze.cpp
-  Generating Code...
-  Swiat.cpp
+﻿  Swiat.cpp
 C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(47,18): warning C4018: '<': signed/unsigned mismatch
   v1.vcxproj -> C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\Debug\v1.exe

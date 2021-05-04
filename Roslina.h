@@ -6,7 +6,6 @@ private:
 	int inicjatywa = 0;
 protected:
 	void NormalnaAkcjaRoslin();
-	virtual void init() = 0;
 	bool Split(COORDINATES coor);
 	bool ObliczSzanseNaRozsianie();
 	void ZbadajSasiadow();
