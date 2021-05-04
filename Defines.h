@@ -14,24 +14,23 @@
 #include <Windows.h>
 using namespace std;
 
-#define INDEX 184698
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
 #define SZANSA_NA_ROZSIEW 10 //szansa na 100 %
 #define ILOSC_GATUNKOW_BEZ_CZLOWIEKA 10
+
 #define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'
 #define LIS 'L'
 #define ZOLW 'Z'
 #define ANTYLOPA 'A'
-
 #define TRAWA '_'
 #define MLECZ 'M' 
 #define GUARANA 'G'
 #define WILCZEJAGODY 'J' 
 #define BARSZCZ 'B'
-			
+	
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75

@@ -7,14 +7,12 @@ int Zwierze::GetStep(){
     return step;
 }
 
-
 void Zwierze::Akcja() {
     DIRECTION dir = ZrobRuch();
 
     if (dir != NO_CHANGE)
         CzyOdbilAtak(dir);
 }
-
 
 DIRECTION Zwierze::ZrobRuch() {
     DIRECTION dir = NO_CHANGE;
@@ -144,10 +142,8 @@ bool Zwierze::ZnajdzPoleDoRozmnazania(Zwierze* org1, Zwierze* org2) {
         }
     }
     
-    
     return rozmozone;
 }
-
 
 
 bool Zwierze::Rozmnazaj(COORDINATES coor) {

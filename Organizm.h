@@ -7,11 +7,12 @@ class Organizm {
 protected:
 	int sila;
 	int inicjatywa;
-	COORDINATES pozycja;
-	int wiek = 0;
-	Swiat* swiat;
+	int wiek;
 	char znak;
 	bool wykonalRuch = false;
+	COORDINATES pozycja;
+	Swiat* swiat;
+	
 	void NormalnaKolizja(Zwierze* atakujacy, DIRECTION dir);
 	void AtakujacyWygral(Zwierze* atakujacy, DIRECTION dir);
 	void ObroncaWygral(Zwierze* atakujacy, DIRECTION dir);

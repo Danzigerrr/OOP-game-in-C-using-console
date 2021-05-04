@@ -19,7 +19,7 @@ void BarszczSosnowskiego::init() {
 
 BarszczSosnowskiego::~BarszczSosnowskiego() {}
 
-//Zwierze które zjadło tę roślinę ginie.Jedynie
+//Zwierze które zjadło tę roślinę ginie
 void BarszczSosnowskiego::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 	
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
@@ -50,7 +50,9 @@ void BarszczSosnowskiego::Akcja() {
 
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++) {
-			COORDINATES coor{ pozycja.x - 1 + j, pozycja.y - 1 + i };
+			int X = pozycja.x - 1 + j;
+			int Y = pozycja.y - 1 + i;
+			COORDINATES coor{X, Y};
 
 			if (	coor.x < swiat->GetSzerokosc() && coor.y < swiat->GetWysokosc() &&
 					coor.x >= 0 &&					  coor.y >= 0 &&
@@ -58,7 +60,6 @@ void BarszczSosnowskiego::Akcja() {
 				)
 			{
 				zabijSasiada(coor);
-				
 			}
 		}
 

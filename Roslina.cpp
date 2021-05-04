@@ -3,8 +3,6 @@
 #define ZASIEG_ROZSIEWU_POZIOM 1
 #define ZASIEG_ROZSIEWU_PION 1
 
-
-
 Roslina::Roslina(){}
 Roslina::~Roslina() {}
 
@@ -36,25 +34,29 @@ void Roslina::ZbadajSasiadow() {
                     !(coor.x == pozycja.x && coor.y == pozycja.y)
                     )
                     rozsiana = Split(coor);
-
                 if (rozsiana == true) {
-                    j = 2 * ZASIEG_ROZSIEWU_POZIOM;
                     i = 2 * ZASIEG_ROZSIEWU_PION;
+                    j = 2 * ZASIEG_ROZSIEWU_POZIOM;
+                    break;
                 }
+            }
+
+            if (i == 2 || rozsiana == true) {
+                i = 2;
+                rozsiana = true;
+                break;
             }
         }
     }
 
+
 }
-
-
 
 bool Roslina::Split(COORDINATES coor) {
 
     if (swiat->GetPole(coor)->GetZnak() == TRAWA) {
         if(GetZnak() != TRAWA)//dla trawy nie infromuj o rozsianiu
         cout << "\n gatunek " << znak << " rozsial sie na polu " << coor.x << " " << coor.y << endl;;
-        
         switch (znak) {
             case TRAWA: {
                 swiat->SetPole(coor, new Trawa(swiat, coor, 0));

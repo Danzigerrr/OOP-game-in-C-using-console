@@ -2,7 +2,6 @@
 #include "Swiat.h"
 Czlowiek::Czlowiek() {
     init();
-
 }
 Czlowiek::Czlowiek(Swiat* swiat, const COORDINATES pos, int wiek) {
     init();
@@ -18,20 +17,20 @@ void Czlowiek::init() {
 }
 
 int Czlowiek::GetUmiejetnoscAktywnaPrzez() {
-    return UmiejetnoscAktywnaPrzez;
+    return UmiejAktywnaPrzez;
 }
 
 int Czlowiek::GetUmiejetnoscOdnawianaPrzez() {
-    return UmiejetnoscOdnawianaPrzez;
+    return UmiejOdnawianaPrzez;
 }
 
 Czlowiek::~Czlowiek() {}
 
 void Czlowiek::SetUmiejetnoscAktywnaPrzez(int value) {
-    UmiejetnoscAktywnaPrzez = value;
+    UmiejAktywnaPrzez = value;
 }
 void Czlowiek::SetUmiejetnoscOdnawianaPrzez(int value) {
-    UmiejetnoscOdnawianaPrzez = value;
+    UmiejOdnawianaPrzez = value;
 }
 void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
     KierunekRuchuCzlowieka = value;
@@ -94,18 +93,17 @@ DIRECTION Czlowiek::ZrobRuch() {
         }
     }break;
     default:
-        cout << "Incorrect key input" << endl; 
+        cout << "Wcisnales zly klawisz" << endl; 
         break;
     }
 
 
     cout << "nowa pozycja: ";
-    if (dir == NO_CHANGE) {
+    if (dir == NO_CHANGE) 
         cout << "NO change" << endl;
-    }
-    else {
+    else 
         cout << pozycja.x << " " << pozycja.y << endl;
-    }
+    
 
     return dir;
 }
@@ -117,11 +115,14 @@ void Czlowiek::Akcja() {
     if(dir != NO_CHANGE)
     CzyOdbilAtak(dir);
 
-    if (UmiejetnoscAktywnaPrzez > 0 || UmiejetnoscOdnawianaPrzez > 0) {
-        if (UmiejetnoscAktywnaPrzez > 0) { UmiejetnoscAktywnaPrzez--; }
+    if (UmiejAktywnaPrzez > 0 || UmiejOdnawianaPrzez > 0) {
+        if (UmiejAktywnaPrzez > 0)
+            UmiejAktywnaPrzez--;
 
-        if (UmiejetnoscAktywnaPrzez == 0 && UmiejetnoscOdnawianaPrzez == 0) UmiejetnoscOdnawianaPrzez = UMIEJETNOSC_ODNAWIANA;
-        else if (UmiejetnoscOdnawianaPrzez > 0) { UmiejetnoscOdnawianaPrzez--; }
+        if (UmiejAktywnaPrzez == 0 && UmiejOdnawianaPrzez == 0)
+            UmiejOdnawianaPrzez = UMIEJETNOSC_ODNAWIANA;
+        else if (UmiejOdnawianaPrzez > 0) 
+            UmiejOdnawianaPrzez--; 
     }
    
 }
@@ -181,7 +182,7 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
 
 void Czlowiek::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 
-    if (UmiejetnoscAktywnaPrzez > 0)
+    if (UmiejAktywnaPrzez > 0)
         KolizjaZAktywnaUmiejetnoscia(atakujacy, dir);
     else 
         NormalnaKolizja(atakujacy, dir);

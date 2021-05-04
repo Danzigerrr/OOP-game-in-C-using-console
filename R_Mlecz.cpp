@@ -23,7 +23,7 @@ void Mlecz::init() {
 
 void Mlecz::Akcja() {
 	for (int i = 0; i < ILOSC_PROB_ROZPRZEST; i++) {
-		cout << "proba rozsiania Mlecza nr" << i + 1 << endl;
+		//cout << "proba rozsiania Mlecza nr" << i + 1 << endl;
 		NormalnaAkcjaRoslin();
 	}
 

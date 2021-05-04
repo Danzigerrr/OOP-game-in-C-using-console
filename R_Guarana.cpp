@@ -24,11 +24,11 @@ void Guarana::Kolizja(Zwierze* atakujacy, DIRECTION dir)
 
     if (sila != atakujacy->GetSila()) //sily sa rozne --> wygyrwa silniejszy
     {
-        if (sila > atakujacy->GetSila()) //wygrywa obronca
+        if (sila > atakujacy->GetSila()) 
         {
             ObroncaWygral(atakujacy, dir);
         }
-        else //wygrywa atakujacy
+        else 
         {
             AtakujacyWygral(atakujacy, dir);
             int obecnaSilaAtak = atakujacy->GetSila();

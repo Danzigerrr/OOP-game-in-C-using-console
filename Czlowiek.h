@@ -4,8 +4,8 @@
 
 class Czlowiek : public Zwierze {
 private:
-	int UmiejetnoscAktywnaPrzez;
-	int UmiejetnoscOdnawianaPrzez;
+	int UmiejAktywnaPrzez;
+	int UmiejOdnawianaPrzez;
 	int KierunekRuchuCzlowieka;
 	void KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir);
 	void init() override;

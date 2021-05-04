@@ -11,17 +11,17 @@ Swiat::Swiat(const int _width, const int _height)
 	this->tura = 0;
 
 	plansza = new Organizm **[szerokosc];
-	for (int i = 0; i < szerokosc; i++) {
+	for (int i = 0; i < szerokosc; i++) 
 		plansza[i] = new Organizm * [wysokosc];
-	}
+	
 
 	vector<Organizm*> Y;
 	COORDINATES coor1{ 0,0 };
 	Y.push_back(new Czlowiek(this,coor1,0)); // tylko jeden czlowiek
 	
-	int iloscPol = szerokosc * wysokosc;
-	int iloscOrg = iloscPol * ILOSC_ORGANIZMU_NA_POCZATKU / 100;
-	std::cout << "Swiat bedzie mial " << iloscOrg << " organizmow, co stanowi " << ILOSC_ORGANIZMU_NA_POCZATKU << "% ilsoci pol.\n";
+	int iloscWszystkichPol = szerokosc * wysokosc;
+	int iloscOrg = iloscWszystkichPol * ILOSC_ORGANIZMU_NA_POCZATKU / 100;
+	std::cout << "Swiat bedzie mial " << iloscOrg << " organizmow, co stanowi " << ILOSC_ORGANIZMU_NA_POCZATKU << "% ilosci pol.\n";
 	int iterator = 1;
 	while(iloscOrg > iterator){
 		int i = iterator % ILOSC_GATUNKOW_BEZ_CZLOWIEKA;
@@ -41,18 +41,17 @@ Swiat::Swiat(const int _width, const int _height)
 		Y.push_back(Org);
 		iterator++;
 	}
-
 	
 	COORDINATES coor{ 0,0 };
-	while (Y.size() < szerokosc * wysokosc)
+	while (Y.size() < iloscWszystkichPol)
 		Y.push_back(new Trawa());
 
 	std::random_shuffle(Y.begin(), Y.end());
 
-	for (int j = 0; j < szerokosc; j++) {
-		for (int i = 0; i < wysokosc; i++) {
-			int id = j * wysokosc + i;
-			COORDINATES coor{ j,i }; 
+	for (int x = 0; x < szerokosc; x++) {
+		for (int y = 0; y < wysokosc; y++) {
+			int id = x * wysokosc + y;
+			COORDINATES coor{ x,y }; 
 
 			char gatunek = Y[id]->GetZnak();
 			int wiek = 0;
@@ -102,7 +101,6 @@ void Swiat::GetHumanCommand() {
 					if(UmiejetnoscOdnawianaPrzez > 0) std::cout << "Specjalna umiejetnosc jest odnawiana";
 				}
 			}break;
-
 			default: {
 				Human->SetKierunekRuchuCzlowieka(_getch());
 				break;
@@ -287,7 +285,7 @@ string Swiat::ZapiszPoczatkowySwiat() {
 
 	if (GetHuman() != NULL) {
 		Czlowiek *H = (Czlowiek*)GetHuman();
-		res << "Pozycja czlowieka: " << H->GetPozycja().x << " " << H->GetPozycja().y << endl;
+		res << "Czlowiek: " << H->GetPozycja().x << " " << H->GetPozycja().y <<" sila: " << H->GetSila() <<  endl;
 		if (H->GetUmiejetnoscAktywnaPrzez() > 0) { std::cout << "Specjalna umiejetnosc aktywna przez: " << H->GetUmiejetnoscAktywnaPrzez() << endl; }
 		if (H->GetUmiejetnoscOdnawianaPrzez() > 0) { std::cout << "Specjalna umiejetnosc odnawiana przez: " << H->GetUmiejetnoscOdnawianaPrzez() << endl; }
 

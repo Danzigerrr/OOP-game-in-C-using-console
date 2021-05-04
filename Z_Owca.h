@@ -9,8 +9,5 @@ public:
 	Owca(Swiat* swiat, COORDINATES pos, int wiek);
 	~Owca();
 	
-	/*	explenation:														   
-	https://stackoverflow.com/questions/14183939/c-constructor-call-another-constructor-based-on-parameter-type 
-
-	*/
+	
 };
