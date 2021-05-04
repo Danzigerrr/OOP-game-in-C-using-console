@@ -14,7 +14,7 @@
 #include "Z_Owca.h"
 #include "Z_Wilk.h"
 #include "Z_Zolw.h"
-
+#define ILOSC_ORGANIZMU_NA_POCZATKU 20 //%
 class Organizm;
 
 class Swiat
@@ -23,18 +23,19 @@ private:
 	int wysokosc, szerokosc;
 	int tura;
 	Organizm*** plansza;
-
+	int iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
 	void PrzygotujKolejnaRunde();
 	
 
-
+	Organizm* StworzOrganizmTegoGatunku(char gatunek, COORDINATES coor, int wiek);
 	void WczytajOrganizmyZPliku(FILE* fptr);
 	void WczytajInfoOSwiecieZPliku(FILE* fptr);
 	void UtworzPlanszeZPliku();
 	char* WczytajNazwePliku();
 	void GetHumanCommand();
+	bool SprawdzCzySaAktywneOrganizmy();
 	Organizm* GetHuman();
-	vector<Organizm*> wezWszystkieOrganizmy();
+	vector<Organizm*> wezWszystkieOrganizmy(bool TylkoAktywne = false);
 
 	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
 public:

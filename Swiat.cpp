@@ -1,6 +1,6 @@
 ﻿#include "Organizm.h"
 #include "Swiat.h"
-#define ILOSC_ORGANIZMU_NA_POCZATKU 20 //%
+
 
 Swiat::Swiat(const int _width, const int _height)
 {
@@ -14,7 +14,6 @@ Swiat::Swiat(const int _width, const int _height)
 	for (int i = 0; i < szerokosc; i++) {
 		plansza[i] = new Organizm * [wysokosc];
 	}
-
 
 	vector<Organizm*> Y;
 	COORDINATES coor1{ 0,0 };
@@ -31,7 +30,7 @@ Swiat::Swiat(const int _width, const int _height)
 			case 1: { Org = new Antylopa; }break;
 			case 2: { Org = new Lis; }break;
 			case 3: { Org = new Owca; }break;
-			case 4: {  Org = new Wilk; }break;
+			case 4: { Org = new Wilk; }break;
 			case 5: { Org = new Zolw; }break;
 			case 6: { Org = new BarszczSosnowskiego; }break;
 			case 7: { Org = new Guarana; }break;
@@ -50,29 +49,14 @@ Swiat::Swiat(const int _width, const int _height)
 
 	std::random_shuffle(Y.begin(), Y.end());
 
-	//Y.reserve(Y.size());
-
 	for (int j = 0; j < szerokosc; j++) {
 		for (int i = 0; i < wysokosc; i++) {
 			int id = j * wysokosc + i;
 			COORDINATES coor{ j,i }; 
 
-			Organizm* Org = NULL;
 			char gatunek = Y[id]->GetZnak();
 			int wiek = 0;
-			switch (gatunek) {
-				case ANTYLOPA: { Org = new Antylopa(this, coor, wiek); }break;
-				case LIS: { Org = new Lis(this, coor, wiek); }break;
-				case OWCA: { Org = new Owca(this, coor, wiek); }break;
-				case WILK: {  Org = new Wilk(this, coor, wiek); }break;
-				case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
-				case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
-				case GUARANA: { Org = new Guarana(this, coor, wiek); }break;
-				case MLECZ: { Org = new Mlecz(this, coor, wiek); }break;
-				case TRAWA: { Org = new Trawa(this, coor, wiek); }break;
-				case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
-				case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
-			}
+			Organizm* Org = StworzOrganizmTegoGatunku(gatunek, coor, wiek);
 			SetPole(coor, Org);
 		}
 	}
@@ -137,23 +121,44 @@ void Swiat::ZapiszSwiatDoPliku() {
 	ofstream myfile(nazwaPliku);
 	if (myfile.is_open())
 	{
-		myfile << szerokosc << " " << wysokosc << " "<< tura << "\n";
+		myfile << szerokosc << " " << wysokosc << " "<< tura << iloscOrgNaPoczatku << "\n";
 		vector<Organizm*> w = wezWszystkieOrganizmy();
 		for (auto org : w) {
 			if (org->GetZnak() != TRAWA) {
-				cout << "zapisuje " << org->GetZnak() << endl;
 				myfile << org->GetZnak() << " " << org->GetPozycja().x << " " << org->GetPozycja().y << " " << org->GetWiek() << "\n";
+
+				cout << "zapisano " << org->GetZnak() << " " << org->GetPozycja().x << " " << org->GetPozycja().y << " " << org->GetWiek() << "\n";
 			}
 		}
 
-		
+		system("CLS");
 		cout << "Pomyslnie zapisano gre w pliku " << nazwaPliku << endl;
 		myfile.close();
 	}
 	else {
-		cout << "Unable to open this file.";
+		cout << "I'm sorry, I am Unable to open file with name " << nazwaPliku << endl;;
 		exit(1);
 	}
+}
+
+
+Organizm* Swiat::StworzOrganizmTegoGatunku(char gatunek, COORDINATES coor, int wiek) {
+	Organizm* Org = NULL;
+
+	switch (gatunek) {
+	case ANTYLOPA: { Org = new Antylopa(this, coor, wiek); }break;
+	case LIS: { Org = new Lis(this, coor, wiek); }break;
+	case OWCA: { Org = new Owca(this, coor, wiek); }break;
+	case WILK: {  Org = new Wilk(this, coor, wiek); }break;
+	case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
+	case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
+	case GUARANA: { Org = new Guarana(this, coor, wiek); }break;
+	case MLECZ: { Org = new Mlecz(this, coor, wiek); }break;
+	case TRAWA: { Org = new Trawa(this, coor, wiek); }break;
+	case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
+	case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
+	}
+	return Org;
 }
 
 void Swiat::WczytajOrganizmyZPliku(FILE* fptr) {
@@ -181,21 +186,7 @@ void Swiat::WczytajOrganizmyZPliku(FILE* fptr) {
 
 			COORDINATES coor{ x,y };
 
-			Organizm* Org = NULL;
-
-			switch (gatunek) {
-			case ANTYLOPA: { Org = new Antylopa(this, coor, wiek); }break;
-			case LIS: { Org = new Lis(this, coor, wiek); }break;
-			case OWCA: { Org = new Owca(this, coor, wiek); }break;
-			case WILK: {  Org = new Wilk(this, coor, wiek); }break;
-			case ZOLW: { Org = new Zolw(this, coor, wiek); }break;
-			case BARSZCZ: { Org = new BarszczSosnowskiego(this, coor, wiek); }break;
-			case GUARANA: { Org = new Guarana(this, coor, wiek); }break;
-			case MLECZ: { Org = new Mlecz(this, coor, wiek); }break;
-			case TRAWA: { Org = new Trawa(this, coor, wiek); }break;
-			case WILCZEJAGODY: { Org = new WilczeJagody(this, coor, wiek); }break;
-			case CZLOWIEK: { Org = new Czlowiek(this, coor, wiek); }break;
-			}
+			Organizm* Org = StworzOrganizmTegoGatunku(gatunek, coor, wiek);
 
 			if (Org == NULL) {
 				cout << "niepoprawna nazwa organizmu!";
@@ -226,6 +217,7 @@ void Swiat::WczytajInfoOSwiecieZPliku(FILE* fptr) {
 	this->wysokosc = get_value_from_char(infoSwiat, &j);
 	this->szerokosc = get_value_from_char(infoSwiat, &j);
 	this->tura = get_value_from_char(infoSwiat, &j);
+	this->iloscOrgNaPoczatku = get_value_from_char(infoSwiat, &j);
 }
 void Swiat::UtworzPlanszeZPliku() {
 	system("CLS");
@@ -292,12 +284,20 @@ void Swiat::RysujSwiat() {
 			std::cout << plansza[j][i]->GetZnak() << " ";
 		cout << endl;
 	}
-	cout << " koniec rsyowania swiata\n ";
 
 	if (GetHuman() != NULL)
 		cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
 	else
 		cout << "Czlowiek nie istnieje\n";
+}
+
+bool Swiat::SprawdzCzySaAktywneOrganizmy() {
+	for (int i = 0; i < wysokosc; i++) 
+		for (int j = 0; j < szerokosc; j++)
+			if (plansza[j][i]->GetWykonalRuch() == false)
+				return true;
+
+	return false;
 }
 
 void Swiat::WykonajTure() {
@@ -308,43 +308,37 @@ void Swiat::WykonajTure() {
 	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
-	//sort(w.begin(), w.end(), cmp);
-	int iloscwszystkichorg = 0;
+	sort(w.begin(), w.end(), cmp);
 	for (auto o_ptr : w) {
-		iloscwszystkichorg++;
 		o_ptr->SetWykonalRuch(false);
 	}
 
-	int kolejnyorganizm = 0;
+	Organizm* org = w.front();
 
-	for (int j = 0; j < iloscwszystkichorg; j++) {
-		Organizm *org = w.front();
+	while(true){
 		if (org->GetWykonalRuch() == false) {
+
 			COORDINATES coor = org->GetPozycja();
-			if(org -> GetZnak() != TRAWA) // dal trawy nie wypisujemy tego
-			cout << org->GetZnak() <<  " na poz " << coor.x << " " << coor.y << " wykonuje akcje \n";
-			
-			if(org->GetZnak() == LIS)
-				org->Akcja();
-			else
+			if(org -> GetZnak() != TRAWA) // dal trawy nie pokazuj
+			cout << org->GetZnak() << " z inicj= " << org->GetInicjatywa() << " z wiekiem= " << org->GetWiek() << " na poz= " << coor.x << " " << coor.y <<  " wykonuje akcje: \n";
 
-				org->Akcja();
+			org->Akcja();
 
-			//RysujSwiat();
-
-			int aktualnyWiek = org->GetWiek();
-			org->SetWiek(aktualnyWiek + 1);
+			org->SetWiek(org->GetWiek() + 1);
 			org->SetWykonalRuch(true);
-			//Sleep(100);
 		}
-		w = wezWszystkieOrganizmy(); // aktualizacja vektora
-	//	std::sort(w.begin(), w.end(), cmp);
-		kolejnyorganizm++;
-		for (int i = 0; i < kolejnyorganizm; i++) {
-			w.erase(w.begin()); // pop front
-		}
+		if (SprawdzCzySaAktywneOrganizmy()) {
 
+			w = wezWszystkieOrganizmy(true); // aktualizacja vektora
+
+			std::sort(w.begin(), w.end(), cmp);
+			org = w.front();
+		}
+		else
+			break;
 	}
+
+
 	RysujSwiat();
 	PrzygotujKolejnaRunde();
 
@@ -352,6 +346,12 @@ void Swiat::WykonajTure() {
 
 void Swiat::PrzygotujKolejnaRunde() {
 	
+	vector<Organizm*> w = wezWszystkieOrganizmy();
+	for (auto org : w) {
+		org->SetWykonalRuch(false);
+	}
+
+
 	while (std::cin.get() != 'n' ) {
 		cout << "koniec tury, klinknij klawisz n + enter\n";
 	}
@@ -409,9 +409,9 @@ Swiat::~Swiat() {
 
 bool cmp(Organizm* o1, Organizm* o2) {
 	if (o1->GetInicjatywa() != o2->GetInicjatywa()) {
-		return o1->GetInicjatywa() < o2->GetInicjatywa();
+		return o1->GetInicjatywa() > o2->GetInicjatywa();
 	}
-	return o1->GetWiek() < o2->GetWiek();
+	return o1->GetWiek() > o2->GetWiek();
 }
 
 int Swiat::get_value_from_char(char* znak, int* iterator)
@@ -426,12 +426,17 @@ int Swiat::get_value_from_char(char* znak, int* iterator)
 	return result;
 }
 
-vector<Organizm*> Swiat::wezWszystkieOrganizmy() {
+vector<Organizm*> Swiat::wezWszystkieOrganizmy(bool TylkoAktywne) {
 	vector<Organizm*> res;
 	for (int i = 0; i < szerokosc; i++) {
 		for (int j = 0; j < wysokosc; j++) {
 			COORDINATES coor{ i,j };
-			res.push_back(GetPole(coor));
+			if (TylkoAktywne == true) {
+				if(GetPole(coor)->GetWykonalRuch() == false)
+					res.push_back(GetPole(coor));
+			}
+			else
+				res.push_back(GetPole(coor));
 		}
 	}
 	return res;
