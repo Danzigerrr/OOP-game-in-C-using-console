@@ -14,7 +14,7 @@ Zolw::~Zolw() {}
 
 
 void Zolw::Akcja() {
-	int SzansaNaRuch = rand() % 3; // w 75% zolw nie zmienia swojego polozenia
+	int SzansaNaRuch = rand() % 4; // w 75% zolw nie zmienia swojego polozenia
 	if (SzansaNaRuch) {
 		DIRECTION dir = ZrobRuch();
 		CzyOdbilAtak(dir);

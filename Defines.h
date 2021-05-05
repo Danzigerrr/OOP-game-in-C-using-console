@@ -20,6 +20,7 @@ using namespace std;
 #define ILOSC_GATUNKOW_BEZ_CZLOWIEKA 10
 #define SILA_GRANICZNA_PRZY_ODBICIU 5
 #define ILOSC_PROB_LOSOWYCH_RUCHOW 10
+
 #define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'

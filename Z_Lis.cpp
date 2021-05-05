@@ -25,10 +25,11 @@ Lis::~Lis() {}
 DIRECTION Lis::ZrobRuch() {
     DIRECTION dir = NO_CHANGE;
     int SprawdzoneMozliwosci = 0;
+    bool KoloLisaJestSilniejszyOrg = false;
+
     while (dir == NO_CHANGE) {
-        int random = rand() % 3;
         COORDINATES coor = pozycja;
-        
+        int random = rand() % 4;
         if (SprawdzoneMozliwosci < ILOSC_PROB_LOSOWYCH_RUCHOW) SprawdzoneMozliwosci++;
         else break; //jesli nie ma gdzie sie ruszyc, lis zostaje w miejscu
 
@@ -42,8 +43,10 @@ DIRECTION Lis::ZrobRuch() {
                         pozycja = coor;
                         dir = UP;
                     }
-                    else
+                    else {
+                        KoloLisaJestSilniejszyOrg = true;
                         coor = pozycja;
+                    }
                 }
             }break;
             case DOWN: {
@@ -54,8 +57,10 @@ DIRECTION Lis::ZrobRuch() {
                         pozycja = coor;
                         dir = DOWN;
                     }
-                    else
+                    else {
+                        KoloLisaJestSilniejszyOrg = true;
                         coor = pozycja;
+                    }
                 }
             }break;
             case LEFT: {
@@ -66,8 +71,10 @@ DIRECTION Lis::ZrobRuch() {
                         pozycja = coor;
                         dir = LEFT;
                     }
-                    else
+                    else {
+                        KoloLisaJestSilniejszyOrg = true;
                         coor = pozycja;
+                    }
                 }
             }break;
             case RIGHT: {
@@ -78,12 +85,17 @@ DIRECTION Lis::ZrobRuch() {
                         pozycja = coor;
                         dir = RIGHT;
                     }
-                    else
+                    else {
+                        KoloLisaJestSilniejszyOrg = true;
                         coor = pozycja;
+                    }
                 }
             }break;
         }
     }
+
+    if(KoloLisaJestSilniejszyOrg)
+        cout << "kolo lisa znajduje sie silniejszy organizm!\n";
 
     if (dir != NO_CHANGE)
         cout << "nowa pozycja " << GetZnak() << " " << pozycja.x << " " << pozycja.y << endl;

@@ -15,8 +15,10 @@ void Roslina::NormalnaAkcjaRoslin() {
 }
 bool Roslina::ObliczSzanseNaRozsianie() {
 	int szansa = rand() % 100;
-	if (szansa <= SZANSA_NA_ROZSIEW) return true;
-	else return false;
+	if (szansa < SZANSA_NA_ROZSIEW)
+        return true;
+	else
+        return false;
 }
 
 void Roslina::ZbadajSasiadow() {
@@ -42,14 +44,12 @@ void Roslina::ZbadajSasiadow() {
             }
 
             if (i == 2 || rozsiana == true) {
-                i = 2;
+                i = 2 * ZASIEG_ROZSIEWU_PION;
                 rozsiana = true;
                 break;
             }
         }
     }
-
-
 }
 
 bool Roslina::Split(COORDINATES coor) {

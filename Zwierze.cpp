@@ -19,9 +19,9 @@ DIRECTION Zwierze::ZrobRuch() {
     DIRECTION dir = NO_CHANGE;
     int proby = 0;
     while (dir == NO_CHANGE) {
-        int random = rand() % 3;
+        int random = rand() % 4;
 
-        if (proby < 10) proby++;
+        if (proby < ILOSC_PROB_LOSOWYCH_RUCHOW) proby++;
         else break;
 
         switch (random) {

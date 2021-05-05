@@ -20,8 +20,8 @@ class Organizm;
 class Swiat
 {
 private:
-	static unsigned int wysokosc, szerokosc, tura, iloscOrgNaPoczatku;
-	static Organizm*** plansza;
+	int wysokosc, szerokosc, tura, iloscOrgNaPoczatku;
+	Organizm*** plansza;
 	void PrzygotujKolejnaRunde();
 	
 	string ZapiszPoczatkowySwiat();
@@ -40,21 +40,21 @@ private:
 
 	//przeciazany operator
 	struct comparer { bool operator()(Organizm* o1, Organizm* o2); };
-	
+	void RysujSwiat();
 public:
 	
 	Swiat();
-	Swiat(unsigned int width, unsigned int height);
+	Swiat(int width, int height);
 	~Swiat();
 
 	void WczytajSwiatZPliku();
-	void RysujSwiat();
+	
 	void WykonajTure();
 
-	static int GetWysokosc();
-	static int GetSzerokosc();
-	static int GetTura();
+	int GetWysokosc();
+	int GetSzerokosc();
+	int GetTura();
 
-	static void SetPole(COORDINATES coor, Organizm* org);
-	static Organizm* GetPole(COORDINATES coor);
+	void SetPole(COORDINATES coor, Organizm* org);
+	Organizm* GetPole(COORDINATES coor);
 };

@@ -2,25 +2,27 @@
 #include "Swiat.h"
 
 //definicje pol statycznych
+/*
 unsigned int Swiat::wysokosc;
 unsigned int Swiat::szerokosc;
 unsigned int Swiat::tura;
 unsigned int Swiat::iloscOrgNaPoczatku;
 Organizm*** Swiat::plansza;
+*/
 
-//konstruktor
-Swiat::Swiat(unsigned int _width, unsigned int _height)
+
+Swiat::Swiat(int _width, int _height)
 {
 	std::cout << "utworzono swiat o rozmiarach: szer = " << _width << " wys= " << _height << endl;
 
-	szerokosc = _width;
-	wysokosc = _height;
-	tura = 0;
-	iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
+	this->szerokosc = _width;
+	this->wysokosc = _height;
+	this->tura = 0;
+	this->iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
 
-	plansza = new Organizm **[szerokosc];
+	this->plansza = new Organizm **[szerokosc];
 	for (int i = 0; i < szerokosc; i++) 
-		plansza[i] = new Organizm * [wysokosc];
+		this->plansza[i] = new Organizm * [wysokosc];
 	
 
 	vector<Organizm*> Y;

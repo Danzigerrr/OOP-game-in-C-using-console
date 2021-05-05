@@ -45,8 +45,7 @@ void BarszczSosnowskiego::Kolizja(Zwierze* atakujacy, DIRECTION dir) {
 //Zabija wszystkie zwierzęta w swoim sąsiedztwie poza
 void BarszczSosnowskiego::Akcja() {
 
-	cout << "\n oto swiat przed zabiciem sasiadow:" << endl;
-	swiat->RysujSwiat();
+	cout << "teraz barszcz niszczy sasiadow\n";
 
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++) {
@@ -63,8 +62,8 @@ void BarszczSosnowskiego::Akcja() {
 			}
 		}
 
-	cout << "\n oto swiat po zabicu sasiadow:" << endl;
-	swiat->RysujSwiat();
+	//cout << "\n oto swiat po zabicu sasiadow:" << endl;
+	//swiat->RysujSwiat();
 }
 
 void BarszczSosnowskiego::zabijSasiada(COORDINATES coor) {

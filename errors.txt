@@ -1,0 +1,18 @@
+
+1>R_BarszczSosnowskiego.cpp
+1>R_Guarana.cpp
+1>R_Mlecz.cpp
+1>R_Trawa.cpp
+1>R_WilczeJagody.cpp
+1>Roslina.cpp
+1>Symulator1.cpp
+1>TrujacaRoslina.cpp
+1>Z_Antylopa.cpp
+1>Z_Lis.cpp
+1>Z_Owca.cpp
+1>Z_Wilk.cpp
+1>Z_Zolw.cpp
+1>Zwierze.cpp
+1>Generating Code...
+1>Swiat.cpp
+1>C:\Informatyka\II SEMESTR\PO\Projekt 1\v1\v1\Swiat.cpp(56,18): warning C4018: '<': signed/unsigned mismatch
