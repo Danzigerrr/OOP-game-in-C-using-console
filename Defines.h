@@ -16,9 +16,10 @@ using namespace std;
 
 #define UMIEJETNOSC_AKTYWNA 5 //tury
 #define UMIEJETNOSC_ODNAWIANA 5 //tury
-#define SZANSA_NA_ROZSIEW 10 //szansa na 100 %
+#define SZANSA_NA_ROZSIEW 20 //szansa na 100 %
 #define ILOSC_GATUNKOW_BEZ_CZLOWIEKA 10
-
+#define SILA_GRANICZNA_PRZY_ODBICIU 5
+#define ILOSC_PROB_LOSOWYCH_RUCHOW 10
 #define CZLOWIEK 'H'
 #define WILK 'W'
 #define OWCA 'O'

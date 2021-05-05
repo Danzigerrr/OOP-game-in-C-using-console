@@ -1,5 +1,6 @@
 #include "Zwierze.h"
 #include "Swiat.h"
+
 Zwierze::Zwierze(){}
 Zwierze::~Zwierze(){}
 
@@ -93,7 +94,7 @@ void Zwierze::CzyOdbilAtak(DIRECTION dir) {
     }
     else {
         // jesli organizm ma sile mniejsza niz 5 --> zolw odeprze jego atak
-        if (sila < 5 && Def->GetZnak() == ZOLW) {
+        if (sila < SILA_GRANICZNA_PRZY_ODBICIU && Def->GetZnak() == ZOLW) {
             NastapiloOdbicie(dir);
         }
         else {

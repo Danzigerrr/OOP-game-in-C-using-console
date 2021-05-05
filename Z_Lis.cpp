@@ -29,7 +29,7 @@ DIRECTION Lis::ZrobRuch() {
         int random = rand() % 3;
         COORDINATES coor = pozycja;
         
-        if (SprawdzoneMozliwosci < 10) SprawdzoneMozliwosci++;
+        if (SprawdzoneMozliwosci < ILOSC_PROB_LOSOWYCH_RUCHOW) SprawdzoneMozliwosci++;
         else break; //jesli nie ma gdzie sie ruszyc, lis zostaje w miejscu
 
         switch (random) {    

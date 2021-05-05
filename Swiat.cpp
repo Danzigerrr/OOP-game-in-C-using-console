@@ -1,14 +1,22 @@
 ﻿#include "Organizm.h"
 #include "Swiat.h"
 
+//definicje pol statycznych
+unsigned int Swiat::wysokosc;
+unsigned int Swiat::szerokosc;
+unsigned int Swiat::tura;
+unsigned int Swiat::iloscOrgNaPoczatku;
+Organizm*** Swiat::plansza;
 
-Swiat::Swiat(const int _width, const int _height)
+//konstruktor
+Swiat::Swiat(unsigned int _width, unsigned int _height)
 {
 	std::cout << "utworzono swiat o rozmiarach: szer = " << _width << " wys= " << _height << endl;
 
-	this->szerokosc = _width;
-	this->wysokosc = _height;
-	this->tura = 0;
+	szerokosc = _width;
+	wysokosc = _height;
+	tura = 0;
+	iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
 
 	plansza = new Organizm **[szerokosc];
 	for (int i = 0; i < szerokosc; i++) 
@@ -170,9 +178,9 @@ void Swiat::WczytajOrganizmyZPliku(FILE* fptr) {
 			char gatunek = infoOrganizmy[0];
 
 			int i = 2;
-			int x = get_value_from_char(infoOrganizmy, &i);
-			int y = get_value_from_char(infoOrganizmy, &i);
-			int wiek = get_value_from_char(infoOrganizmy, &i);
+			int x = GetValueFromChar(infoOrganizmy, &i);
+			int y = GetValueFromChar(infoOrganizmy, &i);
+			int wiek = GetValueFromChar(infoOrganizmy, &i);
 
 			if (x >= szerokosc || y >= wysokosc) {
 				std::cout << "niepoprawna pozycja ";
@@ -212,10 +220,10 @@ void Swiat::WczytajInfoOSwiecieZPliku(FILE* fptr) {
 	char infoSwiat[50] = {};
 	fgets(infoSwiat, 50, fptr);
 	int j = 0;
-	this->wysokosc = get_value_from_char(infoSwiat, &j);
-	this->szerokosc = get_value_from_char(infoSwiat, &j);
-	this->tura = get_value_from_char(infoSwiat, &j);
-	this->iloscOrgNaPoczatku = get_value_from_char(infoSwiat, &j);
+	szerokosc = GetValueFromChar(infoSwiat, &j);
+	wysokosc = GetValueFromChar(infoSwiat, &j);
+	tura = GetValueFromChar(infoSwiat, &j);
+	iloscOrgNaPoczatku = GetValueFromChar(infoSwiat, &j);
 }
 void Swiat::UtworzPlanszeZPliku() {
 	system("CLS");
@@ -286,8 +294,8 @@ string Swiat::ZapiszPoczatkowySwiat() {
 	if (GetHuman() != NULL) {
 		Czlowiek *H = (Czlowiek*)GetHuman();
 		res << "Czlowiek: " << H->GetPozycja().x << " " << H->GetPozycja().y <<" sila: " << H->GetSila() <<  endl;
-		if (H->GetUmiejetnoscAktywnaPrzez() > 0) { std::cout << "Specjalna umiejetnosc aktywna przez: " << H->GetUmiejetnoscAktywnaPrzez() << endl; }
-		if (H->GetUmiejetnoscOdnawianaPrzez() > 0) { std::cout << "Specjalna umiejetnosc odnawiana przez: " << H->GetUmiejetnoscOdnawianaPrzez() << endl; }
+		if (H->GetUmiejetnoscAktywnaPrzez() > 0) { res << "Specjalna umiejetnosc aktywna przez: " << H->GetUmiejetnoscAktywnaPrzez() << endl; }
+		if (H->GetUmiejetnoscOdnawianaPrzez() > 0) { res << "Specjalna umiejetnosc odnawiana przez: " << H->GetUmiejetnoscOdnawianaPrzez() << endl; }
 
 	}
 	else
@@ -295,6 +303,14 @@ string Swiat::ZapiszPoczatkowySwiat() {
 
 	string result = res.str();
 	return result;
+}
+
+bool Swiat::comparer::operator()(Organizm* o1, Organizm* o2) {
+		if (o1->GetInicjatywa() != o2->GetInicjatywa())
+			return o1->GetInicjatywa() > o2->GetInicjatywa();
+		else
+			return o1->GetWiek() > o2->GetWiek();
+	
 }
 
 void Swiat::RysujSwiat() {
@@ -309,8 +325,13 @@ void Swiat::RysujSwiat() {
 		std::cout << endl;
 	}
 
-	if (GetHuman() != NULL)
-		std::cout << "Pozycja czlowieka: " << GetHuman()->GetPozycja().x << " " << GetHuman()->GetPozycja().y << endl;
+	if (GetHuman() != NULL) {
+		Czlowiek* H = (Czlowiek*)GetHuman();
+		cout << "Czlowiek: " << H->GetPozycja().x << " " << H->GetPozycja().y << " sila: " << H->GetSila() << endl;
+		if (H->GetUmiejetnoscAktywnaPrzez() > 0) { std::cout << "Specjalna umiejetnosc aktywna przez: " << H->GetUmiejetnoscAktywnaPrzez() << endl; }
+		if (H->GetUmiejetnoscOdnawianaPrzez() > 0) { std::cout << "Specjalna umiejetnosc odnawiana przez: " << H->GetUmiejetnoscOdnawianaPrzez() << endl; }
+
+	}
 	else
 		std::cout << "Czlowiek nie istnieje\n";
 }
@@ -334,7 +355,7 @@ void Swiat::WykonajTure() {
 	std::cout << "Wykonywanie " << tura << " tury:\n";
 
 	vector<Organizm*> w = wezWszystkieOrganizmy();
-	sort(w.begin(), w.end(), cmp);
+	sort(w.begin(), w.end(), comparer());
 	for (auto o_ptr : w) {
 		o_ptr->SetWykonalRuch(false);
 	}
@@ -357,7 +378,7 @@ void Swiat::WykonajTure() {
 
 			w = wezWszystkieOrganizmy(true); // aktualizacja vektora
 
-			std::sort(w.begin(), w.end(), cmp);
+			sort(w.begin(), w.end(), comparer());
 			org = w.front();
 		}
 		else
@@ -400,14 +421,11 @@ void Swiat::PrzygotujKolejnaRunde() {
 	
 }
 
-
-
 void Swiat::SetPole(COORDINATES coor, Organizm* org) {
-	this->plansza[coor.x][coor.y] = org;
+	plansza[coor.x][coor.y] = org;
 }
 
 Organizm* Swiat::GetPole(COORDINATES coor) {
-	if (this == NULL) std::cout << "NULL";
 	return plansza[coor.x][coor.y];
 }
 
@@ -435,14 +453,7 @@ Swiat::~Swiat() {
 	delete[] plansza;
 }
 
-bool cmp(Organizm* o1, Organizm* o2) {
-	if (o1->GetInicjatywa() != o2->GetInicjatywa()) {
-		return o1->GetInicjatywa() > o2->GetInicjatywa();
-	}
-	return o1->GetWiek() > o2->GetWiek();
-}
-
-int Swiat::get_value_from_char(char* znak, int* iterator)
+int Swiat::GetValueFromChar(char* znak, int* iterator)
 {
 	int result = 0, i = 0;
 	while (znak[*iterator + i] >= 48 && znak[*iterator + i] <= 57)

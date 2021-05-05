@@ -9,7 +9,7 @@ protected:
 	int inicjatywa;
 	int wiek;
 	char znak;
-	bool wykonalRuch = false;
+	bool wykonalRuch = true/*= false*/ ;
 	COORDINATES pozycja;
 	Swiat* swiat;
 	

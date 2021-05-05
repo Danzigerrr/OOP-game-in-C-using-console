@@ -20,10 +20,8 @@ class Organizm;
 class Swiat
 {
 private:
-	int wysokosc, szerokosc;
-	int tura;
-	Organizm*** plansza;
-	int iloscOrgNaPoczatku = ILOSC_ORGANIZMU_NA_POCZATKU;
+	static unsigned int wysokosc, szerokosc, tura, iloscOrgNaPoczatku;
+	static Organizm*** plansza;
 	void PrzygotujKolejnaRunde();
 	
 	string ZapiszPoczatkowySwiat();
@@ -37,23 +35,26 @@ private:
 	Organizm* GetHuman();
 	vector<Organizm*> wezWszystkieOrganizmy(bool TylkoAktywne = false);
 
-	int get_value_from_char(char* tab, int* iterator); //do wczytania z pliku
+	int GetValueFromChar(char* tab, int* iterator); 
+	void ZapiszSwiatDoPliku();
+
+	//przeciazany operator
+	struct comparer { bool operator()(Organizm* o1, Organizm* o2); };
+	
 public:
-	void RysujSwiat(); //potem wrzuc do private
+	
 	Swiat();
-	Swiat(const int width, const int height);
+	Swiat(unsigned int width, unsigned int height);
 	~Swiat();
 
 	void WczytajSwiatZPliku();
-
+	void RysujSwiat();
 	void WykonajTure();
-	void ZapiszSwiatDoPliku();
-	int GetWysokosc();
-	int GetSzerokosc();
-	int GetTura();
 
-	void SetPole(COORDINATES coor, Organizm* org);
-	Organizm* GetPole(COORDINATES coor);
+	static int GetWysokosc();
+	static int GetSzerokosc();
+	static int GetTura();
+
+	static void SetPole(COORDINATES coor, Organizm* org);
+	static Organizm* GetPole(COORDINATES coor);
 };
-bool cmp(Organizm* o1, Organizm* o2);
-

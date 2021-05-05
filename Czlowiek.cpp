@@ -34,32 +34,10 @@ void Czlowiek::SetUmiejetnoscOdnawianaPrzez(int value) {
 }
 void Czlowiek::SetKierunekRuchuCzlowieka(int value) {
     KierunekRuchuCzlowieka = value;
-
-    switch (KierunekRuchuCzlowieka) {
-    case KEY_UP: {
-        cout << "Up" << endl;//key up
-
-    }break;
-    case KEY_DOWN: {
-        cout << "Down" << endl;  // key down
-
-    }break;
-    case KEY_LEFT: {
-        cout << "Left" << endl;  // key left
-
-    }break;
-    case KEY_RIGHT: {
-        cout << "Right" << endl;  // key right
-
-    }break;
-    default:
-        cout << "Incorrect key input" << endl;  // not arrow
-        break;
-    }
 }
 
 DIRECTION Czlowiek::ZrobRuch() {
- cout << "Czlowiek rusza sie z poz" << pozycja.x << " "  << pozycja.y << endl;
+
     DIRECTION dir = NO_CHANGE;
     switch (KierunekRuchuCzlowieka) {
     case KEY_UP: {
@@ -87,13 +65,15 @@ DIRECTION Czlowiek::ZrobRuch() {
     case KEY_RIGHT: {
         cout << "Right" << endl;
         if (pozycja.x < swiat->GetSzerokosc() - 1) {
-
             pozycja.x++;
             dir = RIGHT;
         }
     }break;
     default:
-        cout << "Wcisnales zly klawisz" << endl; 
+        if (UmiejAktywnaPrzez == 5)
+            cout << "W tym ruchu zostala uruchomiona Tarcza Alzura\n";
+        else
+            cout << "Wcisnales zly klawisz\n";
         break;
     }
 
@@ -129,8 +109,7 @@ void Czlowiek::Akcja() {
 
 void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
     bool RuchMozliwy = false;
- //   COORDINATES poz_atak = atakujacy->GetPozycja();
-    //COORDINATES starecoor = ObliczStareCoor(atakujacy, dir);
+    COORDINATES starecoor = ObliczStareCoor(atakujacy, dir);
     COORDINATES noweCoorAtakujacego = pozycja;
     int atakstep = atakujacy->GetStep();
     int i = 0;
@@ -143,7 +122,7 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
                 }
             }break;
             case DOWN: {
-                if (pozycja.y < swiat->GetWysokosc() - 1 ) {
+                if (pozycja.y < swiat->GetWysokosc() - 1) {
                     noweCoorAtakujacego.y++;
                     RuchMozliwy = true;
                 }
@@ -164,19 +143,21 @@ void Czlowiek::KolizjaZAktywnaUmiejetnoscia(Zwierze* atakujacy, DIRECTION dir) {
         i++;
     }
 
-    //jesli ruch jest niemozliwy, atakujace zwierze jest usuwane
-    if (RuchMozliwy == false)
+    if (RuchMozliwy == false) {
+        cout << "Atakujacy nie ma sie gdzie ruszyc, " << atakujacy->GetZnak() << " ginie" << endl;
         ObroncaWygral(atakujacy, dir);
+    }
 
     else {
-        //atakujace zwierze zostaje przesuniete na sasiadujace przy czlowieku pole
-        //(mozliwe nadpisanie danego pola)
-
-        cout << "SPECJALNA UMIEJETNOSC DALA O SOBIE ZNAK - TARCZA ALZURA ZADZIALALA! HURRA!!!";
+        cout << "SPECJALNA UMIEJETNOSC DALA O SOBIE ZNAK - TARCZA ALZURA ZADZIALALA! HURRA!!!\n";
         cout << atakujacy->GetZnak() << " zostal przesuniety na pole " << noweCoorAtakujacego.x << " " << noweCoorAtakujacego.y << endl;
         atakujacy->SetPozycja(noweCoorAtakujacego);
         swiat->SetPole(noweCoorAtakujacego, atakujacy);
 
+        if (!(starecoor.x == noweCoorAtakujacego.x && starecoor.y == noweCoorAtakujacego.y)) {
+            cout << "Atakujacy zajal nowe pole (inne od poprzedniego), wiec na starym polu atakujacego ustawiana jest trawa" << endl;
+            swiat->SetPole(starecoor, new Trawa(swiat, starecoor, 0));
+        }
     }
 }
 

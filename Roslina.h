@@ -3,7 +3,7 @@
 
 class Roslina : public Organizm {
 protected:
-	int inicjatywa = 0;
+	const int inicjatywa = 0;
 	void NormalnaAkcjaRoslin();
 	bool Split(COORDINATES coor);
 	bool ObliczSzanseNaRozsianie();
